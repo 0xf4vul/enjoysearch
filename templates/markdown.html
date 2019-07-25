@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Markdown, Please!</title>
+  <link rel=stylesheet href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Markdown, Please!</h1>
+    <h6>A <a href='https://www.readmorejoy.com/'>Jiang Zhixiang</a> project. Here is our ReadMoreJoy <a href='/search'>Search Engine</a>.</h6>
+
+    <p><strong>Markdown, Please!</strong> is a service that instantly converts websites into <a href="https://daringfireball.net/projects/markdown/">Markdown</a>.</p>
+    <p>To get started: enter any URL, hit "Markdown, Please!", and you will be presented with a Markdown version of the URL you provided.</p>
+
+    <form action="/markdown" method="get">
+      (Option) We use <a href="https://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a> to get find content, browse Inspect, example parameter is: div id="content" or div class="article" etc.<br>
+      <strong>Param</strong>: <input type="text" name="param" size="80"><br>
+      <strong>&nbsp;&nbsp;URL</strong>: <input type="text" name="url" size="80">
+      <button type='submit'>Markdown, Please!</button>
+    </form>
+
+
+    <!-- <hr /> -->
+    <h4>Bookmarklet</h4>
+    <p>Use this bookmarklet to instantly turn any page into Markdown.</p>
+    <a class="button" href="javascript:location.href='http://markdown.readmorejoy.com/?url='+encodeURIComponent(document.location.href);">Markdown, Please!</a>
+    <!-- <hr /> -->
+    <p>&nbsp;</p>
+    <h4>"Developer API"</h4>
+    <p>This service</p>
+
+    <pre><code><strong>$ curl http://markdown.readmorejoy.com/\?url\=https://www.readmorejoy.com/</strong>
+#
+</code></pre>
+  </div>
+
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Markdown, Please!</title>
+    <link rel=stylesheet href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+</head>
+<body>
+
+<div class="container">
+    <h1>Markdown, Please!</h1>
+    <h6>一个 <a href='https://www.readmorejoy.com/'>蒋志祥</a> 项目.</h6>
+
+    <p><strong>Markdown, Please!</strong> 一个服务程序，即刻转换网页为 <a href="https://daringfireball.net/projects/markdown/">Markdown</a> 格式。</p>
+    <p>开始使用，输入任意URL网页地址，点击 "Markdown, Please!"，之后就能得到这个网页的 Markdown 格式，曾经古老的Markdown格式到了现代，越来越流行，保存文档的首选格式。</p>
+
+    <form action="/" method="get">
+      <strong>说明信息</strong><br>
+        <strong>可选参数</strong>: <input type="text" name="param" size="80"><br>
+        <strong>&nbsp;&nbsp;URL</strong>: <input type="text" name="url" size="80">
+        <button type='submit'>Markdown, Please!</button>
+    </form>
+
+    <!-- <hr /> -->
+    <h4>Bookmarklet</h4>
+    <p>使用这个 bookmarklet 即刻转换网页到 Markdown 格式。</p>
+    <a class="button" href="javascript:location.href='http://markdown.readmorejoy.com/?url='+encodeURIComponent(document.location.href);">Markdown, Please!</a>
+    <!-- <hr /> -->
+    <p>&nbsp;</p>
+    <h4>"开发 API"</h4>
+    <p>这是一个服务程序</p>
+
+<pre><code><strong>$ curl http://markdown.readmorejoy.com/\?url\=https://www.readmorejoy.com</strong>
+
+</code></pre>
+</div>
+
+
+</body>
+</html>

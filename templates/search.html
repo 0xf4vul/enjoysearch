@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Enjoy Search</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://cdn.bootcss.com/skeleton/2.0.4/skeleton.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/twitter-bootstrap/4.1.2/css/bootstrap.min.css" rel="stylesheet">
+
+
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.slim.js"></script> -->
+  <!-- <script src="https://cdn.bootcss.com/popper.js/1.15.0/esm/popper.min.js"></script> -->
+  <script src="https://cdn.bootcss.com/twitter-bootstrap/4.1.2/js/bootstrap.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootbox.js/4.4.0/bootbox.min.js"></script>
+
+  <!-- <script src="{{ url_for('static', filename='bootbox.min.js') }}"></script> -->
+
+  <!-- Smtp JS CSS -->
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+  <style>
+    .bootbox-input-textarea {
+      height: 300px;
+      width: 100%;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <script type="text/javascript">
+    function about() {
+      //$(bgoogle).removeClass("button-primary");
+      bootbox.alert({
+        message: "开发一个EnjoySearch搜素引擎工具，帮助我们获取更优质信息，欢迎体验。<br>当前提供 Google，Bing，百度 三大国际搜素引擎，还在研究增加更多优质资源，请稍待！<br><br>MarkDown工具：填入文章URL地址，自动获取和转换成MarkDown格式。<br><br>TellMe菜单：方便您给我们留言的窗口，如需要回复，可以留下您的联系方式。<br><br>谢谢🙏谢谢",
+        backdrop: true
+      });
+      //bootbox.("开发一个EnjoySearch搜素引擎工具，目标是，帮助我们获取到更优质信息，欢迎体验。<br>当前提供 Google，Bing，百度 三大国际搜素引擎，还在研究增加更多优质资源，请稍待！<br><br>MarkDown工具：填入文章URL地址，自动获取和转换成MarkDown格式。<br><br>TellMe菜单：方便您给我们留言的窗口，如需要回复，可以留下您的联系方式。<br><br>谢谢🙏谢谢");
+    };
+
+    function tellme() {
+      bootbox.prompt({
+        title: "Tell me something，Please",
+        inputType: 'textarea',
+        callback: function(result) {
+          if (result) {
+            console.log(result);
+
+            Email.send({
+              SecureToken: "d7a5e1b9-e824-49c4-8c95-05df93cfc690",
+              To: "luckrill@163.com",
+              From: "luckrill@163.com",
+              Subject: "EnjoySearch tellme",
+              Body: result
+            });
+
+            $.post("/postdata", {
+              data: JSON.stringify(result)
+            })
+
+          }
+
+        }
+      });
+    }; // end tellme
+
+    var engine = "";
+    var key = ""
+    var i = 0;
+    $(document).ready(function() {
+
+      engine = $('#idengine').val();
+      key = $('#idkey').val();
+      i = $('#idstart').val()
+      i = parseInt(i)
+
+      if (i < 1) {
+        $('#idnext').hide();
+      };
+
+      //console.log(engine);
+      switch (engine) {
+        case "baidu":
+          //console.log("case baidu");
+          $('#bbaidu').addClass("button-primary");
+          break;
+        case "google":
+          //console.log("case google");
+          $('#bgoogle').addClass("button-primary");
+          break;
+        case "bing":
+          //console.log("case bing");
+          $('#bbing').addClass("button-primary");
+          break;
+        default:
+          //console.log("case default");
+          $('#idengine').val("google");
+          $('#bgoogle').addClass("button-primary");;
+      }
+      $("#bbaidu").click(function() {
+        var cu_key;
+        cu_key = $('#idkey').val();
+        if (cu_key.length > 0) {
+          $('#idengine').val("baidu");
+          $('#idstart').val(1);
+          $("form").submit();
+        }
+      });
+      $("#bgoogle").click(function() {
+        var cu_key;
+        cu_key = $('#idkey').val();
+        if (cu_key.length > 0) {
+          $('#idengine').val("google");
+          $('#idstart').val(1);
+          $("form").submit();
+        }
+      });
+      $("#bbing").click(function() {
+        var cu_key;
+        cu_key = $('#idkey').val();
+        if (cu_key.length > 0) {
+          $('#idengine').val("bing");
+          $('#idstart').val(1);
+          $("form").submit();
+        }
+      });
+      $('#idkey').bind('keypress', function(event) {
+        // console.log("idkey keypress");;
+        if (event.which == 13) {
+          var cu_key;
+          cu_key = $('#idkey').val();
+          // console.log("keypress " + cu_key.length);
+          if (cu_key.length > 0) {
+            // console.log("keypress");
+            $('#idstart').val(1);
+            $("form").submit();
+          }
+        }
+      });
+
+      $("#search").click(function() {
+        i = $('#idstart').val();
+        i = parseInt(i);
+        var cu_key;
+        cu_key = $('#idkey').val();
+        if (cu_key.length > 0) {
+          if (cu_key == key) {
+            $('#idstart').val(i + 10);
+            $("form").submit();
+          } else {
+            $('#idstart').val(1);
+            $("form").submit();
+          }
+        }
+      });
+      $("#idnext").click(function() {
+        i = $('#idstart').val();
+        i = parseInt(i);
+        var cu_key;
+        cu_key = $('#idkey').val();
+        if (cu_key.length > 0) {
+          if (cu_key == key) {
+            $('#idstart').val(i + 10);
+            $("form").submit();
+          } else {
+            $('#idstart').val(1);
+            $("form").submit();
+          }
+        }
+      });
+
+      //$("#tellyou").load("/static/tellyou.txt");
+      //$("#tellyou").load("https://www.readmorejoy.com/2019/07/services/");
+    });
+  </script>
+
+  <div class="container">
+    <br>
+    <h6>Enjoy Search. A <a href='https://www.readmorejoy.com/'>Jiang Zhixiang</a> project.
+      dev a <a href='/markdown'>MarkDown</a>. You can <a href="#" onclick="tellme()">TelleMe</a> Something
+      and this is a our <a href="#" onclick="about()">About</a> </h6>
+
+    <input type="button" value="百度" id="bbaidu">
+    <input type="button" value="Google" id="bgoogle">
+    <input type="button" value="Bing" id="bbing">
+    <!-- <input type="button" value="TellMe" id="btellme" onclick="tellme()">
+    <input type="button" value="About" id="babout" onclick="about()"> -->
+    <br>
+
+    <form action="/search" method="get" οnkeydοwn="if(event.keyCode==13){return false;}">
+      <input type="hidden" name="engine" id="idengine" value="{{ engine }}" />
+      <input type="hidden" name="start" id="idstart" value="{{ start }}" />
+      <input type="text" name="key" id="idkey" size="80" value="{{ key }}" />
+      <!-- add hide text to avoid input enter auto submit by jiangzhixiang -->
+      <input type="text" style="display:none;" value="" />
+      <button type='button' id="search">Search</button>
+    </form>
+
+    {% autoescape false %}
+    {% for post in content %}
+    <a href="{{ post.url }}" target="_blank">{{ post.title }}</a> <br>
+    {{ post.text }}
+    <p>
+      <p>
+        {% endfor %}
+        {% endautoescape %}
+        <center><input type="button" name="next" id="idnext" value="Next" /></center>
+        <div id="htmlinfo"></div>
+        <hr />
+
+        <center>
+          <div id="tellyou">{{ tellyou }}</div>
+        </center>
+
+        <center>Powered by <a href='https://www.readmorejoy.com/'>ReadMoreJoy</a> and <a href='https://www.readmorejoy.com/2019/07/services/'>Services</a></center>
+
+        <div style="display:none;"><img src="{{ url_for('static', filename='readmorejoy1.jpeg') }}" alt=""></div>
+
+  </div>
+</body>
+
+</html>
