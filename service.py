@@ -4,33 +4,12 @@ from flask import Flask, request, redirect, url_for, render_template, flash, ses
 from converter import html_to_md
 from searcher import baidu_search, bing_search, google_search
 import logging
-import subprocess
-#from spider import Spider
-#from flask_socketio import SocketIO, emit
+
 
 app = Flask(__name__)
+app.threaded = True
 app.secret_key = "readmorejoy"
-#socketio = SocketIO(app)
 
-# @socketio.on('my event')
-# def test_message(message):
-#     emit('my response', {'data': 'got it!'})
-#
-# @socketio.on('my event', namespace='/test')
-# def test_message(message):
-#     emit('my response', {'data': message['data']})
-#
-# @socketio.on('my broadcast event', namespace='/test')
-# def test_message(message):
-#     emit('my response', {'data': message['data']}, broadcast=True)
-#
-# @socketio.on('connect', namespace='/test')
-# def test_connect():
-#     emit('my response', {'data': 'Connected'})
-#
-# @socketio.on('disconnect', namespace='/test')
-# def test_disconnect():
-#     print('Client disconnected')
 
 @app.route('/markdown')
 def markdown():
@@ -47,39 +26,8 @@ def markdown():
     else:
         return render_template('markdown.html')
 
-
-@app.route('/crawler')
-def crawler():
-    url = request.args.get('url')
-    print(url)
-    content =""
-    if url:
-        proc = subprocess.Popen(['./crawler.py', url])
-        #out, err = proc.communicate()
-        # while proc.poll() is None:
-        #     print("working...")
-
-        # for li in spider.crawl(url):
-        #     content = spider.get_interLink()
-        #     print("aaa")
-        #     print(content)
-
-        return render_template('crawler.html', content=content)
-        # spider = Spider(url)
-        # content = spider.crawl(url)
-        # if content:
-        #     return content, 200, {'Content-Type': 'text/x-markdown; charset=UTF-8'}
-        # else:
-        #     print("markdown 404 Not Found")
-        #     return '404 Not Found', 404
-    else:
-        return render_template('crawler.html', content=content)
-
-
-
 with open("static/tellyou.txt") as fp:
     tellyoutext = fp.read()
-
 
 @app.route('/')
 @app.route('/search')
@@ -90,22 +38,7 @@ def keysearch():
     key = request.args.get('key')
     ip = request.remote_addr
     start = request.args.get('start')
-    # start = int(start)
-    # print("request get:", engine, key, start)
 
-    # if not engine:
-    #     engine = "google"
-
-    # if current_engine == engine:
-    #     if engine == "baidu":
-    #         #start += 10
-    #     elif engine == "google":
-    #         #start += 10
-    #     elif engine == "bing":
-    #         #start += 10
-    # else:   # new engine type
-    #     current_engine = engine
-    #     start = 1
     print(engine, key, start)
 
     content = None
@@ -174,4 +107,3 @@ if __name__ == '__main__':
 
     # app.run(debug=True)
     app.run(host="0.0.0.0", port=5000)
-    #socketio.run(app, host="0.0.0.0", port=5000)

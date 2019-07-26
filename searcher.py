@@ -31,9 +31,9 @@ def baidu_search(key, pn):
     now = int(pn)
     for item in soup.find_all('div', attrs={"class":"c-container"}):
         #print("search c-container")
+        now += 1
         if item.has_attr('id') and item['id'] == str(now):
             #print(type(now))
-            now += 1
             result = {}
             result['title'] = item.h3.get_text()
             ss = ''
