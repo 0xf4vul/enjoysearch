@@ -9,48 +9,85 @@
   <link rel=stylesheet href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
 
   <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
   <script>
-    // var socket = io.connect('http://' + document.domain + ':' + location.port + '/test');
-    var socket = io.connect('http://' + 127.0.0.1 + ':' + 5000 + '/test');
-    socket.on('my response', function(msg) {
-      $('#log').append('<p>Received: ' + msg.data + '</p>');
-    });
-    $('form#emit').submit(function(event) {
-      socket.emit('my event', {
-        data: $('#emit_data').val()
+
+    $(document).ready(function() {
+      console.log("socket");
+      var socket = io.connect("http://localhost:5000/test");
+
+      //第一次建立连接 on connect
+      socket.on('connect', function() {
+          console.log("connect");
+          socket.emit('my_event', {data: 'I\'m connected!'});
       });
-      return false;
-    });
-    $('form#broadcast').submit(function(event) {
-      socket.emit('my broadcast event', {
-        data: $('#broadcast_data').val()
+
+      //获取到服务器的回应 on response
+      socket.on('my response', function(msg) {
+        console.log("my response");
+        $('#log').append('<p>Received: ' + msg.data + '</p>');
       });
-      return false;
+
+      //提交信息
+      // $('form#emit').submit(function(event) {
+      //   console.log("emit data");
+      //   socket.emit('my event', {
+      //     data: $('#emit_data').val()
+      //   });
+      //   return false;
+      // });
+
+      //提交信息
+      $('form#input_url').submit(function(event) {
+        console.log("form input_url");
+          socket.emit('my_event', {data: $('#in_url').val()});
+          return false;
+      });
+
+      $('#start_crawler').submit(function(event) {
+        console.log("start_crawler");
+          socket.emit('my_event', {data: $('#in_url').val()});
+          return false;
+      });
+
+      $('#stop_crawler').submit(function(event) {
+        console.log("stop_crawler");
+          socket.emit('my_event', {data: $('#in_url').val()});
+          return false;
+      });
+
     });
+
+    function test() {
+      socket.emit('my_ping');
+      //$(bgoogle).removeClass("button-primary");
+    };
+
   </script>
 
   <div class="container">
     <h1>Crawler a Web, Please!</h1>
     <h6>A <a href='https://www.readmorejoy.com/'>Jiang Zhixiang</a> project. Here is our ReadMoreJoy <a href='/search'>Search Engine</a>.</h6>
-
+    <a href="#" onclick="test()">Start Crawler</a>
     <p><strong>Crawler, Please!</strong> is a service that instantly crawler a websites.</p>
     <p>To get started: enter any URL, hit "Crawler, Please!", and you will be presented with all urls of the websites you provided.</p>
 
-    <form action="/crawler" method="get">
-      <strong>&nbsp;&nbsp;URL</strong>: <input type="text" name="url" size="80">
-      <button type='submit'>Crawler, Please!</button>
-      <button type='button'>Stop, Please!</button>
+    <form id="input_url" action="/crawler" method="get">
+      <strong>&nbsp;&nbsp;URL</strong>: <input type="text" id="in_url" name="url" size="80"><br>
+      &nbsp;&nbsp;<button type='submit' id='start_crawler' >Start crawler</button> &nbsp;&nbsp; <button type='submit' id='stop_crawler' >Stop crawler</button>
+      <!-- <button type='button'>Stop, Please!</button> -->
     </form>
     {% for post in content %}
     {{ post }} <br>
     {% endfor %}
     <hr />
     <div id="log"></div>
-      <hr />
+    <ul id="list"> </ul>
+    <hr />
     <center>Powered by <a href='https://www.readmorejoy.com/'>ReadMoreJoy</a> and <a href='https://www.readmorejoy.com/2019/07/services/'>Services</a></center>
     <div style="display:none;"><img src="{{ url_for('static', filename='readmorejoy1.jpeg') }}" alt=""></div>
 

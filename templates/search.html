@@ -35,6 +35,7 @@
 <body>
 
   <script type="text/javascript">
+
     function about() {
       //$(bgoogle).removeClass("button-primary");
       bootbox.alert({
@@ -80,7 +81,7 @@
       i = $('#idstart').val()
       i = parseInt(i)
 
-      if (i < 1) {
+      if (key.length < 1) {
         $('#idnext').hide();
       };
 
@@ -108,7 +109,7 @@
         cu_key = $('#idkey').val();
         if (cu_key.length > 0) {
           $('#idengine').val("baidu");
-          $('#idstart').val(1);
+          $('#idstart').val(0);
           $("form").submit();
         }
       });
@@ -117,7 +118,7 @@
         cu_key = $('#idkey').val();
         if (cu_key.length > 0) {
           $('#idengine').val("google");
-          $('#idstart').val(1);
+          $('#idstart').val(0);
           $("form").submit();
         }
       });
@@ -126,7 +127,7 @@
         cu_key = $('#idkey').val();
         if (cu_key.length > 0) {
           $('#idengine').val("bing");
-          $('#idstart').val(1);
+          $('#idstart').val(0);
           $("form").submit();
         }
       });
@@ -138,7 +139,7 @@
           // console.log("keypress " + cu_key.length);
           if (cu_key.length > 0) {
             // console.log("keypress");
-            $('#idstart').val(1);
+            $('#idstart').val(0);
             $("form").submit();
           }
         }
@@ -154,7 +155,7 @@
             $('#idstart').val(i + 10);
             $("form").submit();
           } else {
-            $('#idstart').val(1);
+            $('#idstart').val(0);
             $("form").submit();
           }
         }
@@ -169,7 +170,7 @@
             $('#idstart').val(i + 10);
             $("form").submit();
           } else {
-            $('#idstart').val(1);
+            $('#idstart').val(0);
             $("form").submit();
           }
         }
