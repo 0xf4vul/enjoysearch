@@ -36,17 +36,23 @@ def baidu_search(key, pn):
             #print(type(now))
             result = {}
             result['title'] = item.h3.get_text()
+            #print(item.h3)
+            #print(item.h3.name) name is h3
+            #print(item.h3.a.contents)
+            #result['title'] = str(item.h3.a.contents).strip("[]")
             ss = ''
             for div in item.find_all('div'):
             	if div.has_attr('class') and (div['class'][0].find('abstract') != -1 or div['class'][0] == 'c-row'):
             		ss += div.get_text()
+                    #ss += div.contents
             result['text'] = ss
             if item.h3.a:
                 #result['url'] = item.h3.a.get('href')
+                #print(item.h3.a.string)
                 result['url'] = item.h3.a['href']
                 li.append(result)
             else:
-                print("item.h3.a is None *******")
+                print("item.h3.a is None ***")
                 print(item.h3)
             #print(result)
             #yield result
