@@ -1,30 +1,14 @@
-# url2markdown
+# Enjoy Search
 
-This is a very simple web service that will take a given URL, and return
-a Markdown representation of that page.
+开发的一个搜素引擎工具，目标是，获取到更优质信息，欢迎试用。
+当前提供 Google，Bing，百度 三大搜素引擎，还在研究增加更多资源，尽请期待！
 
-Powered by [Readability](http://readability.com/), [Requests](http://python-guide.org/), [html2text](http://www.aaronsw.com/2002/html2text/), and [Flask](http://flask.pocoo.org/).
+MarkDown工具：请填写文章的URL地址，自动获取和转换成MarkDown格式。
 
-## Usage
+TellMe菜单：方便您给我们留言的窗口，有需要回复，可以留下您的联系方式。
 
+About菜单：EnjoySearch工具的介绍信息。
 
-    $ curl http://url2markdown.herokuapp.com/?url=http://kennethreitz.org
-    
-    # Hi, there.
-    
-    My name is Kenneth Reitz.
-    ...
+https://search.readmorejoy.com/
 
-Enjoy!
-
-## Configuration
-
-This application requires a [Readability Parser Token](http://www.readability.com/developers/api/parser).
-
-    $ export READABILITY_TOKEN=xxxxxx
-
-You can use [autoenv](https://github.com/kennethreitz/autoenv) to do this easily.
-
-## License
-
-Unfortunately, this code is released under [GPLv3](http://www.gnu.org/copyleft/gpl.html).
+![](image/python-flask-enjoy-search.png)
