@@ -2,17 +2,9 @@
 
 import os
 
-#from mercury_parser import ParserAPI
-#from html2text import html2text
 import html2text
 import requests
 from bs4 import BeautifulSoup
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver import ActionChains
-import time
-import pprint
 import urllib.request, urllib.parse, urllib.error
 
 
