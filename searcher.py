@@ -106,13 +106,5 @@ def google_search(key, pn):
     return li
 
 def duckduckgo_search(key, pn):
+    # Waiting for a better solution
     pass
-
-def save_md(md):
-
-    timestr = time.strftime('%Y%m%d-%M', time.localtime(time.time()))  #转化为时间格式2018-12-11 12：20：20
-    filename = ("md/text" + str(count).zfill(3)) + ".md"
-    pass
-
-if __name__ == '__main__':
-    print(html_to_md('https://www.readmorejoy.com/'))
