@@ -12,6 +12,8 @@ About菜单：EnjoySearch工具的介绍信息。
 
 发展：希望能多学习 duckduckgo 搜索技术
 
+最近：希望能抽出时间，增加若干国内搜索引擎
+
 运营URL
 https://search.readmorejoy.com/
 
