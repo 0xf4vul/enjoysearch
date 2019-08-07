@@ -8,7 +8,7 @@ MarkDown工具：请填写文章的URL地址，自动获取和转换成MarkDown�
 
 TellMe菜单：方便您给我们留言的窗口，有需要回复，可以留下您的联系方式。
 
-About菜单：EnjoySearch工具的介绍信息。
+Help菜单：EnjoySearch工具的介绍帮助信息。
 
 发展：希望能多学习 duckduckgo 搜索技术
 
