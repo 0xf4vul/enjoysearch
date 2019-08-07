@@ -14,7 +14,12 @@ About菜单：EnjoySearch工具的介绍信息。
 
 最近：希望能抽出时间，增加若干国内搜索引擎
 
-运营URL
+运营URL，也许你会喜欢上她，极简、高效、实用。还需要推出 搜索教程 帮助您。
+
 https://search.readmorejoy.com/
 
 ![](image/python-flask-enjoy-search.png)
+
+For running this search engine server:
+* If you need google, your server can use google server.
+* If you need Bing, your need bing search key get from microsoft.
