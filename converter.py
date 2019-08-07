@@ -11,7 +11,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver import ActionChains
-from phantomjs_bin import executable_path
+# from phantomjs_bin import executable_path
 import time
 import pprint
 import urllib.request, urllib.parse, urllib.error
@@ -34,8 +34,8 @@ import urllib.request, urllib.parse, urllib.error
 #         return None
 
 def html_to_md(url, param):
-    # driver = webdriver.PhantomJS()
-    driver = webdriver.PhantomJS(executable_path=executable_path)
+    driver = webdriver.PhantomJS()
+    # driver = webdriver.PhantomJS(executable_path=executable_path)
 
     driver.get(url)
     driver.implicitly_wait(5)
