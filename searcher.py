@@ -125,7 +125,9 @@ def sm1234_search(key, pn):
         # if item.has_attr('id') and item['id'] == str(now):
         result = {}
         result['title'] = item.h2.get_text()
-        result['url'] = item.h2.a['href']
+        result['url'] = "http://sm.sm1234.net" + item.h2.a['href']
+        #http://sm.sm1234.net
+        # print(result['url'])
         result['text'] = (item.find("div", attrs={"class":"std"})).get_text()
 
         li.append(result)
