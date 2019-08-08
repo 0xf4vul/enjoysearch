@@ -23,3 +23,13 @@ https://search.readmorejoy.com/
 For running this search engine server:
 * If you need google, your server can use google server.
 * If you need Bing, your need bing search key get from microsoft.
+
+## 2019.8.8
+增加了 神马搜索，当前支持 Google，Bing，百度，神马
+增加 神马搜索 是最轻松的，因为很规范和很简单，但是性能不满意
+想增加 搜狗搜索，许多的不规范或者故意为难，不舒服，放弃也罢。
+当前，基本功能的开发就先这样。 
+
+强化功能，还想支持的是：知乎、简书等web2.0网站内容，需要做评判增加那些网站更好。
+
+之后，界面美化提上日程，看好瀑布式
