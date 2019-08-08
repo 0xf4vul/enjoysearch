@@ -105,6 +105,33 @@ def google_search(key, pn):
 
     return li
 
+def sm1234_search(key, pn):
+    # print("sm1234_search start...")
+    kv = {'q':key, 'p':pn}
+    # print(kv)
+    headers = {
+        'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80  Safari/537.36 QIHU 360SE'
+    }
+    r = requests.get("http://sm.sm1234.net/", params=kv, headers=headers)
+    # url = 'http://sm.sm1234.net/?q=python3&p=2'
+    # print(r.url)
+    soup = BeautifulSoup(r.text, 'lxml')
+
+    li = []
+    now = int(pn)
+    for item in soup.find_all('div', attrs={"class":"g"}):
+        # print(item)
+        now += 1
+        # if item.has_attr('id') and item['id'] == str(now):
+        result = {}
+        result['title'] = item.h2.get_text()
+        result['url'] = item.h2.a['href']
+        result['text'] = (item.find("div", attrs={"class":"std"})).get_text()
+
+        li.append(result)
+
+    return li
+
 def duckduckgo_search(key, pn):
     # Waiting for a better solution
     pass

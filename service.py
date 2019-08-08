@@ -2,7 +2,7 @@
 
 from flask import Flask, request, redirect, url_for, render_template, flash, session, get_flashed_messages
 from converter import html_to_md
-from searcher import baidu_search, bing_search, google_search
+from searcher import baidu_search, bing_search, google_search, sm1234_search
 import logging
 
 
@@ -39,7 +39,7 @@ def keysearch():
     ip = request.remote_addr
     start = request.args.get('start')
 
-    print(engine, key, start)
+    # print(engine, key, start)
 
     content = None
     page = {}
@@ -50,6 +50,8 @@ def keysearch():
             content = google_search(key, start)
         elif engine == "bing":
             content = bing_search(key, start)
+        elif engine == "sm1234":
+            content = sm1234_search(key, start)
         else:
             print("engine is what?")
 

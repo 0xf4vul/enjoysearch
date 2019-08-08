@@ -92,6 +92,10 @@
           //console.log("case baidu");
           $('#bbaidu').addClass("button-primary");
           break;
+          case "sm1234":
+            //console.log("case baidu");
+            $('#sm1234').addClass("button-primary");
+            break;
         case "google":
           //console.log("case google");
           $('#bgoogle').addClass("button-primary");
@@ -110,6 +114,15 @@
         cu_key = $('#idkey').val();
         if (cu_key.length > 0) {
           $('#idengine').val("baidu");
+          $('#idstart').val(0);
+          $("form").submit();
+        }
+      });
+      $("#sm1234").click(function() {
+        var cu_key;
+        cu_key = $('#idkey').val();
+        if (cu_key.length > 0) {
+          $('#idengine').val("sm1234");
           $('#idstart').val(0);
           $("form").submit();
         }
@@ -189,6 +202,7 @@
     and this is <a href="#" onclick="help()">Help info</a>. We now at <a href="https://github.com/luckrill/enjoysearch" target="_black">Github OpenSource</a>
     <br>
     <input type="button" value="百度" id="bbaidu">
+    <input type="button" value="神马" id="sm1234">
     <input type="button" value="Google" id="bgoogle">
     <input type="button" value="Bing" id="bbing">
     <!-- <input type="button" value="TellMe" id="btellme" onclick="tellme()">
