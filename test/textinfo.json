@@ -1,0 +1,21 @@
+
+{
+  "x1": 1,
+  "x2": 2,
+  "x3": 3,
+
+  "book": [{
+      "id": "01",
+      "language": "python",
+      "edition": "third",
+      "author": "internet"
+    },
+    {
+      "id": "07",
+      "language": "C++",
+      "edition": "second",
+      "author": "E.Balagurusamy"
+    }
+  ]
+
+}
