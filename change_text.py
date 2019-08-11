@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 import toml
 import random
+import os
 
 def change_text_info():
-    in_name = "static/textinfo.toml"
-    out_name = "static/tellyou.txt"
+    path = os.path.dirname(os.path.realpath(__file__))
+    in_name = path + "/static/textinfo.toml"
+    out_name = path + "/static/tellyou.txt"
 
     with open(in_name, 'r') as fd:
         text = toml.loads(fd.read())
