@@ -197,18 +197,19 @@
 
   <div class="container">
     <br>
-    <a href='/'>Home</a> <b>Enjoy Search</b> is a <a href='https://www.readmorejoy.com/'>Jiang Zhixiang</a> project.
+    <a href='/'>Home</a> <b>Enjoy Search</b> is a <a href='https://www.readmorejoy.com/2019/08/main/'>Jiang Zhixiang</a> project.
     develop a <a href='/markdown'>MarkDown</a> tools. You can <a href="#" onclick="tellme()">TellMe</a> Something
-    and this is <a href="#" onclick="help()">Help info</a>. We now at <a href="https://github.com/luckrill/enjoysearch" target="_black">Github OpenSource</a>
+    and this is <a href="#" onclick="help()">Help info</a>. 
     <br>
-    <input type="button" value="百度" id="bbaidu">
-    <input type="button" value="神马" id="sm1234">
+    <p><p>
     <input type="button" value="Google" id="bgoogle">
     <input type="button" value="Bing" id="bbing">
+    <input type="button" value="百度" id="bbaidu">
+    <input type="button" value="神马" id="sm1234">
     <!-- <input type="button" value="TellMe" id="btellme" onclick="tellme()">
     <input type="button" value="About" id="babout" onclick="about()"> -->
     <br>
-
+    <p>
     <form action="/search" method="get" οnkeydοwn="if(event.keyCode==13){return false;}">
       <input type="hidden" name="engine" id="idengine" value="{{ engine }}" />
       <input type="hidden" name="start" id="idstart" value="{{ start }}" />
@@ -228,7 +229,7 @@
         {% endautoescape %}
         <center><input type="button" name="next" id="idnext" value="Next" /></center>
         <div id="htmlinfo"></div>
-        <hr />
+        <!-- <hr /> -->
 
         <center>
           <div id="tellyou">{{ tellyou }}</div>

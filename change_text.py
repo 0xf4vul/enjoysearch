@@ -8,12 +8,12 @@ def change_text_info():
     in_name = path + "/static/textinfo.toml"
     out_name = path + "/static/tellyou.txt"
 
-    with open(in_name, 'r', encoding="utf-8") as fd:
+    with open(in_name, 'r') as fd:
         text = toml.loads(fd.read())
 
         num = random.randint(1, text["total"])
         name = "text" + str(num)
-        print(text[name])
+        # print(text[name])
 
         with open(out_name, 'w') as fd:
             fd.write(text[name]+"\n")
