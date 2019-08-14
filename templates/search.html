@@ -92,10 +92,10 @@
           //console.log("case baidu");
           $('#bbaidu').addClass("button-primary");
           break;
-          case "sm1234":
-            //console.log("case baidu");
-            $('#sm1234').addClass("button-primary");
-            break;
+        case "sm1234":
+          //console.log("case baidu");
+          $('#sm1234').addClass("button-primary");
+          break;
         case "google":
           //console.log("case google");
           $('#bgoogle').addClass("button-primary");
@@ -199,45 +199,46 @@
     <br>
     <a href='/'>Home</a> <b>Enjoy Search</b> is a <a href='https://www.readmorejoy.com/2019/08/main/'>Jiang Zhixiang</a> project.
     develop a <a href='/markdown'>MarkDown</a> tools. You can <a href="#" onclick="tellme()">TellMe</a> Something
-    and this is <a href="#" onclick="help()">Help info</a>. 
+    and this is <a href="#" onclick="help()">Help info</a>.
     <br>
-    <p><p>
-    <input type="button" value="Google" id="bgoogle">
-    <input type="button" value="Bing" id="bbing">
-    <input type="button" value="百度" id="bbaidu">
-    <input type="button" value="神马" id="sm1234">
-    <!-- <input type="button" value="TellMe" id="btellme" onclick="tellme()">
-    <input type="button" value="About" id="babout" onclick="about()"> -->
-    <br>
-    <p>
-    <form action="/search" method="get" οnkeydοwn="if(event.keyCode==13){return false;}">
-      <input type="hidden" name="engine" id="idengine" value="{{ engine }}" />
-      <input type="hidden" name="start" id="idstart" value="{{ start }}" />
-      <input type="text" name="key" id="idkey" size="80" value="{{ key }}" />
-      <!-- add hide text to avoid input enter auto submit by jiangzhixiang -->
-      <input type="text" style="display:none;" value="" />
-      <button type='button' id="search">Search</button>
-    </form>
-
-    {% autoescape false %}
-    {% for post in content %}
-    <a href="{{ post.url }}" target="_blank">{{ post.title }}</a> <br>
-    {{ post.text }}
     <p>
       <p>
-        {% endfor %}
-        {% endautoescape %}
-        <center><input type="button" name="next" id="idnext" value="Next" /></center>
-        <div id="htmlinfo"></div>
-        <!-- <hr /> -->
+        <input type="button" value="Google" id="bgoogle">
+        <input type="button" value="Bing" id="bbing">
+        <input type="button" value="百度" id="bbaidu">
+        <input type="button" value="神马" id="sm1234">
+        <!-- <input type="button" value="TellMe" id="btellme" onclick="tellme()">
+    <input type="button" value="About" id="babout" onclick="about()"> -->
+        <br>
+        <p>
+          <form action="/search" method="get" οnkeydοwn="if(event.keyCode==13){return false;}">
+            <input type="hidden" name="engine" id="idengine" value="{{ engine }}" />
+            <input type="hidden" name="start" id="idstart" value="{{ start }}" />
+            <input type="text" name="key" id="idkey" size="80" value="{{ key }}" />
+            <!-- add hide text to avoid input enter auto submit by jiangzhixiang -->
+            <input type="text" style="display:none;" value="" />
+            <button type='button' id="search">Search</button>
+          </form>
 
-        <center>
-          <div id="tellyou">{{ tellyou }}</div>
-        </center>
+          {% autoescape false %}
+          {% for post in content %}
+          <a href="{{ post.url }}" target="_blank">{{ post.title }}</a> <br>
+          {{ post.text }}
+          <p>
+            <p>
+              {% endfor %}
+              {% endautoescape %}
+              <center><input type="button" name="next" id="idnext" value="Next" /></center>
+              <div id="htmlinfo"></div>
+              <!-- <hr /> -->
+              <p>
+                <center>
+                  <div id="tellyou">{{ tellyou }}</div>
+                </center>
 
-        <!-- <center>Powered by <a href='https://www.readmorejoy.com/'>ReadMoreJoy</a> and <a href='https://www.readmorejoy.com/2019/07/services/'>Services</a></center> -->
+                <!-- <center>Powered by <a href='https://www.readmorejoy.com/'>ReadMoreJoy</a> and <a href='https://www.readmorejoy.com/2019/07/services/'>Services</a></center> -->
 
-        <div style="display:none;"><img src="{{ url_for('static', filename='readmorejoy1.jpeg') }}" alt=""></div>
+                <div style="display:none;"><img src="{{ url_for('static', filename='readmorejoy1.jpeg') }}" alt=""></div>
 
   </div>
 </body>
