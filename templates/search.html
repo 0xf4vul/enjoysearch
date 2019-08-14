@@ -145,6 +145,24 @@
           $("form").submit();
         }
       });
+      $("#bzhihu").click(function() {
+        var cu_key;
+        cu_key = $('#idkey').val();
+        if (cu_key.length > 0) {
+          url = "https://www.zhihu.com/search?type=content&q=" + cu_key
+          // window.location.href=url
+          window.open(url)
+        }
+      });
+      $("#bweixin").click(function() {
+        var cu_key;
+        cu_key = $('#idkey').val();
+        if (cu_key.length > 0) {
+          url = "https://weixin.sogou.com/weixin?type=2&query=" + cu_key
+          // window.location.href=url
+          window.open(url)
+        }
+      });
       $('#idkey').bind('keypress', function(event) {
         // console.log("idkey keypress");;
         if (event.which == 13) {
@@ -207,6 +225,8 @@
         <input type="button" value="Bing" id="bbing">
         <input type="button" value="百度" id="bbaidu">
         <input type="button" value="神马" id="sm1234">
+        <input type="button" value="知乎" id="bzhihu">
+        <input type="button" value="微信" id="bweixin"> 
         <!-- <input type="button" value="TellMe" id="btellme" onclick="tellme()">
     <input type="button" value="About" id="babout" onclick="about()"> -->
         <br>
