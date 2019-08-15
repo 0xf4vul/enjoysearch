@@ -29,7 +29,7 @@ def markdown():
 with open("static/tellyou.txt") as fp:
     tellyoutext = fp.read()
 
-# @app.route('/')
+@app.route('/')
 @app.route('/search')
 def keysearch():
     global start, current_engine
