@@ -7,8 +7,9 @@
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <!-- <link href="{{ url_for('static', filename='skeleton.css') }}" rel="stylesheet"> -->
   <link href="https://cdn.bootcss.com/skeleton/2.0.4/skeleton.min.css" rel="stylesheet">
+  <!-- <link href="https://cdn.bootcss.com/skeleton/2.0.4/normalize.min.css" rel="stylesheet"> -->
   <!-- <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet"> -->
   <link href="https://cdn.bootcss.com/twitter-bootstrap/4.1.2/css/bootstrap.min.css" rel="stylesheet">
 
@@ -30,6 +31,7 @@
       height: 300px;
       width: 100%;
     }
+
   </style>
 
 </head>
@@ -72,6 +74,16 @@
       });
     }; // end tellme
 
+    function show() {
+      var div = document.getElementById("showext").style.display;
+      if (div == "none") {
+        document.getElementById("showext").style.display = 'block';
+      }
+      else {
+        document.getElementById("showext").style.display = 'none';
+      }
+    };
+
     var engine = "";
     var key = ""
     var i = 0;
@@ -109,6 +121,7 @@
           $('#idengine').val("google");
           $('#bgoogle').addClass("button-primary");;
       }
+
       $("#bbaidu").click(function() {
         var cu_key;
         cu_key = $('#idkey').val();
@@ -163,6 +176,9 @@
           window.open(url)
         }
       });
+      // https://www.jianshu.com/search?q=感冒
+
+
       $('#idkey').bind('keypress', function(event) {
         // console.log("idkey keypress");;
         if (event.which == 13) {
@@ -215,18 +231,20 @@
 
   <div class="container">
     <br>
-    <a href='/'>Home</a> <b>Enjoy Search</b> is a <a href='https://www.readmorejoy.com/2019/08/main/'>Jiang Zhixiang</a> project.
-    develop a <a href='/markdown'>MarkDown</a> tools. You can <a href="#" onclick="tellme()">TellMe</a> Something
-    and this is <a href="#" onclick="help()">Help info</a>.
+    <a href='/'>Home</a>  <b>Enjoy Search</b> is a <a href='https://www.readmorejoy.com/2019/08/main/'>Jiang Zhixiang</a> project.
+    &nbsp;&nbsp;<a href='/markdown'>MarkDown</a>&nbsp;&nbsp;<a href="#" onclick="tellme()">TellMe</a>&nbsp;&nbsp;<a href="#" onclick="help()">Help info</a>
+    <!-- <a href='#' onclick="show()">Show</a> -->
     <br>
     <p>
       <p>
         <input type="button" value="Google" id="bgoogle">
         <input type="button" value="Bing" id="bbing">
         <input type="button" value="百度" id="bbaidu">
-        <input type="button" value="神马" id="sm1234">
-        <input type="button" value="知乎" id="bzhihu">
-        <input type="button" value="微信" id="bweixin"> 
+        <!-- <div id=showext> -->
+          <input type="button" value="神马" id="sm1234">
+          <input type="button" value="知乎" id="bzhihu">
+          <input type="button" value="微信" id="bweixin">
+        <!-- </div> -->
         <!-- <input type="button" value="TellMe" id="btellme" onclick="tellme()">
     <input type="button" value="About" id="babout" onclick="about()"> -->
         <br>
@@ -234,7 +252,7 @@
           <form action="/search" method="get" οnkeydοwn="if(event.keyCode==13){return false;}">
             <input type="hidden" name="engine" id="idengine" value="{{ engine }}" />
             <input type="hidden" name="start" id="idstart" value="{{ start }}" />
-            <input type="text" name="key" id="idkey" size="80" value="{{ key }}" />
+            <input type="search" name="key" id="idkey" size="80" value="{{ key }}" />
             <!-- add hide text to avoid input enter auto submit by jiangzhixiang -->
             <input type="text" style="display:none;" value="" />
             <button type='button' id="search">Search</button>
