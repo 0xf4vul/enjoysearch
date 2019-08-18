@@ -252,8 +252,9 @@
   </script>
 
   <div class="container">
+    <br>
     <h4>
-    <a href='/'> <b>Home</b></a>
+    <a href='/'>Home</a>
     &nbsp;&nbsp;<a href="#" onclick="tellme()">TellMe</a>&nbsp;&nbsp;<a href="#" onclick="help()">HelpInfo</a>&nbsp;&nbsp; Powered by <a href='https://www.readmorejoy.com/2019/08/main/'>ReadMoreJoy</a>&nbsp;&nbsp;<a href='https://markdown.readmorejoy.com/'>MarkDown</a>
     <!-- <a href='#' onclick="show()">Show</a> -->
   </h4>
@@ -284,7 +285,7 @@
 
           {% autoescape false %}
           {% for post in content %}
-          <h4><a href="{{ post.url }}" target="_blank">{{ post.title }}</a> </h4>
+          <h5><a href="{{ post.url }}" target="_blank">{{ post.title }}</a> </h5>
           {{ post.text }}
           <p>
             <p>
