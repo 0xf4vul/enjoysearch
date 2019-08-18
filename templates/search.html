@@ -2,29 +2,33 @@
 <html>
 
 <head>
-  <title>Enjoy Search</title>
+  <title>EnjoySearch 喜欢搜索</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <link rel="shortcut icon" href="http://img.readmorejoy.com/static/favicon.ico">
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link href="{{ url_for('static', filename='skeleton.css') }}" rel="stylesheet">
+  <meta name="description" content="EnjoySearch 喜欢搜索，快速高效搜索引擎工具" />
+
+  <link href="http://img.readmorejoy.com/static/skeleton.css" rel="stylesheet">
+  <!-- <link href="{{ url_for('static', filename='skeleton.css') }}" rel="stylesheet"> -->
   <!-- <link href="https://cdn.bootcss.com/skeleton/2.0.4/skeleton.min.css" rel="stylesheet"> -->
   <!-- <link href="https://cdn.bootcss.com/skeleton/2.0.4/normalize.min.css" rel="stylesheet"> -->
   <!-- <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet"> -->
-  <link href="https://cdn.bootcss.com/twitter-bootstrap/4.1.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- <link href="https://cdn.bootcss.com/twitter-bootstrap/4.1.2/css/bootstrap.min.css" rel="stylesheet"> -->
 
 
-  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script src="http://img.readmorejoy.com/static/jquery.min.js"></script>
   <!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.slim.js"></script> -->
   <!-- <script src="https://cdn.bootcss.com/popper.js/1.15.0/esm/popper.min.js"></script> -->
   <!-- <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
-  <script src="https://cdn.bootcss.com/twitter-bootstrap/4.1.2/js/bootstrap.min.js"></script>
-  <script src="https://cdn.bootcss.com/bootbox.js/4.4.0/bootbox.min.js"></script>
+  <script src="http://img.readmorejoy.com/static/bootstrap.min.js"></script>
+  <!-- <script src="https://cdn.bootcss.com/bootbox.js/4.4.0/bootbox.min.js"></script> -->
 
-  <!-- <script src="{{ url_for('static', filename='bootbox.min.js') }}"></script> -->
+  <script src="http://img.readmorejoy.com/static/bootbox.min.js"></script>
 
   <!-- Smtp JS CSS -->
-  <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <!-- <script src="https://smtpjs.com/v3/smtp.js"></script> -->
+  <script src="http://img.readmorejoy.com/static/smtp.js"></script>
 
   <style>
     .bootbox-input-textarea {
@@ -33,6 +37,8 @@
     }
 
   </style>
+
+
 
 </head>
 
@@ -176,6 +182,15 @@
           window.open(url)
         }
       });
+      $("#bgithub").click(function() {
+        var cu_key;
+        cu_key = $('#idkey').val();
+        if (cu_key.length > 0) {
+          url = "https://github.com/search?q=" + cu_key
+          // window.location.href=url
+          window.open(url)
+        }
+      });
       // https://www.jianshu.com/search?q=感冒
 
 
@@ -230,9 +245,8 @@
   </script>
 
   <div class="container">
-    <br>
-    <a href='/'>Home</a>  <b>Enjoy Search</b> is a <a href='https://www.readmorejoy.com/2019/08/main/'>Jiang Zhixiang</a> project.
-    &nbsp;&nbsp;<a href='/markdown'>MarkDown</a>&nbsp;&nbsp;<a href="#" onclick="tellme()">TellMe</a>&nbsp;&nbsp;<a href="#" onclick="help()">Help info</a>
+    <a href='/'> <b>Home</b></a>
+    &nbsp;&nbsp;<a href="#" onclick="tellme()">TellMe</a>&nbsp;&nbsp;<a href="#" onclick="help()">HelpInfo</a>&nbsp;&nbsp; Powered by <a href='https://www.readmorejoy.com/2019/08/main/'>ReadMoreJoy</a>&nbsp;&nbsp;<a href='https://markdown.readmorejoy.com/'>MarkDown</a>
     <!-- <a href='#' onclick="show()">Show</a> -->
     <br>
     <p>
@@ -241,9 +255,11 @@
         <input type="button" value="Bing" id="bbing">
         <input type="button" value="百度" id="bbaidu">
         <!-- <div id=showext> -->
-          <input type="button" value="神马" id="sm1234">
+          <!-- <input type="button" value="神马" id="sm1234"> -->
+          @
           <input type="button" value="知乎" id="bzhihu">
           <input type="button" value="微信" id="bweixin">
+          <input type="button" value="Github" id="bgithub">
         <!-- </div> -->
         <!-- <input type="button" value="TellMe" id="btellme" onclick="tellme()">
     <input type="button" value="About" id="babout" onclick="about()"> -->
@@ -252,7 +268,7 @@
           <form action="/search" method="get" οnkeydοwn="if(event.keyCode==13){return false;}">
             <input type="hidden" name="engine" id="idengine" value="{{ engine }}" />
             <input type="hidden" name="start" id="idstart" value="{{ start }}" />
-            <input type="search" name="key" id="idkey" size="80" value="{{ key }}" />
+            <input type="search" name="key" id="idkey" maxlength="100" style="width: 600px;" value="{{ key }}" />
             <!-- add hide text to avoid input enter auto submit by jiangzhixiang -->
             <input type="text" style="display:none;" value="" />
             <button type='button' id="search">Search</button>
@@ -276,7 +292,7 @@
 
                 <!-- <center>Powered by <a href='https://www.readmorejoy.com/'>ReadMoreJoy</a> and <a href='https://www.readmorejoy.com/2019/07/services/'>Services</a></center> -->
 
-                <div style="display:none;"><img src="{{ url_for('static', filename='readmorejoy1.jpeg') }}" alt=""></div>
+                <div style="display:none;"><img src="http://img.readmorejoy.com/static/readmorejoy1.jpeg" alt=""></div>
 
   </div>
 </body>
