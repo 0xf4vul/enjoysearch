@@ -4,38 +4,38 @@
 <head>
   <title>EnjoySearch 喜欢搜索</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-  <!-- <link rel="shortcut icon" href="http://img.readmorejoy.com/static/favicon.ico"> -->
+  <!-- <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}"> -->
+  <link rel="shortcut icon" href="https://www.readmorejoy.com/static/favicon.ico">
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="EnjoySearch 喜欢搜索，快速高效搜索引擎工具" />
 
-  <!-- <link href="http://img.readmorejoy.com/static/skeleton.css" rel="stylesheet"> -->
-  <link href="{{ url_for('static', filename='skeleton.css') }}" rel="stylesheet">
+  <link href="https://www.readmorejoy.com/static/skeleton.min.css" rel="stylesheet">
+  <!-- <link href="{{ url_for('static', filename='skeleton.css') }}" rel="stylesheet"> -->
   <!-- <link href="{{ url_for('static', filename='skeleton.css') }}" rel="stylesheet"> -->
   <!-- <link href="https://cdn.bootcss.com/skeleton/2.0.4/skeleton.min.css" rel="stylesheet"> -->
   <!-- <link href="https://cdn.bootcss.com/skeleton/2.0.4/normalize.min.css" rel="stylesheet"> -->
   <!-- <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet"> -->
-  <link href="https://cdn.bootcss.com/twitter-bootstrap/4.1.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://www.readmorejoy.com/static//bootstrap.min.css" rel="stylesheet">
   <!-- <link href="http://img.readmorejoy.com/static/bootstrap.min.css" rel="stylesheet"> -->
 
   <!-- <script src="http://img.readmorejoy.com/static/jquery.min.js"></script> -->
   <!-- <script src="http://img.readmorejoy.com/static/bootstrap.min.js"></script> -->
   <!-- <script src="http://img.readmorejoy.com/static/bootbox.min.js"></script> -->
 
-  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://www.readmorejoy.com/static/jquery.min.js"></script>
   <!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.slim.js"></script> -->
   <!-- <script src="https://cdn.bootcss.com/popper.js/1.15.0/esm/popper.min.js"></script> -->
   <!-- <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
-  <script src="https://cdn.bootcss.com/twitter-bootstrap/4.1.2/js/bootstrap.min.js"></script>
-  <script src="https://cdn.bootcss.com/bootbox.js/4.4.0/bootbox.min.js"></script>
+  <script src="https://www.readmorejoy.com/static/bootstrap.min.js"></script>
+  <script src="https://www.readmorejoy.com/static/bootbox.min.js"></script>
 
   <!-- <script src="{{ url_for('static', filename='bootbox.min.js') }}"></script> -->
 
   <!-- Smtp JS CSS -->
-  <script src="{{ url_for('static', filename='smtp.js') }}"></script>
-  <!-- <script src="http://img.readmorejoy.com/static/smtp.js"></script> -->
+  <!-- <script src="{{ url_for('static', filename='smtp.js') }}"></script> -->
+  <script src="https://www.readmorejoy.com/static/smtp.js"></script>
 
   <style>
     .bootbox-input-textarea {
@@ -252,10 +252,11 @@
   </script>
 
   <div class="container">
+    <h4>
     <a href='/'> <b>Home</b></a>
     &nbsp;&nbsp;<a href="#" onclick="tellme()">TellMe</a>&nbsp;&nbsp;<a href="#" onclick="help()">HelpInfo</a>&nbsp;&nbsp; Powered by <a href='https://www.readmorejoy.com/2019/08/main/'>ReadMoreJoy</a>&nbsp;&nbsp;<a href='https://markdown.readmorejoy.com/'>MarkDown</a>
     <!-- <a href='#' onclick="show()">Show</a> -->
-    <br>
+  </h4>
     <p>
       <p>
         <input type="button" value="Google" id="bgoogle">
@@ -283,7 +284,7 @@
 
           {% autoescape false %}
           {% for post in content %}
-          <a href="{{ post.url }}" target="_blank">{{ post.title }}</a> <br>
+          <h4><a href="{{ post.url }}" target="_blank">{{ post.title }}</a> </h4>
           {{ post.text }}
           <p>
             <p>
@@ -299,7 +300,7 @@
 
                 <!-- <center>Powered by <a href='https://www.readmorejoy.com/'>ReadMoreJoy</a> and <a href='https://www.readmorejoy.com/2019/07/services/'>Services</a></center> -->
 
-                <div style="display:none;"><img src="http://img.readmorejoy.com/static/readmorejoy1.jpeg" alt=""></div>
+                <div style="display:none;"><img src="https://www.readmorejoy.com/static/readmorejoy1.jpeg" alt=""></div>
 
   </div>
 </body>
