@@ -58,7 +58,7 @@ def keysearch():
         if content:
             # return content, 200, {'Content-Type': 'text/html; charset=UTF-8'}
             # print("return " + "engine:" + engine + " key:" + key)
-            return render_template('search.html', content=content, engine=engine, key=key, start=start, tellyou=tellyoutext)
+            return render_template('search_local.html', content=content, engine=engine, key=key, start=start, tellyou=tellyoutext)
         else:
             print("search 404 Not Found")
             return '404 Not Found', 404
@@ -68,7 +68,7 @@ def keysearch():
         start = 0
         print("default search ")
 
-        return render_template('search.html', engine=engine, key=key, start=start, tellyou=tellyoutext)
+        return render_template('search_local.html', engine=engine, key=key, start=start, tellyou=tellyoutext)
 
 
 @app.route('/postdata', methods=['POST'])
