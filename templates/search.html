@@ -129,6 +129,10 @@
           //console.log("case bing");
           $('#bbing').addClass("button-primary");
           break;
+        case "duckduckgo":
+            //console.log("case bing");
+            $('#bduckduckgo').addClass("button-primary");
+            break;
         default:
           //console.log("case default");
           $('#idengine').val("google");
@@ -167,6 +171,15 @@
         cu_key = $('#idkey').val();
         if (cu_key.length > 0) {
           $('#idengine').val("bing");
+          $('#idstart').val(0);
+          $("form").submit();
+        }
+      });
+      $("#bduckduckgo").click(function() {
+        var cu_key;
+        cu_key = $('#idkey').val();
+        if (cu_key.length > 0) {
+          $('#idengine').val("duckduckgo");
           $('#idstart').val(0);
           $("form").submit();
         }
@@ -262,6 +275,7 @@
       <p>
         <input type="button" value="Google" id="bgoogle">
         <input type="button" value="Bing" id="bbing">
+        <input type="button" value="duckduckgo" id="bduckduckgo">
         <input type="button" value="百度" id="bbaidu">
         <!-- <div id=showext> -->
           <!-- <input type="button" value="神马" id="sm1234"> -->

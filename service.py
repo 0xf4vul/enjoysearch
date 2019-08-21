@@ -2,7 +2,7 @@
 
 from flask import Flask, request, redirect, url_for, render_template, flash, session, get_flashed_messages
 from converter import html_to_md
-from searcher import baidu_search, bing_search, google_search, sm1234_search
+from searcher import baidu_search, bing_search, duckduckgo_search, google_search, sm1234_search
 import logging
 
 app = Flask(__name__)
@@ -48,6 +48,8 @@ def keysearch():
             content = google_search(key, start)
         elif engine == "bing":
             content = bing_search(key, start)
+        elif engine == "duckduckgo":
+            content = duckduckgo_search(key, start)
         elif engine == "sm1234":
             content = sm1234_search(key, start)
         else:
