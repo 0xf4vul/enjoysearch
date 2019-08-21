@@ -60,8 +60,8 @@ def keysearch():
             # print("return " + "engine:" + engine + " key:" + key)
             return render_template('search.html', content=content, engine=engine, key=key, start=start, tellyou=tellyoutext)
         else:
-            print("search 404 Not Found")
-            return '404 Not Found', 404
+            # print("EnjoySearch meet 404, Not Found, Please try again...")
+            return 'EnjoySearch meet 404, Not Found, Please try again...', 404
     else:
         key = ""
         engine = ""

@@ -143,39 +143,30 @@ def duckduckgo_search(key, pn):
     headers = {
         'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80  Safari/537.36 QIHU 360SE'
     }
-    r = requests.get("https://duckduckgo.com/html", params=kv, headers=headers)
+
+    r = requests.post("https://www.duckduckgo.com/html", params=kv, headers=headers)
+    # print(r.url)
+    # print(r.status_code)
     # https://duckduckgo.com/html?q=readmorejoy&kl=us-en&s=0&dc=0
     # https://duckduckgo.com/html?q=readmorejoy&kl=us-en&s=30&dc=30
     # print(r.url)
+    # print(r.text)
     soup = BeautifulSoup(r.text, 'lxml')
 
-    # # search-url
-    # url = 'https://duckduckgo.com/html?{query}&s={offset}&dc={dc_param}'
-    # time_range_url = '&df={range}'
-    #
-    # time_range_dict = {'day': 'd',
-    #                    'week': 'w',
-    #                    'month': 'm'}
-    #
-    # # specific xpath variables
-    # result_xpath = '//div[@class="result results_links results_links_deep web-result "]'  # noqa
-    # url_xpath = './/a[@class="result__a"]/@href'
-    # title_xpath = './/a[@class="result__a"]'
-    # content_xpath = './/a[@class="result__snippet"]'
-
     li = []
-    now = int(pn)
-    for item in soup.find_all('div', attrs={"class":"result results_links results_links_deep web-result "}):
-        # print(item)
-        now += 1
-        # if item.has_attr('id') and item['id'] == str(now):
+    # <div class="result results_links results_links_deep web-result ">
+    # On server, need use follow string.
+    # <div class="links_main links_deep result__body">
+    # for item in soup.find_all('div', attrs={"class":"result results_links results_links_deep web-result"}):
+    for item in soup.find_all('div', attrs={"class":"links_main links_deep result__body"}):
         result = {}
         result['title'] = item.h2.get_text()
         result['url'] = item.h2.a['href']
-
-        # print(result['url'])
         result['text'] = (item.find("a", attrs={"class":"result__snippet"})).get_text()
-        # print(result)
+
         li.append(result)
 
     return li
+
+# def which_search(key, pn):
+#     pass
