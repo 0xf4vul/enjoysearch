@@ -24,8 +24,8 @@ def markdown():
     else:
         return render_template('markdown.html')
 
-with open("static/tellyou.txt") as fp:
-    tellyoutext = fp.read()
+# with open("static/tellyou.txt") as fp:
+#     tellyoutext = fp.read()
 
 @app.route('/')
 @app.route('/search')
@@ -58,7 +58,7 @@ def keysearch():
         if content:
             # return content, 200, {'Content-Type': 'text/html; charset=UTF-8'}
             # print("return " + "engine:" + engine + " key:" + key)
-            return render_template('search.html', content=content, engine=engine, key=key, start=start, tellyou=tellyoutext)
+            return render_template('search.html', content=content, engine=engine, key=key, start=start)
         else:
             # print("EnjoySearch meet 404, Not Found, Please try again...")
             return 'EnjoySearch meet 404, Not Found, Please try again...', 404
@@ -66,9 +66,9 @@ def keysearch():
         key = ""
         engine = ""
         start = 0
-        print("default search ")
+        print("here is default search ")
 
-        return render_template('search.html', engine=engine, key=key, start=start, tellyou=tellyoutext)
+        return render_template('search.html', engine=engine, key=key, start=start)
 
 
 @app.route('/postdata', methods=['POST'])
