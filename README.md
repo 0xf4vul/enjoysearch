@@ -34,3 +34,17 @@ https://search.readmorejoy.com/
 移除 神马搜索
 增加 GitHub
 增加 Duckduckgo 呼声最高，终于支持了
+
+优化 EnjoySearch 搜索工具
+https://search.readmorejoy.com
+
+2019年8月21日晚上
+试验性支持 duckduckgo，暂时不支持 翻页
+
+2019年8月22日早上
+解决duckduckgo翻页问题，开心
+
+2019年8月22日中午
+发现duckduckgo解析方面有bug，调试半小时解决问题
+
+现在对duckduckgo的支持或许比较好了
