@@ -6,15 +6,16 @@ import html2text
 import requests
 from bs4 import BeautifulSoup
 import urllib.request, urllib.parse, urllib.error
-
+from user_agents import random_user_agent
 
 def baidu_search(key, pn):
     print("baidu_search start...")
     kv = {'wd':key, 'pn':pn}
     print(kv)
-    headers = {
-        'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80  Safari/537.36 QIHU 360SE'
-    }
+    headers = {'User-Agent':random_user_agent()}
+    # headers = {
+    #     'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80  Safari/537.36 QIHU 360SE'
+    # }
     r = requests.get("http://www.baidu.com/s", params=kv, headers=headers)
     print(r.url)
     soup = BeautifulSoup(r.text, 'lxml')
@@ -83,9 +84,10 @@ def google_search(key, pn):
     print("google_search start...")
     kv = {'q':key, 'start':pn}
 
-    headers = {
-        'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80  Safari/537.36 QIHU 360SE'
-    }
+    headers = {'User-Agent':random_user_agent()}
+    # headers = {
+    #     'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80  Safari/537.36 QIHU 360SE'
+    # }
     r = requests.get("https://www.google.com/search", params=kv, headers=headers)
     #print(r.url)
     soup = BeautifulSoup(r.text, 'lxml')
@@ -109,9 +111,10 @@ def sm1234_search(key, pn):
     # print("sm1234_search start...")
     kv = {'q':key, 'p':pn}
     # print(kv)
-    headers = {
-        'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80  Safari/537.36 QIHU 360SE'
-    }
+    headers = {'User-Agent':random_user_agent()}
+    # headers = {
+    #     'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80  Safari/537.36 QIHU 360SE'
+    # }
     r = requests.get("http://sm.sm1234.net/", params=kv, headers=headers)
     # url = 'http://sm.sm1234.net/?q=python3&p=2'
     # print(r.url)
@@ -145,10 +148,11 @@ def duckduckgo_search(key, pn):
     else:
         kv = {'q':key, 's':pn, 'dc':pn}
     # print(kv)
-    headers = {
-        'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80  Safari/537.36 QIHU 360SE'
-    }
-
+    # print(random_user_agent())
+    headers = {'User-Agent':random_user_agent()}
+    # headers = {
+    #     'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80  Safari/537.36 QIHU 360SE'
+    # }
     r = requests.post("https://www.duckduckgo.com/html", params=kv, headers=headers)
     # print(r.url)
     # print(r.status_code)
