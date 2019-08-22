@@ -135,11 +135,16 @@ def sm1234_search(key, pn):
     return li
 
 def duckduckgo_search(key, pn):
-    # Waiting for a better solution
     # kv = {'wd':key, 'pn':pn}
     pn = int(pn) * 3
-    kv = {'q':key, 's':pn, 'dc':pn}
-    print(kv)
+    # dc = pn - 1
+
+    # kv = {'q':key, 's':pn, 'dc':pn, 'api':'/d.js'}
+    if pn > 10:
+        kv = {'q':key, 's':pn, 'dc':pn, 'v':'l', 'o':'json', 'api':'/d.js'}
+    else:
+        kv = {'q':key, 's':pn, 'dc':pn}
+    # print(kv)
     headers = {
         'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80  Safari/537.36 QIHU 360SE'
     }
@@ -147,9 +152,6 @@ def duckduckgo_search(key, pn):
     r = requests.post("https://www.duckduckgo.com/html", params=kv, headers=headers)
     # print(r.url)
     # print(r.status_code)
-    # https://duckduckgo.com/html?q=readmorejoy&kl=us-en&s=0&dc=0
-    # https://duckduckgo.com/html?q=readmorejoy&kl=us-en&s=30&dc=30
-    # print(r.url)
     # print(r.text)
     soup = BeautifulSoup(r.text, 'lxml')
 
@@ -157,7 +159,6 @@ def duckduckgo_search(key, pn):
     # <div class="result results_links results_links_deep web-result ">
     # On server, need use follow string.
     # <div class="links_main links_deep result__body">
-    # for item in soup.find_all('div', attrs={"class":"result results_links results_links_deep web-result"}):
     for item in soup.find_all('div', attrs={"class":"links_main links_deep result__body"}):
         result = {}
         result['title'] = item.h2.get_text()
