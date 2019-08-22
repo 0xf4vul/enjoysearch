@@ -15,6 +15,7 @@ from selenium import webdriver
 import time
 import pprint
 import urllib.request, urllib.parse, urllib.error
+from user_agents import random_user_agent
 #from MagicGoogle import MagicGoogle
 
 #mercury = ParserAPI(api_key=os.environ['MERCURY_API_KEY'])
