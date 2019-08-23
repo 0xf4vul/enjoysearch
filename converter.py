@@ -8,6 +8,7 @@ import html2text
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 # from selenium.webdriver.chrome.options import Options
 # from selenium.webdriver.common.keys import Keys
 # from selenium.webdriver import ActionChains
@@ -35,8 +36,11 @@ from user_agents import random_user_agent
 #         return None
 
 def html_to_md(url, param):
-    driver = webdriver.PhantomJS()
+    dcap = dict(DesiredCapabilities.PHANTOMJS)
+    dcap["phantomjs.page.settings.userAgent"] = (random_user_agent())
+    driver = webdriver.PhantomJS(desired_capabilities=dcap)
     # driver = webdriver.PhantomJS(executable_path=executable_path)
+    # obj = webdriver.PhantomJS(executable_path='C:\Python27\Scripts\phantomjs.exe',desired_capabilities=dcap)
 
     driver.get(url)
     driver.implicitly_wait(5)
