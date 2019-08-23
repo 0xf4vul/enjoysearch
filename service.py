@@ -7,7 +7,7 @@ import logging
 
 app = Flask(__name__)
 app.threaded = True
-app.secret_key = "readmorejoy"
+app.secret_key = "readmorejoy.com"
 
 @app.route('/markdown')
 def markdown():
@@ -66,8 +66,7 @@ def keysearch():
         key = ""
         engine = ""
         start = 0
-        print("here is default search ")
-
+        # print("here is default search ")
         return render_template('search.html', engine=engine, key=key, start=start)
 
 

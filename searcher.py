@@ -8,16 +8,44 @@ from bs4 import BeautifulSoup
 import urllib.request, urllib.parse, urllib.error
 from user_agents import random_user_agent
 
+def bing_search(key, pn):
+    # print("bing_search start...")
+    kv = {'q':key, 'first':pn}
+
+    subscription_key = "35b243b7106244a5b4ade56b8fb4c093"
+    search_url = "https://api.cognitive.microsoft.com/bing/v7.0/search"
+
+    headers = {"Ocp-Apim-Subscription-Key": subscription_key}
+
+    params = {"q": key, "textDecorations": True, "textFormat": "HTML",  "offset":pn}
+    response = requests.get(search_url, headers=headers, params=params)
+    response.raise_for_status()
+    search_results = response.json()
+
+    li = []
+    for v in search_results["webPages"]["value"]:
+        # print(v["name"])
+        # print(v["url"])
+        # print(v["snippet"])
+        result = {}
+        result['title'] = v["name"]
+        result['url'] = v["url"]
+        result['text'] = v["snippet"]
+        #print(result['title'])
+        li.append(result)
+
+    return li
+
 def baidu_search(key, pn):
     print("baidu_search start...")
     kv = {'wd':key, 'pn':pn}
-    print(kv)
+    # print(kv)
     headers = {'User-Agent':random_user_agent()}
     # headers = {
     #     'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80  Safari/537.36 QIHU 360SE'
     # }
     r = requests.get("http://www.baidu.com/s", params=kv, headers=headers)
-    print(r.url)
+    # print(r.url)
     soup = BeautifulSoup(r.text, 'lxml')
     # select_html = soup.find("div", attrs={'id':'content_left'})
     li = []
@@ -52,36 +80,8 @@ def baidu_search(key, pn):
 
     return li
 
-def bing_search(key, pn):
-    print("bing_search start...")
-    kv = {'q':key, 'first':pn}
-
-    subscription_key = "35b243b7106244a5b4ade56b8fb4c093"
-    search_url = "https://api.cognitive.microsoft.com/bing/v7.0/search"
-
-    headers = {"Ocp-Apim-Subscription-Key": subscription_key}
-
-    params = {"q": key, "textDecorations": True, "textFormat": "HTML",  "offset":pn}
-    response = requests.get(search_url, headers=headers, params=params)
-    response.raise_for_status()
-    search_results = response.json()
-
-    li = []
-    for v in search_results["webPages"]["value"]:
-        # print(v["name"])
-        # print(v["url"])
-        # print(v["snippet"])
-        result = {}
-        result['title'] = v["name"]
-        result['url'] = v["url"]
-        result['text'] = v["snippet"]
-        #print(result['title'])
-        li.append(result)
-
-    return li
-
 def google_search(key, pn):
-    print("google_search start...")
+    # print("google_search start...")
     kv = {'q':key, 'start':pn}
 
     headers = {'User-Agent':random_user_agent()}

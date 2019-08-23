@@ -11,8 +11,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="EnjoySearch 喜欢搜索，快速高效搜索引擎工具" />
 
-  <link href="https://www.readmorejoy.com/static/skeleton.min.css" rel="stylesheet">
-  <!-- <link href="{{ url_for('static', filename='skeleton.css') }}" rel="stylesheet"> -->
+  <!-- <link href="https://www.readmorejoy.com/static/skeleton.min.css" rel="stylesheet"> -->
+  <link href="{{ url_for('static', filename='skeleton.css') }}" rel="stylesheet">
   <!-- <link href="{{ url_for('static', filename='skeleton.css') }}" rel="stylesheet"> -->
   <!-- <link href="https://cdn.bootcss.com/skeleton/2.0.4/skeleton.min.css" rel="stylesheet"> -->
   <!-- <link href="https://cdn.bootcss.com/skeleton/2.0.4/normalize.min.css" rel="stylesheet"> -->
@@ -42,7 +42,6 @@
       height: 300px;
       width: 100%;
     }
-
   </style>
 
 
@@ -91,8 +90,7 @@
       var div = document.getElementById("showext").style.display;
       if (div == "none") {
         document.getElementById("showext").style.display = 'block';
-      }
-      else {
+      } else {
         document.getElementById("showext").style.display = 'none';
       }
     };
@@ -130,9 +128,9 @@
           $('#bbing').addClass("button-primary");
           break;
         case "duckduckgo":
-            //console.log("case bing");
-            $('#bduckduckgo').addClass("button-primary");
-            break;
+          //console.log("case bing");
+          $('#bduckduckgo').addClass("button-primary");
+          break;
         default:
           //console.log("case default");
           $('#idengine').val("google");
@@ -265,56 +263,59 @@
   </script>
 
   <div class="container">
-    <br>
     <h4>
-    <a href='/'>Home</a>
-    &nbsp;&nbsp;<a href="#" onclick="tellme()">TellMe</a>&nbsp;&nbsp;<a href="#" onclick="help()">HelpInfo</a>&nbsp;&nbsp; Powered by <a href='https://www.readmorejoy.com/2019/08/main/'>ReadMoreJoy</a>&nbsp;&nbsp;<a href='https://markdown.readmorejoy.com/'>MarkDown</a>
-    <!-- <a href='#' onclick="show()">Show</a> -->
-  </h4>
+      <input type="button" value="Home" onclick="window.location.href=('/')">
+      <input type="button" value="Tellme" onclick="tellme()">
+      <input type="button" value="Help" onclick="help()">
+      <!-- Powered by <a href='https://www.readmorejoy.com/2019/08/main/'>ReadMoreJoy</a>&nbsp;&nbsp;<a href='https://markdown.readmorejoy.com/'>MarkDown</a> -->
+      <input type="button" value="ReadMoreJoy" onclick="window.location.href=('https://www.readmorejoy.com/2019/08/main/')">
+      <input type="button" value="MarkDown" onclick="window.location.href=('https://markdown.readmorejoy.com/')">
+    </h4>
+    <br /><br /><br />
+    <center>
+      <input type="button" value="Google" id="bgoogle">
+      <input type="button" value="Bing" id="bbing">
+      <input type="button" value="duckduckgo" id="bduckduckgo">
+      <input type="button" value="百度" id="bbaidu">
+      <!-- <div id=showext> -->
+      <!-- <input type="button" value="神马" id="sm1234"> -->
+      @
+      <input type="button" value="知乎" id="bzhihu">
+      <input type="button" value="微信" id="bweixin">
+      <input type="button" value="Github" id="bgithub">
+      <!-- </div> -->
+      <!-- <input type="button" value="TellMe" id="btellme" onclick="tellme()">
+    <input type="button" value="About" id="babout" onclick="about()"> -->
+    </center>
+    <br />
+    <center>
+      <form action="/search" method="get" οnkeydοwn="if(event.keyCode==13){return false;}">
+        <input type="hidden" name="engine" id="idengine" value="{{ engine }}" />
+        <input type="hidden" name="start" id="idstart" value="{{ start }}" />
+        <input type="search" name="key" id="idkey" maxlength="100" style="width: 600px;" value="{{ key }}" />
+        <!-- add hide text to avoid input enter auto submit by jiangzhixiang -->
+        <input type="text" style="display:none;" value="" />
+        <button type='button' id="search">Search</button>
+      </form>
+    </center>
+    {% autoescape false %}
+    {% for post in content %}
+    <h5><a href="{{ post.url }}" target="_blank">{{ post.title }}</a> </h5>
+    {{ post.text }}
     <p>
       <p>
-        <input type="button" value="Google" id="bgoogle">
-        <input type="button" value="Bing" id="bbing">
-        <input type="button" value="duckduckgo" id="bduckduckgo">
-        <input type="button" value="百度" id="bbaidu">
-        <!-- <div id=showext> -->
-          <!-- <input type="button" value="神马" id="sm1234"> -->
-          @
-          <input type="button" value="知乎" id="bzhihu">
-          <input type="button" value="微信" id="bweixin">
-          <input type="button" value="Github" id="bgithub">
-        <!-- </div> -->
-        <!-- <input type="button" value="TellMe" id="btellme" onclick="tellme()">
-    <input type="button" value="About" id="babout" onclick="about()"> -->
-        <br>
+        {% endfor %}
+        {% endautoescape %}
+        <center><input type="button" name="next" id="idnext" value="Next" /></center>
+        <div id="htmlinfo"></div>
+        <!-- <hr /> -->
         <p>
-          <form action="/search" method="get" οnkeydοwn="if(event.keyCode==13){return false;}">
-            <input type="hidden" name="engine" id="idengine" value="{{ engine }}" />
-            <input type="hidden" name="start" id="idstart" value="{{ start }}" />
-            <input type="search" name="key" id="idkey" maxlength="100" style="width: 600px;" value="{{ key }}" />
-            <!-- add hide text to avoid input enter auto submit by jiangzhixiang -->
-            <input type="text" style="display:none;" value="" />
-            <button type='button' id="search">Search</button>
-          </form>
+          <center>
+            <div id="tellyou">如何给人类真正做点好事？你有什么建议吗？</div>
+          </center>
+          <!-- <center>Powered by <a href='https://www.readmorejoy.com/'>ReadMoreJoy</a> and <a href='https://www.readmorejoy.com/2019/07/services/'>Services</a></center> -->
 
-          {% autoescape false %}
-          {% for post in content %}
-          <h5><a href="{{ post.url }}" target="_blank">{{ post.title }}</a> </h5>
-          {{ post.text }}
-          <p>
-            <p>
-              {% endfor %}
-              {% endautoescape %}
-              <center><input type="button" name="next" id="idnext" value="Next" /></center>
-              <div id="htmlinfo"></div>
-              <!-- <hr /> -->
-              <p>
-                <center>
-<div id="tellyou">如何给人类真正做点好事？你有什么建议吗？</div>
-</center>
-                <!-- <center>Powered by <a href='https://www.readmorejoy.com/'>ReadMoreJoy</a> and <a href='https://www.readmorejoy.com/2019/07/services/'>Services</a></center> -->
-
-                <div style="display:none;"><img src="https://www.readmorejoy.com/static/readmorejoy1.jpeg" alt=""></div>
+          <div style="display:none;"><img src="https://www.readmorejoy.com/static/readmorejoy1.jpeg" alt=""></div>
 
   </div>
 </body>
