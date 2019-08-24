@@ -2,6 +2,7 @@
 import toml
 import random
 import os, shutil
+from datetime import datetime
 
 def change_text_info():
     path = os.path.dirname(os.path.realpath(__file__))
@@ -32,6 +33,24 @@ def change_text_info():
         # print("result check")
         shutil.copyfile(html2, html1)
             #print(lines)
+def new_change_text_info():
+    path = os.path.dirname(os.path.realpath(__file__))
+    in_name = path + "/static/textinfo.toml"
+    with open(in_name, 'r', encoding='utf-8') as fd:
+        text = toml.loads(fd.read())
+
+        print(text["day_time_2"])
+        print(text["day_time_2"]["total"])
+        print(text["day_time_2"]["text1"])
+
+        now = datetime.now()
+        print(now.strftime('%a, %b %d %H:%M'))
+        time_h = now.strftime('%H')
+        time_m = now.strftime('%M')
+        print(time_h, time_m)
+        # num = random.randint(1, text["total"])
+        # name = "text" + str(num)
+    pass
 
 if __name__ == '__main__':
-    change_text_info()
+    new_change_text_info()

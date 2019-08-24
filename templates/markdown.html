@@ -10,28 +10,43 @@
   <!-- <link rel=stylesheet href="{{ url_for('static', filename='skeleton.css') }}/> -->
   <!-- <link href="https://cdn.bootcss.com/skeleton/2.0.4/skeleton.min.css" rel="stylesheet"> -->
   <link href="https://www.readmorejoy.com/static/skeleton.min.css" rel="stylesheet">
+  <script src="https://www.readmorejoy.com/static/jquery.min.js"></script>
 
 </head>
 
-<body>
+<body style=border-top-style:ridge;border-right-style:ridge;border-left-style:ridge>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+
+      $("#in_url").dblclick(function() {
+        $('#in_url').val("");
+      });
+
+      $("#in_param").dblclick(function() {
+        $('#in_param').val("");
+      });
+
+    });
+  </script>
 
   <div class="container">
     <h1>Markdown, Please!</h1>
     <h6>A Jiang Zhixiang project. &nbsp;&nbsp;<a href='https://search.readmorejoy.com/'>EnjoySearch 喜欢搜索</a>&nbsp;&nbsp;&nbsp;Powered by <a href='https://www.readmorejoy.com/'>ReadMoreJoy</a></h6>
 
     <UL>
-    <LI>Hong Kong Server&nbsp;<a href='https://markdown.readmorejoy.com/'>https://markdown.readmorejoy.com</a>
-    <LI>China Server&nbsp;<a href='https://markdown.readmorejoy.cn/'>https://markdown.readmorejoy.cn</a>
+      <LI>Hong Kong Server&nbsp;<a href='https://markdown.readmorejoy.com/'>https://markdown.readmorejoy.com</a>
+      <LI>China Server&nbsp;<a href='https://markdown.readmorejoy.cn/'>https://markdown.readmorejoy.cn</a>
     </UL>
 
 
     <p><strong>Markdown, Please!</strong> is a service that instantly converts websites into <a href="https://daringfireball.net/projects/markdown/">Markdown</a>.</p>
-    <p>To get started: enter any URL, hit "Markdown, Please!", and you will be presented with a Markdown version of the URL you provided.</p>
+    <p>To get started: enter any URL, hit "Markdown, Please!", and you will be presented with a Markdown version of the URL you provided. Tips: dbclick is clean input.</p>
 
     <form action="/markdown" method="get">
       (Option) We use <a href="https://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a> to get find content, browse Inspect, example parameter is: div id="content" or div class="article" etc.<br>
-      <strong>Param</strong>: <input type="text" name="param" size="80"><br>
-      <strong>&nbsp;&nbsp;URL</strong>: <input type="text" name="url" size="80">
+      <strong>Param</strong>: <input type="text" id="in_param" name="param" size="45"><br>
+      <strong>&nbsp;&nbsp;URL</strong>: <input type="text" id="in_url" name="url" size="90">
       <button type='submit'>Markdown, Please!</button>
     </form>
 
