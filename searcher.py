@@ -22,7 +22,7 @@ def bing_search(key, pn):
     response.raise_for_status()
     search_results = response.json()
 
-    li = []
+    # li = []
     for v in search_results["webPages"]["value"]:
         # print(v["name"])
         # print(v["url"])
@@ -32,9 +32,10 @@ def bing_search(key, pn):
         result['url'] = v["url"]
         result['text'] = v["snippet"]
         #print(result['title'])
-        li.append(result)
+        # li.append(result)
+        yield result
 
-    return li
+    # return li
 
 def baidu_search(key, pn):
     print("baidu_search start...")
@@ -48,7 +49,7 @@ def baidu_search(key, pn):
     # print(r.url)
     soup = BeautifulSoup(r.text, 'lxml')
     # select_html = soup.find("div", attrs={'id':'content_left'})
-    li = []
+    # li = []
     now = int(pn)
     for item in soup.find_all('div', attrs={"class":"c-container"}):
         #print("search c-container")
@@ -71,14 +72,15 @@ def baidu_search(key, pn):
                 #result['url'] = item.h3.a.get('href')
                 #print(item.h3.a.string)
                 result['url'] = item.h3.a['href']
-                li.append(result)
+                # li.append(result)
+                yield result
             else:
                 print("item.h3.a is None ***")
                 print(item.h3)
             #print(result)
             #yield result
 
-    return li
+    # return li
 
 def google_search(key, pn):
     # print("google_search start...")
@@ -92,7 +94,7 @@ def google_search(key, pn):
     #print(r.url)
     soup = BeautifulSoup(r.text, 'lxml')
 
-    li = []
+    # li = []
     for item in soup.find_all('div', attrs={"class":"g"}):
         #print("bing search div g")
         a = item.find('a')
@@ -103,9 +105,10 @@ def google_search(key, pn):
         if stext:
             result['text'] = stext.text
 
-        li.append(result)
+        # li.append(result)
+        yield result
 
-    return li
+    # return li
 
 def sm1234_search(key, pn):
     # print("sm1234_search start...")
@@ -120,11 +123,9 @@ def sm1234_search(key, pn):
     # print(r.url)
     soup = BeautifulSoup(r.text, 'lxml')
 
-    li = []
-    now = int(pn)
+    # li = []
     for item in soup.find_all('div', attrs={"class":"g"}):
         # print(item)
-        now += 1
         # if item.has_attr('id') and item['id'] == str(now):
         result = {}
         result['title'] = item.h2.get_text()
@@ -133,9 +134,10 @@ def sm1234_search(key, pn):
         # print(result['url'])
         result['text'] = (item.find("div", attrs={"class":"std"})).get_text()
 
-        li.append(result)
+        # li.append(result)
+        yield result
 
-    return li
+    # return li
 
 def duckduckgo_search(key, pn):
     # kv = {'wd':key, 'pn':pn}
@@ -160,7 +162,7 @@ def duckduckgo_search(key, pn):
     # print(r.text)
     soup = BeautifulSoup(r.text, 'lxml')
 
-    li = []
+    # li = []
     # <div class="result results_links results_links_deep web-result ">
     # On server, need use follow string.
     # <div class="links_main links_deep result__body">
@@ -176,9 +178,10 @@ def duckduckgo_search(key, pn):
             result['text'] = "" # "<br>"
         # result['text'] = (item.find("a", attrs={"class":"result__snippet"})).get_text()
 
-        li.append(result)
+        # li.append(result)
+        yield result
 
-    return li
+    # return li
 
 # def which_search(key, pn):
 #     pass
