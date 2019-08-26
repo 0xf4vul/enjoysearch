@@ -17,6 +17,7 @@ import time
 import pprint
 import urllib.request, urllib.parse, urllib.error
 from user_agents import random_user_agent
+from urllib.parse import urljoin
 #from MagicGoogle import MagicGoogle
 
 #mercury = ParserAPI(api_key=os.environ['MERCURY_API_KEY'])
@@ -34,6 +35,31 @@ from user_agents import random_user_agent
 #         return convert(d.content, title=d.title)
 #     except KeyError:
 #         return None
+def get_urls(baseurl):
+    dcap = dict(DesiredCapabilities.PHANTOMJS)
+    dcap["phantomjs.page.settings.userAgent"] = (random_user_agent())
+    driver = webdriver.PhantomJS(desired_capabilities=dcap)
+
+    driver.get(baseurl)
+    driver.implicitly_wait(5)
+    html = driver.page_source
+    # driver.close()
+    driver.quit()
+
+    soup = BeautifulSoup(html, 'lxml')
+    all_text = soup.find_all("a")
+    all_urls = set()
+
+    for item in all_text:
+        a = (item.get('href'))
+        if a.startswith("/"):
+            a = urljoin(baseurl, a)
+
+        all_urls.add(a)
+
+    str = "\n".join(all_urls)
+    # print(str)
+    return str
 
 def html_to_md(url, param):
     dcap = dict(DesiredCapabilities.PHANTOMJS)

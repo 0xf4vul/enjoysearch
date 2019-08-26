@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask, request, redirect, url_for, render_template, flash, session, get_flashed_messages
-from converter import html_to_md
+from converter import html_to_md, get_urls
 from searcher import baidu_search, bing_search, duckduckgo_search, google_search, sm1234_search
 import logging
 
@@ -13,9 +13,15 @@ app.secret_key = "readmorejoy.com"
 def markdown():
     url = request.args.get('url')
     param = request.args.get('param')
-    print(url)
+    type = request.args.get('type')
+    # print(url)
+    # print(type)
     if url:
-        content = html_to_md(url, param)
+        if type == "url":
+            content = get_urls(url)
+        else:
+            content = html_to_md(url, param)
+
         if content:
             return content, 200, {'Content-Type': 'text/x-markdown; charset=UTF-8'}
         else:

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Markdown, Please!</title>
+  <title>Markdown Please Powered by ReadMoreJoy</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link rel="shortcut icon" href="https://www.readmorejoy.com/static/favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -27,11 +27,16 @@
         $('#in_param').val("");
       });
 
+      $("#get_urls").click(function() {
+        $('#type').val("url");
+        $("form").submit();
+      });
+
     });
   </script>
 
   <div class="container">
-    <h1>Markdown, Please!</h1>
+    <h1>Markdown, Please! Powered by ReadMoreJoy</h1>
     <h6>A Jiang Zhixiang project. &nbsp;&nbsp;<a href='https://search.readmorejoy.com/'>EnjoySearch</a>&nbsp;&nbsp;&nbsp;<a href='https://www.readmorejoy.com/joy/main/'>ReadMoreJoy</a></h6>
     <UL>
       <LI>Hong Kong &nbsp;<a href='https://markdown.readmorejoy.com/'>https://markdown.readmorejoy.com</a> Foreign web pages are fast
@@ -41,7 +46,9 @@
     <form action="/markdown" method="get">
       <strong>Param</strong>: <input type="text" id="in_param" name="param" size="45"><br />
       <strong>URL</strong>: <input type="text" id="in_url" name="url" size="90">
+      <input type="hidden" name="type" id="type" value="" />
       <button type='submit'>Markdown, Please!</button>
+      <button type='button' id='get_urls'>Get Urls</button>
     </form>
 
     <!-- <hr /> -->
