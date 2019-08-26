@@ -14,10 +14,10 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 # from selenium.webdriver import ActionChains
 # from phantomjs_bin import executable_path
 import time
-import pprint
 import urllib.request, urllib.parse, urllib.error
 from user_agents import random_user_agent
 from urllib.parse import urljoin
+
 #from MagicGoogle import MagicGoogle
 
 #mercury = ParserAPI(api_key=os.environ['MERCURY_API_KEY'])
@@ -36,17 +36,22 @@ from urllib.parse import urljoin
 #     except KeyError:
 #         return None
 def get_urls(baseurl):
-    dcap = dict(DesiredCapabilities.PHANTOMJS)
-    dcap["phantomjs.page.settings.userAgent"] = (random_user_agent())
-    driver = webdriver.PhantomJS(desired_capabilities=dcap)
+    # dcap = dict(DesiredCapabilities.PHANTOMJS)
+    # dcap["phantomjs.page.settings.userAgent"] = (random_user_agent())
+    # driver = webdriver.PhantomJS(desired_capabilities=dcap)
+    #
+    # driver.get(baseurl)
+    # driver.implicitly_wait(5)
+    # html = driver.page_source
+    # # driver.close()
+    # driver.quit()
+    #
+    # soup = BeautifulSoup(html, 'lxml')
 
-    driver.get(baseurl)
-    driver.implicitly_wait(5)
-    html = driver.page_source
-    # driver.close()
-    driver.quit()
+    headers = {'User-Agent':random_user_agent()}
+    r = requests.get(baseurl, headers=headers)
+    soup = BeautifulSoup(r.text, 'lxml')
 
-    soup = BeautifulSoup(html, 'lxml')
     all_text = soup.find_all("a")
     all_urls = set()
 
