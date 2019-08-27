@@ -10,6 +10,7 @@
   <!-- <link rel=stylesheet href="{{ url_for('static', filename='skeleton.css') }}/> -->
   <!-- <link href="https://cdn.bootcss.com/skeleton/2.0.4/skeleton.min.css" rel="stylesheet"> -->
   <link href="https://www.readmorejoy.com/static/skeleton.min.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='reward.css') }}" rel="stylesheet">
   <script src="https://www.readmorejoy.com/static/jquery.min.js"></script>
 
 </head>
@@ -31,6 +32,15 @@
         $('#type').val("url");
         $("form").submit();
       });
+
+      $(".reward-button").click(function() {
+        $(".reward-button").hide()
+        $(".qr-code").show();
+      })
+      $(".qr-code").click(function() {
+        $(".reward-button").show()
+        $(".qr-code").hide();
+      })
 
     });
   </script>
@@ -74,6 +84,24 @@
 <center>Powered by ReadMoreJoy </center>
 
   </div>
+
+  <div class="post-reward">
+    <!-- <input type="checkbox" name="reward" id="reward" hidden /> -->
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="http://img.readmorejoy.com/help/wechat-qr-code.png">
+        <span>微信打赏</span>
+      </label>
+
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="http://img.readmorejoy.com/help/alipay-qr-code.jpeg">
+        <span>支付宝打赏</span>
+      </label>
+    </div>
+  </div>
+
 </body>
 
 </html>

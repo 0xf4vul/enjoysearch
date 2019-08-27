@@ -49,7 +49,7 @@ def get_urls(baseurl):
     # soup = BeautifulSoup(html, 'lxml')
 
     headers = {'User-Agent':random_user_agent()}
-    r = requests.get(baseurle, headers=headers)
+    r = requests.get(baseurl, headers=headers)
     soup = BeautifulSoup(r.text, 'lxml')
 
     all_text = soup.find_all("a")

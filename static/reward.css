@@ -1,0 +1,57 @@
+.post-reward {
+  margin-top: 20px;
+  padding-top: 10px;
+  text-align: center;
+  border-top: 1px dashed #e6e6e6;
+}
+  .reward-button {
+    margin: 15px 0;
+    padding: 3px 7px;
+    display: inline-block;
+    color: #c05b4d;
+    border: 1px solid #c05b4d;
+    /* $theme-color; */
+    border-radius: 5px;
+    cursor: pointer;
+
+
+  }
+  .reward-button:hover {
+    color: white;
+    background-color: #c05b4d;
+    /* $theme-color; */
+    transition: 0.5s;
+  }
+  /* #reward:checked {
+    & ~ .qr-code {
+      display: block;
+    }
+
+    & ~ .reward-button {
+      display: none;
+    }
+  } */
+
+  .qr-code {
+    display: none;
+
+
+  }
+  .qr-code-image {
+    display: inline-block;
+    min-width: 200px;
+    width: 40%;
+    margin-top: 15px;
+
+
+  }
+  .qr-code-image span {
+    display: inline-block;
+    width: 100%;
+    margin: 8px 0;
+  }
+
+  .qr-code-image .image {
+    width: 200px;
+    height: 200px;
+  }
