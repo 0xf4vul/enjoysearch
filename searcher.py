@@ -28,8 +28,10 @@ def bing_search(key, pn):
         # print(v["url"])
         # print(v["snippet"])
         result = {}
-        result['title'] = v["name"]
+        # result['title'] = v["name"]
         result['url'] = v["url"]
+        # Optimization bing search
+        result['title'] = v["name"] + " " + v["url"]
         result['text'] = v["snippet"]
         #print(result['title'])
         # li.append(result)
@@ -57,7 +59,7 @@ def baidu_search(key, pn):
         if item.has_attr('id') and item['id'] == str(now):
             #print(type(now))
             result = {}
-            result['title'] = item.h3.get_text()
+            # result['title'] = item.h3.get_text()
             #print(item.h3)
             #print(item.h3.name) name is h3
             #print(item.h3.a.contents)
@@ -75,6 +77,9 @@ def baidu_search(key, pn):
                 # requests get for baidu redirect url to get result url.
                 a = requests.get(url = item.h3.a['href'], headers=headers)
                 result['url'] = a.url
+
+                # Optimization baidu search
+                result['title'] = item.h3.get_text() + " " + result['url']
                 # li.append(result)
                 yield result
             else:
