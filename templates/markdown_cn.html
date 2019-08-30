@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Enjoy Markdown Please</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="shortcut icon" href="https://www.readmorejoy.com/static/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Markdown，url快速转换为Markdown格式" />
+  <!-- <link rel=stylesheet href="{{ url_for('static', filename='skeleton.css') }}/> -->
+  <!-- <link href="https://cdn.bootcss.com/skeleton/2.0.4/skeleton.min.css" rel="stylesheet"> -->
+  <link href="https://www.readmorejoy.com/static/skeleton.min.css" rel="stylesheet">
+  <link href="https://www.readmorejoy.com/static/reward.css" rel="stylesheet">
+  <!-- <link href="{{ url_for('static', filename='reward.css') }}" rel="stylesheet"> -->
+  <script src="https://www.readmorejoy.com/static/jquery.min.js"></script>
+
+</head>
+
+<body style=border-top-style:ridge;border-right-style:ridge;border-left-style:ridge>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+
+      $("#in_url").dblclick(function() {
+        $('#in_url').val("");
+      });
+
+      $("#in_param").dblclick(function() {
+        $('#in_param').val("");
+      });
+
+      $("#get_urls").click(function() {
+        $('#type').val("url");
+        $("form").submit();
+      });
+
+      $(".reward-button").click(function() {
+        $(".reward-button").hide()
+        $(".qr-code").show();
+      })
+      $(".qr-code").click(function() {
+        $(".reward-button").show()
+        $(".qr-code").hide();
+      })
+
+    });
+  </script>
+
+  <div class="container">
+    <h1>Enjoy Markdown, Please!</h1>
+    <h6>A Jiang Zhixiang project. &nbsp;&nbsp;<a href='https://search.readmorejoy.com/'>EnjoySearch</a>&nbsp;&nbsp;&nbsp;<a href='https://www.readmorejoy.com/main/'>ReadMoreJoy</a></h6>
+    <UL>
+      <LI>Hong Kong &nbsp;<a href='https://markdown.readmorejoy.com/'>https://markdown.readmorejoy.com</a> Foreign web pages are fast
+      <LI>China &nbsp;<a href='https://markdown.readmorejoy.cn/'>https://markdown.readmorejoy.cn</a> China web pages are fast
+    </UL>
+
+    <form action="/markdown" method="get">
+      <strong>Param</strong>: <input type="text" id="in_param" name="param" size="45"><br />
+      <strong>URL</strong>: <input type="text" id="in_url" name="url" size="90">
+      <input type="hidden" name="type" id="type" value="" />
+      <button type='submit'>Markdown, Please!</button>
+      <button type='button' id='get_urls'>Get Urls</button>
+    </form>
+
+    <!-- <hr /> -->
+    <h4>Bookmarklet</h4>
+    <p>Use this bookmarklet to instantly turn any page into Markdown.</p>
+    <a class="button" href="javascript:location.href='https://markdown.readmorejoy.com/?url='+encodeURIComponent(document.location.href);">Markdown, Please!</a>
+    <!-- <hr /> -->
+    <p>&nbsp;</p>
+    <h4>"Developer API"</h4>
+    <p>This service</p>
+
+    <pre><code><strong>$ curl https://markdown.readmorejoy.com/\?url\=https://www.readmorejoy.com/</strong>
+#
+</code>
+</pre>
+
+<h4>Introduction</h4>
+<p><strong>Markdown, Please!</strong> is a service that instantly converts websites into <a href="https://daringfireball.net/projects/markdown/">Markdown</a>.</p>
+<p>To get started: enter any URL, hit "Markdown, Please!", and you will be presented with a Markdown version of the URL you provided. Tips: dbclick is clean input.</p>
+<br />
+(Option) We use <a href="https://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a> to get find content, browse Inspect, example parameter is: div id="content" or div class="article" etc.<br>
+<br />
+<center>Powered by ReadMoreJoy </center>
+
+  </div>
+
+  <div class="post-reward">
+    <!-- <input type="checkbox" name="reward" id="reward" hidden /> -->
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="http://img.readmorejoy.com/help/wechat-qr-code.png">
+        <span>微信打赏</span>
+      </label>
+
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="http://img.readmorejoy.com/help/alipay-qr-code.jpeg">
+        <span>支付宝打赏</span>
+      </label>
+    </div>
+  </div>
+
+</body>
+
+</html>

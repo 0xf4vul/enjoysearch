@@ -71,7 +71,10 @@ def baidu_search(key, pn):
             if item.h3.a:
                 #result['url'] = item.h3.a.get('href')
                 #print(item.h3.a.string)
-                result['url'] = item.h3.a['href']
+                # result['url'] = item.h3.a['href']
+                # requests get for baidu redirect url to get result url.
+                a = requests.get(url = item.h3.a['href'], headers=headers)
+                result['url'] = a.url
                 # li.append(result)
                 yield result
             else:
