@@ -176,9 +176,10 @@ def duckduckgo_search(key, pn):
     # <div class="links_main links_deep result__body">
     for item in soup.find_all('div', attrs={"class":"links_main links_deep result__body"}):
         result = {}
-        result['title'] = item.h2.get_text()
+        # result['title'] = item.h2.get_text()
         # print(result['title'])
         result['url'] = item.h2.a['href']
+        result['title'] = item.h2.get_text() + " " + result['url']
         gettext = item.find("a", attrs={"class":"result__snippet"})
         if gettext:
             result['text'] = gettext.get_text()
