@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>EnjoyWeb yessir</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <!-- <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}"> -->
+  <link rel="shortcut icon" href="https://www.readmorejoy.com/static/favicon.ico">
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="EnjoySearch 喜欢搜索，快速高效搜索引擎工具" />
+
+  <link href="https://www.readmorejoy.com/static/skeleton.min.css" rel="stylesheet">
+  <link href="https://www.readmorejoy.com/static/custom.css " rel="stylesheet">
+  <link href="https://www.readmorejoy.com/static/reward.css" rel="stylesheet">
+  <!-- <link href="{{ url_for('static', filename='reward.css') }}" rel="stylesheet"> -->
+  <!-- <link rel="stylesheet" href="/sass/jane.min.31c4b7729c8d71cc152f8de4203d90bfd8a04f7eab69372de7234ebf55b7701b.css" integrity="sha256-McS3cpyNccwVL43kID2Qv9igT36raTct5yNOv1W3cBs=" media="screen" crossorigin="anonymous"> -->
+
+  <!-- <link href="{{ url_for('static', filename='skeleton.css') }}" rel="stylesheet"> -->
+  <!-- <link href="{{ url_for('static', filename='skeleton.css') }}" rel="stylesheet"> -->
+  <!-- <link href="https://cdn.bootcss.com/skeleton/2.0.4/skeleton.min.css" rel="stylesheet"> -->
+  <!-- <link href="https://cdn.bootcss.com/skeleton/2.0.4/normalize.min.css" rel="stylesheet"> -->
+  <!-- <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet"> -->
+  <link href="https://www.readmorejoy.com/static//bootstrap.min.css" rel="stylesheet">
+
+  <!-- <link href="http://img.readmorejoy.com/static/bootstrap.min.css" rel="stylesheet"> -->
+
+  <!-- <script src="http://img.readmorejoy.com/static/jquery.min.js"></script> -->
+  <!-- <script src="http://img.readmorejoy.com/static/bootstrap.min.js"></script> -->
+  <!-- <script src="http://img.readmorejoy.com/static/bootbox.min.js"></script> -->
+
+  <script src="https://www.readmorejoy.com/static/jquery.min.js"></script>
+  <!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.slim.js"></script> -->
+  <!-- <script src="https://cdn.bootcss.com/popper.js/1.15.0/esm/popper.min.js"></script> -->
+  <!-- <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+  <script src="https://www.readmorejoy.com/static/bootstrap.min.js"></script>
+  <script src="https://www.readmorejoy.com/static/bootbox.min.js"></script>
+
+  <!-- <script src="{{ url_for('static', filename='bootbox.min.js') }}"></script> -->
+
+  <!-- Smtp JS CSS -->
+  <!-- <script src="{{ url_for('static', filename='smtp.js') }}"></script> -->
+  <script src="https://www.readmorejoy.com/static/smtp.js"></script>
+
+  <style>
+    .bootbox-input-textarea {
+      height: 300px;
+      width: 100%;
+    }
+
+    /* .qr-code{
+      display:none;
+    } */
+  </style>
+
+</head>
+
+
+<body style=border-top-style:ridge;border-right-style:ridge;border-left-style:ridge>
+
+  <script type="text/javascript">
+    function help() {
+      //$(bgoogle).removeClass("button-primary");
+      bootbox.alert({
+        message: "开发EnjoySearch 喜欢搜索 搜素引擎工具，帮助我们更高效获取更优质信息。<br>当前提供 Google，Bing，百度，Duckduckgo 国际搜素引擎，支持知乎、微信、GitHub搜索，还在研究增加更多优质资源！<br>如何使用：输入关键字，选择搜索引擎 或者 执行Search。<br><br>MarkDown工具：填入文章URL地址，全世界页面，自动获取和转换成MarkDown格式。<br><br>TellMe菜单：方便您给我们留言的窗口，如需要回复，可以留下您的联系方式。<br><br>怎样才能让大家更好昵？🙏",
+        backdrop: true
+      });
+      //bootbox.("开发一个EnjoySearch搜素引擎工具，目标是，帮助我们获取到更优质信息，欢迎体验。<br>当前提供 Google，Bing，百度 三大国际搜素引擎，还在研究增加更多优质资源，请稍待！<br><br>MarkDown工具：填入文章URL地址，自动获取和转换成MarkDown格式。<br><br>TellMe菜单：方便您给我们留言的窗口，如需要回复，可以留下您的联系方式。<br><br>谢谢🙏谢谢");
+    };
+
+    function tellme() {
+      bootbox.prompt({
+        title: "Tell me something，Please",
+        inputType: 'textarea',
+        callback: function(result) {
+          if (result) {
+            console.log(result);
+
+            Email.send({
+              SecureToken: "d7a5e1b9-e824-49c4-8c95-05df93cfc690",
+              To: "luckrill@163.com",
+              From: "luckrill@163.com",
+              Subject: "EnjoySearch tellme",
+              Body: result
+            });
+
+            $.post("/postdata", {
+              data: JSON.stringify(result)
+            })
+
+          }
+
+        }
+      });
+    }; // end tellme
+
+    function show() {
+      var div = document.getElementById("showext").style.display;
+      if (div == "none") {
+        document.getElementById("showext").style.display = 'block';
+      } else {
+        document.getElementById("showext").style.display = 'none';
+      }
+    };
+
+    var engine = "";
+    var key = ""
+    var i = 0;
+    $(document).ready(function() {
+
+      engine = $('#idengine').val();
+      key = $('#idkey').val();
+      i = $('#idstart').val()
+      i = parseInt(i)
+
+
+      //console.log(engine);
+      switch (engine) {
+        case "baidu":
+          //console.log("case baidu");
+          $('#bbaidu').addClass("button-primary");
+          break;
+        case "sm1234":
+          //console.log("case baidu");
+          $('#sm1234').addClass("button-primary");
+          break;
+        case "google":
+          //console.log("case google");
+          $('#bgoogle').addClass("button-primary");
+          break;
+        case "bing":
+          //console.log("case bing");
+          $('#bbing').addClass("button-primary");
+          break;
+        case "duckduckgo":
+          //console.log("case bing");
+          $('#bduckduckgo').addClass("button-primary");
+          break;
+        default:
+          //console.log("case default");
+          $('#idengine').val("google");
+          $('#bgoogle').addClass("button-primary");;
+      }
+
+      $("#bbaidu").click(function() {
+        var cu_key;
+        cu_key = $('#idkey').val();
+        if (cu_key.length > 0) {
+          $('#idengine').val("baidu");
+          $('#idstart').val(0);
+          $("form").submit();
+        }
+      });
+      $("#sm1234").click(function() {
+        var cu_key;
+        cu_key = $('#idkey').val();
+        if (cu_key.length > 0) {
+          $('#idengine').val("sm1234");
+          $('#idstart').val(0);
+          $("form").submit();
+        }
+      });
+      $("#bgoogle").click(function() {
+        var cu_key;
+        cu_key = $('#idkey').val();
+        if (cu_key.length > 0) {
+          $('#idengine').val("google");
+          $('#idstart').val(0);
+          $("form").submit();
+        }
+      });
+      $("#bbing").click(function() {
+        var cu_key;
+        cu_key = $('#idkey').val();
+        if (cu_key.length > 0) {
+          $('#idengine').val("bing");
+          $('#idstart').val(0);
+          $("form").submit();
+        }
+      });
+      $("#bduckduckgo").click(function() {
+        var cu_key;
+        cu_key = $('#idkey').val();
+        if (cu_key.length > 0) {
+          $('#idengine').val("duckduckgo");
+          $('#idstart').val(0);
+          $("form").submit();
+        }
+      });
+      $("#bzhihu").click(function() {
+        var cu_key;
+        cu_key = $('#idkey').val();
+        if (cu_key.length > 0) {
+          url = "https://www.zhihu.com/search?type=content&q=" + cu_key
+          // window.location.href=url
+          window.open(url)
+        }
+      });
+      $("#bweixin").click(function() {
+        var cu_key;
+        cu_key = $('#idkey').val();
+        if (cu_key.length > 0) {
+          url = "https://weixin.sogou.com/weixin?type=2&query=" + cu_key
+          // window.location.href=url
+          window.open(url)
+        }
+      });
+      $("#bgithub").click(function() {
+        var cu_key;
+        cu_key = $('#idkey').val();
+        if (cu_key.length > 0) {
+          url = "https://github.com/search?q=" + cu_key
+          // window.location.href=url
+          window.open(url)
+        }
+      });
+      // https://www.jianshu.com/search?q=感冒
+
+
+      $('#idkey').bind('keypress', function(event) {
+        // console.log("idkey keypress");;
+        if (event.which == 13) {
+          var cu_key;
+          cu_key = $('#idkey').val();
+          // console.log("keypress " + cu_key.length);
+          if (cu_key.length > 0) {
+            // console.log("keypress");
+            $('#idstart').val(0);
+            $("form").submit();
+          }
+        }
+      });
+
+      $("#search").click(function() {
+        i = $('#idstart').val();
+        i = parseInt(i);
+        var cu_key;
+        cu_key = $('#idkey').val();
+        if (cu_key.length > 0) {
+          if (cu_key == key) {
+            $('#idstart').val(i + 10);
+            $("form").submit();
+          } else {
+            $('#idstart').val(0);
+            $("form").submit();
+          }
+        }
+      });
+      $("#idnext").click(function() {
+        i = $('#idstart').val();
+        i = parseInt(i);
+        var cu_key;
+        cu_key = $('#idkey').val();
+        if (cu_key.length > 0) {
+          if (cu_key == key) {
+            $('#idstart').val(i + 10);
+            $("form").submit();
+          } else {
+            $('#idstart').val(0);
+            $("form").submit();
+          }
+        }
+      });
+
+
+      $(".reward-button").click(function() {
+        $(".reward-button").hide()
+        $(".qr-code").show();
+      })
+      $(".qr-code").click(function() {
+        $(".reward-button").show()
+        $(".qr-code").hide();
+      })
+
+      $("#search1").click(function() {
+        $("#yessir").attr("src", "https://www.readmorejoy.com")
+      })
+
+      // $("#tellyou").load("/static/tellyou.txt");
+      //$("#tellyou").load("https://www.readmorejoy.com/2019/07/services/");
+    });
+  </script>
+
+  <div class="container">
+    <h4>
+      <input type="button" value="Home" onclick="window.location.href=('/')">
+      <input type="button" value="Tellme" onclick="tellme()">
+      <input type="button" value="Help" onclick="help()">
+      <!-- Powered by <a href='https://www.readmorejoy.com/2019/08/main/'>ReadMoreJoy</a>&nbsp;&nbsp;<a href='https://markdown.readmorejoy.com/'>MarkDown</a> -->
+      <input type="button" value="ReadMoreJoy" onclick="window.location.href=('https://www.readmorejoy.com/main/')">
+      <input type="button" value="MarkDown" onclick="window.location.href=('https://markdown.readmorejoy.com/')">
+    </h4>
+    <br /><br />
+    <center>
+      <input type="button" value="Google翻译" id="bgoogle">
+      <input type="button" value="百度翻译" id="bbeidu">
+      <input type="button" value="有道翻译" id="byoudao">
+      <input type="button" value="微软翻译" id="bmicrosoft">
+      <!-- <div id=showext> -->
+      <!-- <input type="button" value="神马" id="sm1234"> -->
+      <!-- </div> -->
+      <!-- <input type="button" value="TellMe" id="btellme" onclick="tellme()">
+    <input type="button" value="About" id="babout" onclick="about()"> -->
+    </center>
+    <br />
+
+<iframe id="yessir" src="" ></iframe>
+
+
+    <center>
+      <form action="/search" method="get" οnkeydοwn="if(event.keyCode==13){return false;}">
+        <input type="hidden" name="engine" id="idengine" value="{{ engine }}" />
+        <input type="hidden" name="start" id="idstart" value="{{ start }}" />
+        <!-- <input type="search" name="key" id="idkey" maxlength="100" style="width: 600px;" value="{{ key }}" /> -->
+        <textarea class="u-full-width" placeholder="Input " name="input" id="idinput"></textarea>
+        <textarea class="u-full-width" placeholder="Output " name="output" id="idoutput"></textarea>
+        <!-- add hide text to avoid input enter auto submit by jiangzhixiang -->
+        <input type="text" style="display:none;" value="" />
+        <br /><br />
+        <button type='button' id="search1">英文到中文</button>
+        <button type='button' id="search2">中文到英文</button><br /><br />
+        <textarea class="u-full-width" placeholder="Text " name="text" id="idtext"></textarea>
+      </form>
+    </center>
+
+    <div id="htmlinfo"></div>
+    <!-- <hr /> -->
+    <p>
+      <center>
+        <div id="tellyou">如何给人类真正做点好事？你有什么建议吗？</div>
+      </center>
+      <!-- <center>Powered by <a href='https://www.readmorejoy.com/'>ReadMoreJoy</a> and <a href='https://www.readmorejoy.com/2019/07/services/'>Services</a></center> -->
+
+      <div style="display:none;"><img src="https://www.readmorejoy.com/static/readmorejoy1.jpeg" alt=""></div>
+
+  </div>
+
+  <div class="post-reward">
+    <!-- <input type="checkbox" name="reward" id="reward" hidden /> -->
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="http://img.readmorejoy.com/help/wechat-qr-code.png">
+        <span>微信打赏</span>
+      </label>
+
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="http://img.readmorejoy.com/help/alipay-qr-code.jpeg">
+        <span>支付宝打赏</span>
+      </label>
+    </div>
+  </div>
+
+</body>
+
+</html>

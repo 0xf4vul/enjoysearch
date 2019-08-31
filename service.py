@@ -75,6 +75,11 @@ def keysearch():
         # print("here is default search ")
         return render_template('search.html', engine=engine, key=key, start=start)
 
+@app.route('/test')
+def yessir():
+    # flash("bling bling")
+    return render_template('yessir.html')
+
 
 @app.route('/postdata', methods=['POST'])
 def post_javascript_data():

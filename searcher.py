@@ -38,6 +38,7 @@ def bing_search(key, pn):
         yield result
 
     # return li
+import time
 
 def baidu_search(key, pn):
     print("baidu_search start...")
@@ -51,8 +52,9 @@ def baidu_search(key, pn):
     # print(r.url)
     soup = BeautifulSoup(r.text, 'lxml')
     # select_html = soup.find("div", attrs={'id':'content_left'})
-    # li = []
+    li = []
     now = int(pn)
+    # t1 = time.time()
     for item in soup.find_all('div', attrs={"class":"c-container"}):
         #print("search c-container")
         now += 1
@@ -70,16 +72,23 @@ def baidu_search(key, pn):
             		ss += div.get_text()
                     #ss += div.contents
             result['text'] = ss
+            # class="c-showurl" style="text-decoration:none;"
+            # a = item.find('a')
+            # print(a.get('href'))
+            # print(a.get_text())
+
             if item.h3.a:
                 #result['url'] = item.h3.a.get('href')
                 #print(item.h3.a.string)
-                # result['url'] = item.h3.a['href']
+                result['url'] = item.h3.a['href']
                 # requests get for baidu redirect url to get result url.
-                a = requests.get(url = item.h3.a['href'], headers=headers)
-                result['url'] = a.url
+                # a = requests.get(url = item.h3.a['href'], headers=headers)
+                # result['url'] = a.url
+                # print("one get: " + str(t6 - t5) + " seconds")
 
+                result['title'] = item.h3.get_text()
                 # Optimization baidu search
-                result['title'] = item.h3.get_text() + " " + result['url']
+                # result['title'] = item.h3.get_text() + " " + result['url']
                 # li.append(result)
                 yield result
             else:
@@ -87,7 +96,8 @@ def baidu_search(key, pn):
                 print(item.h3)
             #print(result)
             #yield result
-
+    # t2 = time.time()
+    # print("all search: " + str(t2 - t1) + " seconds")
     # return li
 
 def google_search(key, pn):
