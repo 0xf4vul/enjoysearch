@@ -48,3 +48,10 @@ https://search.readmorejoy.com
 发现duckduckgo解析方面有bug，调试半小时解决问题
 
 现在对duckduckgo的支持或许比较好了
+
+蒋志祥 2019年9月3日
+EnjoySearch 喜欢搜索
+彻底优化UI界面
+更加有了自己的风格
+挑战一下搜索引擎界面
+
