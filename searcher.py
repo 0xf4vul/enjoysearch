@@ -52,7 +52,7 @@ def baidu_search(key, pn):
     # print(r.url)
     soup = BeautifulSoup(r.text, 'lxml')
     # select_html = soup.find("div", attrs={'id':'content_left'})
-    li = []
+    # li = []
     now = int(pn)
     # t1 = time.time()
     for item in soup.find_all('div', attrs={"class":"c-container"}):
