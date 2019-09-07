@@ -86,7 +86,7 @@ def needfanyi():
     # print(q)
     # print(type)
     # print("above is get args")
-    if type:
+    if q:
         result = baidu_fanyi(type, q)
         return render_template('fanyi.html', input=q, output=result, text=orgtext)
     else:
