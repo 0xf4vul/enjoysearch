@@ -3,7 +3,8 @@
 from flask import Flask, request, redirect, url_for, render_template, flash, session, get_flashed_messages
 from converter import html_to_md, get_urls
 from searcher import baidu_search, bing_search, duckduckgo_search, google_search, sm1234_search
-import logging
+from fanyi import baidu_fanyi
+# import logging
 
 app = Flask(__name__)
 app.threaded = True
@@ -74,6 +75,24 @@ def keysearch():
         start = 0
         # print("here is default search ")
         return render_template('search.html', engine=engine, key=key, start=start)
+
+@app.route('/fanyi')
+def needfanyi():
+    # print("in fanyi")
+    q = request.args.get('input')
+    orgtext = request.args.get('text')
+    type = request.args.get('type')
+    # print(q)
+    # print(type)
+    # print("above is get args")
+    if type:
+        print(input)
+        result = baidu_fanyi(type, q)
+        return render_template('fanyi.html', input=q, output=result, text=orgtext)
+    else:
+        # print("default page")
+        return render_template('fanyi.html')
+
 
 @app.route('/test')
 def yessir():

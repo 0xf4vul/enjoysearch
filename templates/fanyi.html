@@ -2,14 +2,14 @@
 <html>
 
 <head>
-  <title>EnjoySearch 喜欢搜索</title>
+  <title>EnjoyTranslate 喜欢翻译</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <!-- <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}"> -->
   <link rel="shortcut icon" href="https://www.readmorejoy.com/static/favicon.ico">
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="EnjoySearch 喜欢搜索，快速高效搜索引擎工具" />
+  <meta name="description" content="EnjoyTranslate 喜欢翻译，快速高效翻译工具" />
 
   <link href="https://www.readmorejoy.com/static/skeleton.min.css" rel="stylesheet">
   <link href="https://www.readmorejoy.com/static/custom.css " rel="stylesheet">
@@ -63,7 +63,7 @@
     function help() {
       //$(bgoogle).removeClass("button-primary");
       bootbox.alert({
-        message: "开发EnjoySearch 喜欢搜索 搜素引擎工具，帮助我们更高效获取更优质信息。<br>当前提供 Google，Bing，百度，Duckduckgo 国际搜素引擎，支持知乎、微信、GitHub搜索，还在研究增加更多优质资源！<br>如何使用：输入关键字，选择搜索引擎 或者 执行Search。<br><br>MarkDown工具：填入文章URL地址，全世界页面，自动获取和转换成MarkDown格式。<br><br>TellMe菜单：方便您给我们留言的窗口，如需要回复，可以留下您的联系方式。<br><br>怎样才能让大家更好昵？🙏",
+        message: "开发EnjoyTranslate 喜欢翻译 翻译工具，帮助我们更高效利用好翻译。<br>当前提供 Google，Bing，百度， 翻译引擎，还在研究增加更多优质资源！<br><br>TellMe菜单：方便您给我们留言的窗口，如需要回复，可以留下您的联系方式。<br><br>怎样才能让大家更好昵？🙏",
         backdrop: true
       });
       //bootbox.("开发一个EnjoySearch搜素引擎工具，目标是，帮助我们获取到更优质信息，欢迎体验。<br>当前提供 Google，Bing，百度 三大国际搜素引擎，还在研究增加更多优质资源，请稍待！<br><br>MarkDown工具：填入文章URL地址，自动获取和转换成MarkDown格式。<br><br>TellMe菜单：方便您给我们留言的窗口，如需要回复，可以留下您的联系方式。<br><br>谢谢🙏谢谢");
@@ -114,9 +114,9 @@
       i = $('#idstart').val()
       i = parseInt(i)
 
-      if (key.length < 1) {
-        $('#idnext').hide();
-      };
+      // if (key.length < 1) {
+      //   $('#idnext').hide();
+      // };
 
       //console.log(engine);
       switch (engine) {
@@ -218,7 +218,6 @@
           window.open(url)
         }
       });
-      // https://www.jianshu.com/search?q=感冒
 
 
       $('#idkey').bind('keypress', function(event) {
@@ -233,6 +232,33 @@
             $("form").submit();
           }
         }
+      });
+
+      type = $('#idtype').val();
+      switch (type) {
+        case "zh":
+          console.log("zh");
+          $('#idtype').val("zh");
+          break;
+        case "en":
+          console.log("en");
+          $('#idtype').val("en");
+          break;
+        default:
+          console.log("default en");
+          $('#idtype').val("en");
+      }
+
+      $("#fanyi1").click(function() {
+        // alert("fanyi1")
+        $('#idtype').val("en");
+        $("form").submit();
+      });
+
+      $("#fanyi2").click(function() {
+        // alert("fanyi2")
+        $('#idtype').val("zh");
+        $("form").submit();
       });
 
       $("#search").click(function() {
@@ -283,48 +309,46 @@
 
   <div class="container">
     <h4>
-      <input type="button" value="Home" onclick="window.location.href=('/')">
+      <input type="button" value="Home" onclick="window.location.href=('/fanyi')">
       <input type="button" value="Tellme" onclick="tellme()">
       <input type="button" value="Help" onclick="help()">
-      <!-- Powered by <a href='https://www.readmorejoy.com/2019/08/main/'>ReadMoreJoy</a>&nbsp;&nbsp;<a href='https://markdown.readmorejoy.com/'>MarkDown</a> -->
       <input type="button" value="ReadMoreJoy" onclick="window.location.href=('https://www.readmorejoy.com/main/')">
       <input type="button" value="MarkDown" onclick="window.location.href=('https://markdown.readmorejoy.com/')">
+      <input type="button" value="EnjoySearch" onclick="window.location.href=('/search'))">
     </h4>
     <br /><br />
-    <center>
-      <input type="button" value="Google翻译" id="bgoogle">
-      <input type="button" value="百度翻译" id="bbeidu">
-      <input type="button" value="有道翻译" id="byoudao">
-      <input type="button" value="微软翻译" id="bmicrosoft">
+
+    <!-- <center> -->
+      <!-- <input type="button" value="Google翻译" id="bgoogle"> -->
+      <!-- <input type="button" value="百度翻译" id="bbeidu"> -->
+      <!-- <input type="button" value="有道翻译" id="byoudao"> -->
+      <!-- <input type="button" value="微软翻译" id="bmicrosoft"> -->
       <!-- <div id=showext> -->
       <!-- <input type="button" value="神马" id="sm1234"> -->
       <!-- </div> -->
       <!-- <input type="button" value="TellMe" id="btellme" onclick="tellme()">
     <input type="button" value="About" id="babout" onclick="about()"> -->
-    </center>
-    <br />
+    <!-- </center> -->
+    <!-- <br /> -->
 
     <center>
-      <form action="/search" method="get" οnkeydοwn="if(event.keyCode==13){return false;}">
-        <input type="hidden" name="engine" id="idengine" value="{{ engine }}" />
-        <input type="hidden" name="start" id="idstart" value="{{ start }}" />
-        <!-- <input type="search" name="key" id="idkey" maxlength="100" style="width: 600px;" value="{{ key }}" /> -->
-        <textarea class="u-full-width" placeholder="Input " name="input" id="idinput"></textarea>
-        <textarea class="u-full-width" placeholder="Output " name="output" id="idoutput"></textarea>
+      <form action="/fanyi" method="get" οnkeydοwn="if(event.keyCode==13){return false;}">
+        <input type="hidden" name="type" id="idtype" value="{{ type }}" />
+        <button type='button' id="fanyi1">英文到中文</button>
+        <button type='button' id="fanyi2">中文到英文</button><br /><br />
+        <textarea style="height:200px" class="u-full-width" name="input" id="idinput">{{ input }}</textarea>
+        <textarea style="height:200px" class="u-full-width" name="output" id="idoutput">{{ output }}</textarea>
         <!-- add hide text to avoid input enter auto submit by jiangzhixiang -->
         <input type="text" style="display:none;" value="" />
         <br /><br />
-        <button type='button' id="search">英文到中文</button>
-        <button type='button' id="search">中文到英文</button><br /><br />
-        <textarea class="u-full-width" placeholder="Text " name="text" id="idtext"></textarea>
+        Your text<br />
+        <textarea style="height:300px" class="u-full-width" name="text" id="idtext">{{ text }}</textarea>
       </form>
     </center>
 
-    <div id="htmlinfo"></div>
-    <!-- <hr /> -->
     <p>
       <center>
-        <div id="tellyou">如何给人类真正做点好事？你有什么建议吗？</div>
+        <div id="tellyou">如何给人类真正做点好事？你有什么建议吗？可以帮您定制搜索工具，翻译工具</div>
       </center>
       <!-- <center>Powered by <a href='https://www.readmorejoy.com/'>ReadMoreJoy</a> and <a href='https://www.readmorejoy.com/2019/07/services/'>Services</a></center> -->
 

@@ -1,91 +1,46 @@
-# -*- coding: utf-8 -*-
 
 import os
-
-#from mercury_parser import ParserAPI
-#from html2text import html2text
-import html2text
 import requests
-from bs4 import BeautifulSoup
-from selenium import webdriver
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import time
 import urllib.request, urllib.parse, urllib.error
 from user_agents import random_user_agent
-from urllib.parse import urljoin
+from urllib.parse import urljoin, quote
+import hashlib
+import urllib
+import random
 
 
+def baidu_fanyi(type, q):
+    appid = '20190613000307195' #你的appid
+    secretKey = 'GiYXPZ27k7gHPTFFOzke' #你的密钥
 
-def baidu_fanyi():
+    httpClient = None
+    apiurl = '/api/trans/vip/translate'
+    if type == "en":
+        fromLang = 'en'
+        toLang = 'zh'
+    elif type == "zh":
+        fromLang = 'zh'
+        toLang = 'en'
+    else:
+        fromLang = 'en'
+        toLang = 'zh'
 
-    
-def get_urls(baseurl):
-    # dcap = dict(DesiredCapabilities.PHANTOMJS)
-    # dcap["phantomjs.page.settings.userAgent"] = (random_user_agent())
-    # driver = webdriver.PhantomJS(desired_capabilities=dcap)
-    #
-    # driver.get(baseurl)
-    # driver.implicitly_wait(5)
-    # html = driver.page_source
-    # # driver.close()
-    # driver.quit()
-    #
-    # soup = BeautifulSoup(html, 'lxml')
+    salt = random.randint(32768, 65536)
 
-    headers = {'User-Agent':random_user_agent()}
-    r = requests.get(baseurl, headers=headers)
-    soup = BeautifulSoup(r.text, 'lxml')
+    sign = appid+q+str(salt)+secretKey
+    m1 = hashlib.md5()
+    m1.update(sign.encode(encoding='utf-8'))
+    sign = m1.hexdigest()
+    url = 'http://api.fanyi.baidu.com' + apiurl+'?appid='+appid+'&q='+quote(q)+'&from='+fromLang+'&to='+toLang+'&salt='+str(salt)+'&sign='+sign
 
-    all_text = soup.find_all("a")
-    all_urls = set()
+    # print(url)
+    # http://api.fanyi.baidu.com/api/trans/vip/translate?q=apple&from=en&to=zh&appid=2015063000000001&salt=1435660288&sign=f89f9594663708c1605f3d736d01d2d4
+    r = requests.post(url)
+    js_text = r.json()
+    # print(js_text)
+    # print(text["day_time_2"]["text1"])
+    # print(js_text["from"])
+    result = js_text["trans_result"][0]["dst"]
 
-    for item in all_text:
-        a = (item.get('href'))
-        if a.startswith("/"):
-            a = urljoin(baseurl, a)
-
-        all_urls.add(a)
-
-    str = "\n".join(all_urls)
-    # print(str)
-    return str
-
-def html_to_md(url, param):
-    dcap = dict(DesiredCapabilities.PHANTOMJS)
-    dcap["phantomjs.page.settings.userAgent"] = (random_user_agent())
-    driver = webdriver.PhantomJS(desired_capabilities=dcap)
-    # driver = webdriver.PhantomJS(executable_path=executable_path)
-    # obj = webdriver.PhantomJS(executable_path='C:\Python27\Scripts\phantomjs.exe',desired_capabilities=dcap)
-
-    driver.get(url)
-    driver.implicitly_wait(5)
-    html = driver.page_source
-    # driver.close()
-    driver.quit()
-
-    print(param)
-    if param:
-        li = param.split(" ")
-        soup = BeautifulSoup(html, 'lxml')
-        if len(li) > 1:
-            name = li[0]
-            lili = li[1].split("=")
-            if len(lili) > 1:
-                attrs1 = lili[0]
-                attrs2 = lili[1].strip("\"")
-                select_html = soup.find(name, attrs={attrs1, attrs2})
-                md = html2text.html2text(str(select_html))
-                return md
-        else:
-            name = param
-            select_html = soup.find(name)
-            md = html2text.html2text(str(select_html))
-            return md
-
-    md = html2text.html2text(html)
-    return md
-
-
-
-if __name__ == '__main__':
-    print(html_to_md('https://www.readmorejoy.com/'))
+    return result
