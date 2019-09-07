@@ -33,14 +33,17 @@ def baidu_fanyi(type, q):
     m1.update(sign.encode(encoding='utf-8'))
     sign = m1.hexdigest()
     url = 'http://api.fanyi.baidu.com' + apiurl+'?appid='+appid+'&q='+quote(q)+'&from='+fromLang+'&to='+toLang+'&salt='+str(salt)+'&sign='+sign
-
     # print(url)
     # http://api.fanyi.baidu.com/api/trans/vip/translate?q=apple&from=en&to=zh&appid=2015063000000001&salt=1435660288&sign=f89f9594663708c1605f3d736d01d2d4
-    r = requests.post(url)
+    r = requests.get(url)
     js_text = r.json()
     # print(js_text)
     # print(text["day_time_2"]["text1"])
     # print(js_text["from"])
-    result = js_text["trans_result"][0]["dst"]
-
+    result = ""
+    for text in js_text["trans_result"]:
+        result += text["dst"] + "\n"
+        # result = text["dst"]
+        # li.append(result)
+    # result = js_text["trans_result"][0]["dst"]
     return result

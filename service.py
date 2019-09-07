@@ -76,17 +76,17 @@ def keysearch():
         # print("here is default search ")
         return render_template('search.html', engine=engine, key=key, start=start)
 
-@app.route('/fanyi')
+@app.route('/fanyi', methods=['GET', 'POST'])
 def needfanyi():
     # print("in fanyi")
-    q = request.args.get('input')
-    orgtext = request.args.get('text')
-    type = request.args.get('type')
+    # print(request.method)
+    q = request.values.get('input')
+    orgtext = request.values.get('text')
+    type = request.values.get('type')
     # print(q)
     # print(type)
     # print("above is get args")
     if type:
-        print(input)
         result = baidu_fanyi(type, q)
         return render_template('fanyi.html', input=q, output=result, text=orgtext)
     else:

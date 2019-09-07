@@ -61,17 +61,15 @@
 
   <script type="text/javascript">
     function help() {
-      //$(bgoogle).removeClass("button-primary");
       bootbox.alert({
-        message: "开发EnjoyTranslate 喜欢翻译 翻译工具，帮助我们更高效利用好翻译。<br>当前提供 Google，Bing，百度， 翻译引擎，还在研究增加更多优质资源！<br><br>TellMe菜单：方便您给我们留言的窗口，如需要回复，可以留下您的联系方式。<br><br>怎样才能让大家更好昵？🙏",
+        message: "开发EnjoyTranslate 喜欢翻译 翻译工具，当前采用 百度翻译，希望能够帮助我们更高效利用好翻译技术。<br /><br />使用说明：<br />输入框，'双击'是清空，方便新的录入。输出框，'双击'是全选。自选框，'双击'是全选。欢迎体验。<br /><br />TellMe菜单：方便您给我们留言的窗口，如需要回复，可以留下您的联系方式。<br><br>怎样才能让大家更好昵？🙏",
         backdrop: true
       });
-      //bootbox.("开发一个EnjoySearch搜素引擎工具，目标是，帮助我们获取到更优质信息，欢迎体验。<br>当前提供 Google，Bing，百度 三大国际搜素引擎，还在研究增加更多优质资源，请稍待！<br><br>MarkDown工具：填入文章URL地址，自动获取和转换成MarkDown格式。<br><br>TellMe菜单：方便您给我们留言的窗口，如需要回复，可以留下您的联系方式。<br><br>谢谢🙏谢谢");
     };
 
     function tellme() {
       bootbox.prompt({
-        title: "Tell me something，Please",
+        title: "Tell Me Something，Please",
         inputType: 'textarea',
         callback: function(result) {
           if (result) {
@@ -81,7 +79,7 @@
               SecureToken: "d7a5e1b9-e824-49c4-8c95-05df93cfc690",
               To: "luckrill@163.com",
               From: "luckrill@163.com",
-              Subject: "EnjoySearch tellme",
+              Subject: "EnjoyFanyi tellme",
               Body: result
             });
 
@@ -261,6 +259,18 @@
         $("form").submit();
       });
 
+      $("#idinput").dblclick(function() {
+        $('#idinput').val("");
+      });
+
+      $("#idoutput").dblclick(function() {
+        $('#idoutput').select();
+      });
+
+      $("#idtext").dblclick(function() {
+        $('#idtext').select();
+      });
+
       $("#search").click(function() {
         i = $('#idstart').val();
         i = parseInt(i);
@@ -313,8 +323,8 @@
       <input type="button" value="Tellme" onclick="tellme()">
       <input type="button" value="Help" onclick="help()">
       <input type="button" value="ReadMoreJoy" onclick="window.location.href=('https://www.readmorejoy.com/main/')">
-      <input type="button" value="MarkDown" onclick="window.location.href=('https://markdown.readmorejoy.com/')">
-      <input type="button" value="EnjoySearch" onclick="window.location.href=('/search'))">
+      <input type="button" value="MarkDown" onclick="window.location.href=('/markdown')">
+      <input type="button" value="EnjoySearch" onclick="window.location.href=('/search')">
     </h4>
     <br /><br />
 
@@ -332,16 +342,16 @@
     <!-- <br /> -->
 
     <center>
-      <form action="/fanyi" method="get" οnkeydοwn="if(event.keyCode==13){return false;}">
+      <form action="/fanyi" method="post" οnkeydοwn="if(event.keyCode==13){return false;}">
         <input type="hidden" name="type" id="idtype" value="{{ type }}" />
-        <button type='button' id="fanyi1">英文到中文</button>
-        <button type='button' id="fanyi2">中文到英文</button><br /><br />
+        <button type='button' class='button-primary' id="fanyi1">英文到中文</button>
+        <button type='button' class='button' id="fanyi2">中文到英文</button><br />
         <textarea style="height:200px" class="u-full-width" name="input" id="idinput">{{ input }}</textarea>
         <textarea style="height:200px" class="u-full-width" name="output" id="idoutput">{{ output }}</textarea>
         <!-- add hide text to avoid input enter auto submit by jiangzhixiang -->
         <input type="text" style="display:none;" value="" />
         <br /><br />
-        Your text<br />
+        Your Text 自留地<br />
         <textarea style="height:300px" class="u-full-width" name="text" id="idtext">{{ text }}</textarea>
       </form>
     </center>
