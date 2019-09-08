@@ -3,7 +3,7 @@
 from flask import Flask, request, redirect, url_for, render_template, flash, session, get_flashed_messages
 from converter import html_to_md, get_urls
 from searcher import baidu_search, bing_search, duckduckgo_search, google_search, sm1234_search
-from fanyi import baidu_fanyi
+from fanyi import baidu_fanyi, jieba_cat
 # import logging
 
 app = Flask(__name__)
@@ -87,7 +87,10 @@ def needfanyi():
     # print(type)
     # print("above is get args")
     if q:
-        result = baidu_fanyi(type, q)
+        if type != 'cat':
+            result = baidu_fanyi(type, q)
+        else:
+            result = jieba_cat(type, q)
         return render_template('fanyi.html', input=q, output=result, text=orgtext)
     else:
         # print("default page")

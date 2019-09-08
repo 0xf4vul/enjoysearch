@@ -259,6 +259,12 @@
         $("form").submit();
       });
 
+      $("#cat").click(function() {
+        // alert("fanyi2")
+        $('#idtype').val("cat");
+        $("form").submit();
+      });
+
       $("#idinput").dblclick(function() {
         $('#idinput').val("");
       });
@@ -345,7 +351,8 @@
       <form action="/fanyi" method="post" οnkeydοwn="if(event.keyCode==13){return false;}">
         <input type="hidden" name="type" id="idtype" value="{{ type }}" />
         <button type='button' class='button-primary' id="fanyi1">英文到中文</button>
-        <button type='button' class='button' id="fanyi2">中文到英文</button><br />
+        <button type='button' class='button' id="fanyi2">中文到英文</button>
+        <button type='button' class='button' id="cat">分词</button><br />
         <textarea style="height:200px" class="u-full-width" name="input" id="idinput">{{ input }}</textarea>
         <textarea style="height:200px" class="u-full-width" name="output" id="idoutput">{{ output }}</textarea>
         <!-- add hide text to avoid input enter auto submit by jiangzhixiang -->

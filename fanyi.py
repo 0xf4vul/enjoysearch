@@ -8,6 +8,7 @@ from urllib.parse import urljoin, quote
 import hashlib
 import urllib
 import random
+import jieba
 
 
 def baidu_fanyi(type, q):
@@ -46,4 +47,11 @@ def baidu_fanyi(type, q):
         # result = text["dst"]
         # li.append(result)
     # result = js_text["trans_result"][0]["dst"]
+    return result
+
+def jieba_cat(type, q):
+    # print("jieba_cat")
+    seg_list = jieba.cut(q)
+    result = ", ".join(seg_list)
+
     return result
