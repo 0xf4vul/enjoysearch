@@ -7,6 +7,7 @@ import requests
 from bs4 import BeautifulSoup
 import urllib.request, urllib.parse, urllib.error
 from user_agents import random_user_agent
+from urllib.parse import quote
 
 def bing_search(key, pn):
     # print("bing_search start...")
@@ -42,6 +43,7 @@ import time
 
 def baidu_search(key, pn):
     print("baidu_search start...")
+    # key = quote(key)
     kv = {'wd':key, 'pn':pn}
     # print(kv)
     headers = {'User-Agent':random_user_agent()}
