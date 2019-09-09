@@ -37,7 +37,7 @@
 
   <!-- Smtp JS CSS -->
   <!-- <script src="{{ url_for('static', filename='smtp.js') }}"></script> -->
-  <script src="https://www.readmorejoy.com/static/smtp.js"></script>
+  <!-- <script src="https://www.readmorejoy.com/static/smtp.js"></script> -->
 
   <style>
     .bootbox-input-textarea {
@@ -56,6 +56,15 @@
 <body style=border-top-style:ridge;border-right-style:ridge;border-left-style:ridge>
 
   <script type="text/javascript">
+
+    function dynamicLoadJs(url) {
+      var head = document.getElementsByTagName('head')[0];
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = url;
+      head.appendChild(script);
+    }
+
     function help() {
       //$(bgoogle).removeClass("button-primary");
       bootbox.alert({
@@ -66,11 +75,13 @@
     };
 
     function tellme() {
+
       bootbox.prompt({
         title: "Tell Me Something，Please",
         inputType: 'textarea',
         callback: function(result) {
           if (result) {
+            dynamicLoadJs("https://www.readmorejoy.com/static/smtp.js");
             console.log(result);
 
             Email.send({
@@ -318,9 +329,9 @@
         <!-- add hide text to avoid input enter auto submit by jiangzhixiang -->
         <input type="text" style="display:none;" value="" />
         <div class="input-group">
-          <input type="text" class="form-control"  name="key" id="idkey" maxlength="100" size="90" value="{{ key }}">
+          <input type="text" class="form-control" name="key" id="idkey" maxlength="100" size="90" value="{{ key }}">
           <span class="input-group-btn">
-            <button type="button" class="btn btn-outline-success"  id="search">Search</button>
+            <button type="button" class="btn btn-outline-success" id="search">Search</button>
           </span>
         </div>
         <!-- <input type="search" class="form-control" name="key" id="idkey" maxlength="100" style="width: 600px;" value="{{ key }}" />

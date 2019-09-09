@@ -20,7 +20,7 @@
   <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="https://cdn.bootcss.com/bootbox.js/5.3.2/bootbox.min.js"></script>
 
-  <script src="https://www.readmorejoy.com/static/smtp.js"></script>
+  <!-- <script src="https://www.readmorejoy.com/static/smtp.js"></script> -->
 
   <style>
     .bootbox-input-textarea {
@@ -39,6 +39,14 @@
 <body style=border-top-style:ridge;border-right-style:ridge;border-left-style:ridge>
 
   <script type="text/javascript">
+      function dynamicLoadJs(url) {
+        var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = url;
+        head.appendChild(script);
+      }
+
     function help() {
       bootbox.alert({
         message: "开发EnjoyTranslate 喜欢翻译 翻译工具，当前采用 百度翻译，希望能够帮助我们更高效利用好翻译技术。<br /><br />使用说明：<br />输入框，'双击'是清空，方便新的录入。输出框，'双击'是全选。自选框，'双击'是全选。欢迎体验。<br /><br />TellMe菜单：方便您给我们留言的窗口，如需要回复，可以留下您的联系方式。<br><br>怎样才能让大家更好昵？🙏",
@@ -52,6 +60,7 @@
         inputType: 'textarea',
         callback: function(result) {
           if (result) {
+            dynamicLoadJs("https://www.readmorejoy.com/static/smtp.js");
             console.log(result);
 
             Email.send({
@@ -228,20 +237,29 @@
 
       $("#fanyi1").click(function() {
         // alert("fanyi1")
+        input = $('#idinput').val();
+        if (input.length > 0) {
         $('#idtype').val("en");
         $("form").submit();
+      }
       });
 
       $("#fanyi2").click(function() {
         // alert("fanyi2")
+        input = $('#idinput').val();
+        if (input.length > 0) {
         $('#idtype').val("zh");
         $("form").submit();
+      }
       });
 
       $("#cat").click(function() {
         // alert("fanyi2")
+        input = $('#idinput').val();
+        if (input.length > 0) {
         $('#idtype').val("cat");
         $("form").submit();
+      }
       });
 
       $("#idinput").dblclick(function() {
@@ -337,7 +355,7 @@
         <!-- add hide text to avoid input enter auto submit by jiangzhixiang -->
         <input type="text" style="display:none;" value="" />
         <br /><br />
-        Your Text 自留地<br />
+        Your Text 自留地 您的编辑区<br />
         <textarea style="height:300px" class="u-full-width" name="text" id="idtext">{{ text }}</textarea>
       </form>
     </center>
