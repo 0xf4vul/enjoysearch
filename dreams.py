@@ -10,7 +10,7 @@
 # import random
 # import jieba
 import sqlite3
-
+import time
 
 
 # 数据库 if_you_dream
@@ -46,6 +46,10 @@ def creat_db_table():
 
 # creat_db_table()
 
+
+# 格式化成2016-03-20 11:45:39形式
+
+
 def dodreams(title, user, content):
     conn = sqlite3.connect('readmorejoy.db')
     c = conn.cursor()
@@ -53,11 +57,12 @@ def dodreams(title, user, content):
     if title and content:
         print("title and content")
         title = "如果 " + title
+        now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         if not user:
             user = "匿名"
         # c.execute("INSERT INTO Dreams (Title,Content,User,Star,Creat_time) \
-        c.execute("INSERT INTO Dreams (Title,Content,User) \
-              VALUES ('%s', '%s', '%s')" % (title, content, user));
+        c.execute("INSERT INTO Dreams (Title,Content,User,Creat_time) \
+              VALUES ('%s', '%s', '%s')" % (title, content, user, now));
         conn.commit()
 
 
