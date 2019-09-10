@@ -58,7 +58,7 @@ def dodreams(title, user, content):
         print("title and content")
         title = "如果 " + title
         now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-        print(now)
+        # print(now)
         if not user:
             user = "匿名"
         # c.execute("INSERT INTO Dreams (Title,Content,User,Star,Creat_time) \
