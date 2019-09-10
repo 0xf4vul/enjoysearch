@@ -56,8 +56,8 @@
 
 
     <form action="/markdown" method="get">
-      <strong>Param</strong>: <input type="text" id="in_param" name="param" size="35"><br />
-      <strong>URL</strong>: <input type="text" id="in_url" name="url" size="85">
+      <strong>Param</strong>: <input type="text" id="in_param" name="param" size="35" maxlength="80"><br />
+      <strong>URL</strong>: <input type="text" id="in_url" name="url" size="85" maxlength="1024">
       <input type="hidden" name="type" id="type" value="" />
       <button type='submit'>Markdown, Please!</button>
       <button type='button' id='get_urls'>Get Urls</button>
