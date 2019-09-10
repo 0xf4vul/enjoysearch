@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>EnjoyDream 如果梦想</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <!-- <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}"> -->
+  <link rel="shortcut icon" href="https://www.readmorejoy.com/static/favicon.ico">
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="EnjoyDream 如果梦想" />
+
+  <link href="https://cdn.bootcss.com/skeleton/2.0.4/skeleton.min.css" rel="stylesheet">
+  <link href="https://www.readmorejoy.com/static/reward.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+
+
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootbox.js/5.3.2/bootbox.min.js"></script>
+
+  <!-- <script src="https://www.readmorejoy.com/static/smtp.js"></script> -->
+
+  <style>
+    .bootbox-input-textarea {
+      height: 300px;
+      width: 100%;
+    }
+
+    /* .qr-code{
+      display:none;
+    } */
+  </style>
+
+</head>
+
+
+<body style=border-top-style:ridge;border-right-style:ridge;border-left-style:ridge>
+
+  <script type="text/javascript">
+      function dynamicLoadJs(url) {
+        var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = url;
+        head.appendChild(script);
+      }
+
+    function help() {
+      bootbox.alert({
+        message: "EnjoyDream 如果梦想。<br /><br />使用说明：<br />输入框，'双击'是清空，方便新的录入。输出框，'双击'是全选。自选框，'双击'是全选。欢迎体验。<br /><br />TellMe菜单：方便您给我们留言的窗口，如需要回复，可以留下您的联系方式。<br><br>怎样才能让大家更好昵？🙏",
+        backdrop: true
+      });
+    };
+
+    function tellme() {
+      bootbox.prompt({
+        title: "Tell Me Something，Please",
+        inputType: 'textarea',
+        callback: function(result) {
+          if (result) {
+            dynamicLoadJs("https://www.readmorejoy.com/static/smtp.js");
+            console.log(result);
+
+            Email.send({
+              SecureToken: "d7a5e1b9-e824-49c4-8c95-05df93cfc690",
+              To: "luckrill@163.com",
+              From: "luckrill@163.com",
+              Subject: "EnjoyFanyi tellme",
+              Body: result
+            });
+
+            $.post("/postdata", {
+              data: JSON.stringify(result)
+            })
+
+          }
+
+        }
+      });
+    }; // end tellme
+
+    function show() {
+      var div = document.getElementById("showext").style.display;
+      if (div == "none") {
+        document.getElementById("showext").style.display = 'block';
+      } else {
+        document.getElementById("showext").style.display = 'none';
+      }
+    };
+
+    // var engine = "";
+    // var key = ""
+    // var i = 0;
+    $(document).ready(function() {
+
+      // engine = $('#idengine').val();
+      // key = $('#idkey').val();
+      // i = $('#idstart').val()
+      // i = parseInt(i)
+
+      // if (key.length < 1) {
+      //   $('#idnext').hide();
+      // };
+
+      //console.log(engine);
+
+      $("#idsubmit").click(function() {
+        // alert("fanyi1")
+        input = $('#idinput').val();
+        title = $('#idtitle').val();
+        if ((title.length > 0) && (input.length > 0)) {
+          console.log("ok");
+        // $('#idtype').val("en");
+        $("form").submit();
+      }
+      });
+
+
+
+      $('#idkey').bind('keypress', function(event) {
+        // console.log("idkey keypress");;
+        if (event.which == 13) {
+          var cu_key;
+          cu_key = $('#idkey').val();
+          // console.log("keypress " + cu_key.length);
+          if (cu_key.length > 0) {
+            // console.log("keypress");
+            $('#idstart').val(0);
+            $("form").submit();
+          }
+        }
+      });
+
+      // type = $('#idtype').val();
+      // switch (type) {
+      //   case "zh":
+      //     console.log("zh");
+      //     $('#idtype').val("zh");
+      //     break;
+      //   case "en":
+      //     console.log("en");
+      //     $('#idtype').val("en");
+      //     break;
+      //   default:
+      //     console.log("default en");
+      //     $('#idtype').val("en");
+      // }
+
+      // $("#fanyi1").click(function() {
+      //   // alert("fanyi1")
+      //   input = $('#idinput').val();
+      //   if (input.length > 0) {
+      //   $('#idtype').val("en");
+      //   $("form").submit();
+      // }
+      // });
+      //
+      // $("#fanyi2").click(function() {
+      //   // alert("fanyi2")
+      //   input = $('#idinput').val();
+      //   if (input.length > 0) {
+      //   $('#idtype').val("zh");
+      //   $("form").submit();
+      // }
+      // });
+
+      // $("#cat").click(function() {
+      //   // alert("fanyi2")
+      //   input = $('#idinput').val();
+      //   if (input.length > 0) {
+      //   $('#idtype').val("cat");
+      //   $("form").submit();
+      // }
+      // });
+
+      $("#idinput").dblclick(function() {
+        $('#idinput').val("");
+      });
+
+
+
+
+
+      $(".reward-button").click(function() {
+        $(".reward-button").hide()
+        $(".qr-code").show();
+      })
+      $(".qr-code").click(function() {
+        $(".reward-button").show()
+        $(".qr-code").hide();
+      })
+
+      // $("#tellyou").load("/static/tellyou.txt");
+      //$("#tellyou").load("https://www.readmorejoy.com/2019/07/services/");
+    });
+  </script>
+
+  <div class="container">
+    <h4>
+      <input type="button" value="Home" onclick="window.location.href=('/dream')">
+      <input type="button" value="Tellme" onclick="tellme()">
+      <input type="button" value="Help" onclick="help()">
+      <input type="button" value="ReadMoreJoy" onclick="window.location.href=('https://www.readmorejoy.com/main/')">
+      <input type="button" value="MarkDown" onclick="window.location.href=('/markdown')">
+      <input type="button" value="EnjoySearch" onclick="window.location.href=('/search')">
+    </h4>
+    <br />
+
+    <!-- <center> -->
+      <!-- <input type="button" value="Google翻译" id="bgoogle"> -->
+      <!-- <input type="button" value="百度翻译" id="bbeidu"> -->
+      <!-- <input type="button" value="有道翻译" id="byoudao"> -->
+      <!-- <input type="button" value="微软翻译" id="bmicrosoft"> -->
+      <!-- <div id=showext> -->
+      <!-- <input type="button" value="神马" id="sm1234"> -->
+      <!-- </div> -->
+      <!-- <input type="button" value="TellMe" id="btellme" onclick="tellme()">
+    <input type="button" value="About" id="babout" onclick="about()"> -->
+    <!-- </center> -->
+    <!-- <br /> -->
+<center><h1>如果&nbsp;&nbsp;&nbsp;&nbsp;梦想&nbsp;&nbsp;&nbsp;&nbsp;实现</h1></center><br />
+<h3>如果我是 市长，我要......；&nbsp;&nbsp;如果 我是农民，我要......；&nbsp;&nbsp;如果 我是企业家，我要......；&nbsp;&nbsp;梦想总是要有的，期待梦想成真</h3>
+
+<br /><br />
+    <!-- <center> -->
+      <form action="/dream" method="post" οnkeydοwn="if(event.keyCode==13){return false;}">
+        <input type="hidden" name="type" id="idtype" value="{{ type }}" />
+        <!-- <button type='button' class='button-primary' id="fanyi1">英文到中文</button>
+        <button type='button' class='button' id="fanyi2">中文到英文</button>
+        <button type='button' class='button' id="cat">分词</button><br /> -->
+        如果&nbsp;<input type="text" name="title" id="idtitle" value="" size="40" /> &nbsp;发布用户（可选）&nbsp;<input type="text" name="user" id="iduser" value="" size="40" />
+        <textarea style="height:230px" class="u-full-width" name="input" id="idinput">{{ input }}</textarea>
+        <!-- <textarea style="height:230px" class="u-full-width" name="output" id="idoutput">{{ output }}</textarea> -->
+        <button type='button' name"submit" id="idsubmit">提交梦想</button>
+        <!-- add hide text to avoid input enter auto submit by jiangzhixiang -->
+        <input type="text" style="display:none;" value="" />
+        <!-- Your Text 自留地 您的编辑区<br /> -->
+        <!-- <textarea style="height:300px" class="u-full-width" name="text" id="idtext">{{ text }}</textarea> -->
+      </form>
+    <!-- </center> -->
+    <hr />
+    {% for post in content %}
+    <h4>{{ post.user }} &nbsp;&nbsp;说&nbsp;&nbsp;{{ post.title }}</h4>
+    <div class="alert alert-info" role="alert">{{ post.text }}</div>
+    <br />
+    <p></p>
+    {% endfor %}
+
+    <p>
+      <center>
+        <div id="tellyou">如何给人类真正做点好事？你有什么建议吗？可以帮您定制搜索工具，定制软件</div>
+      </center>
+      <!-- <center>Powered by <a href='https://www.readmorejoy.com/'>ReadMoreJoy</a> and <a href='https://www.readmorejoy.com/2019/07/services/'>Services</a></center> -->
+
+      <div style="display:none;"><img src="https://www.readmorejoy.com/static/readmorejoy1.jpeg" alt=""></div>
+
+  </div>
+
+  <div class="post-reward">
+    <!-- <input type="checkbox" name="reward" id="reward" hidden /> -->
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="http://img.readmorejoy.com/help/wechat-qr-code.png">
+        <span>微信打赏</span>
+      </label>
+
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="http://img.readmorejoy.com/help/alipay-qr-code.jpeg">
+        <span>支付宝打赏</span>
+      </label>
+    </div>
+  </div>
+
+</body>
+
+</html>

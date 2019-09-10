@@ -4,6 +4,7 @@ from flask import Flask, request, redirect, url_for, render_template, flash, ses
 from converter import html_to_md, get_urls
 from searcher import baidu_search, bing_search, duckduckgo_search, google_search, sm1234_search
 from fanyi import baidu_fanyi, jieba_cat
+from dreams import dodreams
 # import logging
 
 app = Flask(__name__)
@@ -96,6 +97,16 @@ def needfanyi():
         # print("default page")
         return render_template('fanyi.html')
 
+@app.route('/dream', methods=['GET', 'POST'])
+def youdreams():
+
+    d_user = request.values.get('user')
+    d_title = request.values.get('title')
+    d_input = request.values.get('input')
+
+    result = dodreams(title=d_title,user=d_user,content=d_input)
+
+    return render_template('dream.html', content=result)
 
 @app.route('/test')
 def yessir():
