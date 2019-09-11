@@ -198,8 +198,8 @@
   </script>
 
   <div class="container">
-    <input type="button" value="Home" onclick="window.location.href=('/dream')">
-    <input type="button" value="EnjoySearch" onclick="window.location.href=('/search')">
+    <input type="button"  value="Home" onclick="window.location.href=('/dream')">
+    <input type="button"  value="EnjoySearch" onclick="window.location.href=('/search')">
     <!-- <h4>
       <input type="button" value="Home" onclick="window.location.href=('/dream')">
       <input type="button" value="Tellme" onclick="tellme()">
@@ -221,19 +221,17 @@
       <!-- <button type='button' class='button-primary' id="fanyi1">英文到中文</button>
         <button type='button' class='button' id="fanyi2">中文到英文</button>
         <button type='button' class='button' id="cat">分词</button><br /> -->
-      如果&nbsp;<input type="text" name="title" id="idtitle" value="" size="40" maxlength="50" /> &nbsp;发布用户（可选）&nbsp;<input type="text" name="user" id="iduser" value="" size="30" maxlength="50" />
+      如果&nbsp;<input type="text" name="title" id="idtitle" value="" size="40" maxlength="50" /> &nbsp;发布用户(可选)&nbsp;<input type="text" name="user" id="iduser" value="" size="30" maxlength="50" />
       <textarea style="height:160px" class="u-full-width" name="input" id="idinput" maxlength="2000">{{ input }}</textarea>
-      <!-- <textarea style="height:230px" class="u-full-width" name="output" id="idoutput">{{ output }}</textarea> -->
-      <button type='button' name"submit" id="idsubmit">提交梦想</button>
+      <button type='button' name"submit" id="idsubmit">谢谢提交</button>
       <!-- add hide text to avoid input enter auto submit by jiangzhixiang -->
       <input type="text" style="display:none;" value="" />
-      <!-- Your Text 自留地 您的编辑区<br /> -->
-      <!-- <textarea style="height:300px" class="u-full-width" name="text" id="idtext">{{ text }}</textarea> -->
+
     </form>
     <!-- </center> -->
     <hr /><br />
-    <div class="u-pull-left" style="width:45%">
-      <h1>流水信息</h1>
+    <div class="u-pull-left" style="width:50%">
+      <h1>有话说</h1>
       {% for post in content %}
       <h4>{{ post.user }} &nbsp;&nbsp;说&nbsp;&nbsp;{{ post.title }}</h4>
       <div class="alert alert-info" role="alert">{{ post.text }}</div>
@@ -241,7 +239,7 @@
       <p></p>
       {% endfor %}
     </div>
-    <div class="u-pull-right" style="width:45%">
+    <div class="u-pull-right" style="width:50%">
       <h1>精选信息</h1>
       {% for post in best %}
       <h4>{{ post.user }} &nbsp;&nbsp;说&nbsp;&nbsp;{{ post.title }}</h4>
