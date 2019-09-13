@@ -3,8 +3,9 @@
 from flask import Flask, request, redirect, url_for, render_template, flash, session, get_flashed_messages
 from converter import html_to_md, get_urls
 from searcher import baidu_search, bing_search, duckduckgo_search, google_search, sm1234_search
-from fanyi import baidu_fanyi, jieba_cat
+from fanyi import baidu_fanyi, jieba_cat, google_fanyi, youdao_fanyi
 from dreams import dodreams, get_best_dreams
+from todo import todo_save_to, todo_read_from
 # import logging
 
 app = Flask(__name__)
@@ -78,20 +79,29 @@ def keysearch():
         return render_template('search.html', engine=engine, key=key, start=start)
 
 @app.route('/fanyi', methods=['GET', 'POST'])
-def needfanyi():
+def better_fanyi():
     # print("in fanyi")
     # print(request.method)
     q = request.values.get('input')
     orgtext = request.values.get('text')
-    type = request.values.get('type')
+    # type = request.values.get('type')
+    which = request.values.get('which')
     # print(q)
-    # print(type)
-    # print("above is get args")
+    # print(which)
     if q:
-        if type != 'cat':
+        if which == "google":
+            result = google_fanyi(type, q)
+        elif which == "baidu":
             result = baidu_fanyi(type, q)
-        else:
+        elif which == "youdao":
+            result = youdao_fanyi(type, q)
+        elif which == "cat":
             result = jieba_cat(type, q)
+
+        # if type != 'cat':
+        #     result = baidu_fanyi(type, q)
+        # else:
+        #     result = jieba_cat(type, q)
         return render_template('fanyi.html', input=q, output=result, text=orgtext)
     else:
         # print("default page")
@@ -99,7 +109,6 @@ def needfanyi():
 
 @app.route('/dream', methods=['GET', 'POST'])
 def youdreams():
-
     d_user = request.values.get('user')
     d_title = request.values.get('title')
     d_input = request.values.get('input')
@@ -109,6 +118,23 @@ def youdreams():
     best_result = get_best_dreams()
 
     return render_template('dream.html', content=result, best=best_result)
+
+@app.route('/todo', methods=['GET', 'POST'])
+def dotodo():
+    user = request.values.get('fuser')
+    input = request.values.get('input')
+    # 需要密码
+    # print(user)
+    # print(input)
+    if user in ["jiangzx", "luckrill", "蒋志祥"]:
+        if input:
+            todo_save_to(user, input)
+
+        result = todo_read_from(user)
+        return render_template('todo.html', user=user, input=result)
+
+    result = ""
+    return render_template('todo.html', user=user, input=result)
 
 @app.route('/test')
 def yessir():

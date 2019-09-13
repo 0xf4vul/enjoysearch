@@ -2,16 +2,16 @@
 <html>
 
 <head>
-  <title>EnjoyDream 如果梦想成真</title>
+  <title>ToDo 实现梦想吧</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <!-- <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}"> -->
   <link rel="shortcut icon" href="https://www.readmorejoy.com/static/favicon.ico">
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="EnjoyDream 如果梦想" />
+  <meta name="description" content="ToDo 实现梦想吧" />
 
-  <!-- <link href="https://cdn.bootcss.com/skeleton/2.0.4/skeleton.min.css" rel="stylesheet"> -->
+  <link href="https://cdn.bootcss.com/skeleton/2.0.4/skeleton.min.css" rel="stylesheet">
   <link href="https://www.readmorejoy.com/static/reward.css" rel="stylesheet">
   <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 
@@ -51,7 +51,7 @@
 
     function help() {
       bootbox.alert({
-        message: "EnjoyDream 如果梦想成真。<br /><br />使用说明：<br />输入框，'双击'是清空，方便新的录入。<br /><br />TellMe菜单：方便您给我们留言的窗口，如需要回复，可以留下您的联系方式。<br><br>怎样才能让大家更好昵？🙏",
+        message: "ToDo 实现梦想吧。<br /><br />怎样才能让大家更好昵？",
         backdrop: true
       });
     };
@@ -95,19 +95,35 @@
 
     $(document).ready(function() {
 
+      // user = $('#iduser').val();
+      // $('#idfuser').val(user);
 
       $("#idsubmit").click(function() {
-        // alert("fanyi1")
+        // alert("todo")
+        user = $('#iduser').val();
+        $('#idfuser').val(user);
+
         input = $('#idinput').val();
-        title = $('#idtitle').val();
-        if ((title.length > 0) && (input.length > 0)) {
-          console.log("ok");
+        // title = $('#idtitle').val();
+        if (user.length > 0) {
+          // console.log("ok");
           // $('#idtype').val("en");
           $("form").submit();
         }
       });
 
-
+      // $("#iduser").click(function() {
+      //   alert("todo")
+      //   input = $('#idinput').val();
+      //   $('#idfuser').val(user);
+      //   // title = $('#idtitle').val();
+      //   // if (input.length > 0) {
+      //   //   console.log("ok");
+      //   //   // $('#idtype').val("en");
+      //   //
+      //   //   $("form").submit();
+      //   // }
+      // });
 
       $('#idkey').bind('keypress', function(event) {
         // console.log("idkey keypress");;
@@ -144,8 +160,9 @@
   </script>
 
   <div class="container">
-    <input type="button" class="btn btn-success" value="首页" onclick="window.location.href=('/dream')">
-    <input type="button" class="btn btn-success" value="更好的搜索" onclick="window.location.href=('/search')">
+    <input type="button" value="首页" onclick="window.location.href=('/todo')">
+    <input type="button" value="喜欢搜索" onclick="window.location.href=('/search')">
+    &nbsp;&nbsp;<input type="input" name="user" id="iduser" value="{{ user }}" />
     <!-- <h4>
       <input type="button" value="Home" onclick="window.location.href=('/dream')">
       <input type="button" value="Tellme" onclick="tellme()">
@@ -157,27 +174,26 @@
     <br /> -->
     <br />
     <center>
-      <h1>如果&nbsp;&nbsp;&nbsp;&nbsp;梦想&nbsp;&nbsp;&nbsp;&nbsp;成真</h1>
+      <h1>ToDo&nbsp;&nbsp;&nbsp;&nbsp;实现梦想</h1>
     </center>
     <br />
 
     <!-- <center> -->
-    <form action="/dream" method="post" οnkeydοwn="if(event.keyCode==13){return false;}">
-      <input type="hidden" name="type" id="idtype" value="{{ type }}" />
+    <form action="/todo" method="post" οnkeydοwn="if(event.keyCode==13){return false;}">
+      <!-- <input type="hidden" name="type" id="idtype" value="{{ type }}" /> -->
+      <input type="hidden" name="fuser" id="idfuser" value="{{ user }}" />
       <!-- <button type='button' class='button-primary' id="fanyi1">英文到中文</button>
         <button type='button' class='button' id="fanyi2">中文到英文</button>
         <button type='button' class='button' id="cat">分词</button><br /> -->
+      <button type='button' name"submit" id="idsubmit">导入/保存</button>
+      <textarea style="height:150px" class="u-full-width readmorejoy" name="input" id="idinput" maxlength="2000">{{ input }}</textarea>
 
-      如果&nbsp;<input type="text" name="title" id="idtitle" value="" size="30" maxlength="50" /> &nbsp;发布用户(可选)&nbsp;<input type="text" name="user" id="iduser" value="" size="20" maxlength="50" />
-      <textarea style="height:150px" class="form-control" style="min-width: 100%" name="input" id="idinput" maxlength="2000">{{ input }}</textarea>
-      <button type='button' class="btn btn-warning" name"submit" id="idsubmit">谢谢提交</button>
       <!-- add hide text to avoid input enter auto submit by jiangzhixiang -->
       <input type="text" style="display:none;" value="" />
     </form>
     <hr />
-
-    <div class="float-left" style="width:50%">
-      <div class="alert alert alert-warning" align="center"><h3>有话说</h3></div>
+    <!-- <div class="u-pull-left" style="width:49%">
+      <h2>有话说</h2>
       {% for post in content %}
       <h4>{{ post.user }} &nbsp;&nbsp;说&nbsp;&nbsp;{{ post.title }}</h4>
       <div class="alert alert-info" role="alert">{{ post.text }}</div>
@@ -185,27 +201,26 @@
       <p></p>
       {% endfor %}
     </div>
-    <div class="float-right" style="width:49%">
-      <div class="alert alert-warning" align="center"><h3>精选</h3></div>
+    <div class="u-pull-right" style="width:49%">
+      <h2>精选</h2>
       {% for post in best %}
       <h4>{{ post.user }} &nbsp;&nbsp;说&nbsp;&nbsp;{{ post.title }}</h4>
       <div class="alert alert-info" role="alert">{{ post.text }}</div>
       <br />
       <p></p>
       {% endfor %}
-    </div>
-
-    <!-- <p> -->
+    </div> -->
+    <p>
 
       <!-- <center>Powered by <a href='https://www.readmorejoy.com/'>ReadMoreJoy</a> and <a href='https://www.readmorejoy.com/2019/07/services/'>Services</a></center> -->
-  <br />
+
       <div style="display:none;"><img src="https://www.readmorejoy.com/static/readmorejoy1.jpeg" alt=""></div>
-      <center>
-        <div  id="tellyou">如何给人类真正做点好事？你有什么建议吗？有更多想象力吗？</div>
-      </center>
+
   </div>
-
-
+  <br />
+  <center>
+    <div id="tellyou">如何给人类真正做点好事？你有什么建议吗？可以有更多想象力吗？</div>
+  </center>
 
   <div class="post-reward">
     <!-- <input type="checkbox" name="reward" id="reward" hidden /> -->
