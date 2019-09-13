@@ -11,6 +11,7 @@ import urllib
 import random
 import jieba
 import execjs
+from langdetect import detect
 
 def google_fanyi(type, q):
     ctx = execjs.compile("""
@@ -57,11 +58,22 @@ function RL(a, b) {
     tk = ctx.call("TL", q)
 
     headers = {'User-Agent':random_user_agent()}
-    # r = requests.get("http://www.baidu.com/s", params=kv, headers=headers)
-    url = "http://translate.google.cn/translate_a/single?client=t" \
-          "&sl=en&tl=zh-CN&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
-          "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
-          "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
+    type = detect(q) #"en | zh_cn"
+    if type == "en":
+        url = "http://translate.google.cn/translate_a/single?client=t" \
+              "&sl=en&tl=zh_cn&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
+              "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
+              "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
+    elif type == 'zh-cn':
+        url = "http://translate.google.cn/translate_a/single?client=t" \
+              "&sl=zh_cn&tl=en&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
+              "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
+              "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
+    else:
+        url = "http://translate.google.cn/translate_a/single?client=t" \
+              "&sl=en&tl=zh_cn&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
+              "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
+              "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
 
     r = requests.get(url, headers=headers)
     result = r.text
