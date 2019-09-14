@@ -14,6 +14,8 @@ import execjs
 from langdetect import detect
 
 def google_fanyi(type, q):
+    print("google_fanyi")
+
     ctx = execjs.compile("""
     function TL(a) {
     var k = "";
@@ -84,6 +86,7 @@ function RL(a, b) {
     return ""
 
 def youdao_fanyi(type, q):
+    print("youdao_fanyi")
     # q = "你好"
     # q = "hello"
     headers = {'User-Agent':random_user_agent()}
@@ -109,6 +112,7 @@ def xunfei_fanyi(type, q):
 
 
 def baidu_fanyi(type, q):
+    print("baidu_fanyi")
     appid = '20190613000307195' #你的appid
     secretKey = 'GiYXPZ27k7gHPTFFOzke' #你的密钥
 
@@ -149,6 +153,6 @@ def baidu_fanyi(type, q):
 def jieba_cat(type, q):
     # print("jieba_cat")
     seg_list = jieba.cut(q)
-    result = ", ".join(seg_list)
+    result = " ".join(seg_list)
 
     return result
