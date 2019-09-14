@@ -111,7 +111,7 @@ def youdreams():
     d_user = request.values.get('user')
     d_title = request.values.get('title')
     d_input = request.values.get('input')
-    print(request.remote_addr)
+    # print(request.remote_addr)
     result = None
     result = dodreams(title=d_title,user=d_user,content=d_input)
     # result = get_best_dreams()
