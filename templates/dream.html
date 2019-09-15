@@ -37,7 +37,8 @@
 </head>
 
 <!-- style="border-top-style:ridge;border-right-style:ridge;border-left-style:ridge" -->
-<body  class="readmorejoy">
+
+<body class="readmorejoy">
 
   <script type="text/javascript">
     function dynamicLoadJs(url) {
@@ -91,7 +92,7 @@
       }
     };
 
-    var maxtime = 20;
+    var maxtime = 10;
     var timer;
     var input_time = 1;
 
@@ -118,12 +119,11 @@
         input = $('#idinput').val();
         title = $('#idtitle').val();
         if ((title.length > 0) && (input.length > 0) && (input_time == 0)) {
-          console.log("ok");
+          // console.log("ok");
           // $('#idtype').val("en");
           $("form").submit();
-        }
-        else {
-          alert("必须有输入 并且 我们做了有些安全设置，稍等会再操作!");
+        } else {
+          alert("做了些安全设置，发信息 要慎重、要有用，稍等会!");
         }
       });
 
@@ -151,11 +151,11 @@
       $(".reward-button").click(function() {
         $(".reward-button").hide()
         $(".qr-code").show();
-      })
+      });
       $(".qr-code").click(function() {
         $(".reward-button").show()
         $(".qr-code").hide();
-      })
+      });
 
       // $("#tellyou").load("/static/tellyou.txt");
       //$("#tellyou").load("https://www.readmorejoy.com/2019/07/services/");
@@ -218,16 +218,15 @@
       {% endfor %}
     </div>
 
-    <!-- <p> -->
+    <p>
 
-    <!-- <center>Powered by <a href='https://www.readmorejoy.com/'>ReadMoreJoy</a> and <a href='https://www.readmorejoy.com/2019/07/services/'>Services</a></center> -->
-    <br />
-    <div style="display:none;"><img src="https://www.readmorejoy.com/static/readmorejoy1.jpeg" alt=""></div>
-    <center>
-      <div id="tellyou">如何给人类真正做点好事？你有什么建议吗？有更多想象力吗？</div>
-    </center>
+      <!-- <center>Powered by <a href='https://www.readmorejoy.com/'>ReadMoreJoy</a> and <a href='https://www.readmorejoy.com/2019/07/services/'>Services</a></center> -->
+      <br />
+      <div style="display:none;"><img src="https://www.readmorejoy.com/static/readmorejoy1.jpeg" alt=""></div>
+      <center>
+        <div id="tellyou" class="float-none">如何给人类真正做点好事？你有什么建议吗？有更多想象力吗？</div>
+      </center>
   </div>
-
 
 
   <div class="post-reward">

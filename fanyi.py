@@ -13,8 +13,8 @@ import jieba
 import execjs
 from langdetect import detect
 
-def google_fanyi(type, q, dst):
-    print("google_fanyi")
+def gg_fanyi(type, q, dst):
+    print("gg_fanyi")
 
     ctx = execjs.compile("""
     function TL(a) {
@@ -67,7 +67,7 @@ function RL(a, b) {
     #     type = "zh-cn"
 
     if type == "en":
-        # print("google dedect type en")
+        # print("gg dedect type en")
         if dst == "cn":
             url = "http://translate.google.cn/translate_a/single?client=t" \
                   "&sl=en&tl=zh-cn&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
@@ -214,8 +214,8 @@ def xunfei_fanyi(type, q):
     pass
 
 
-def baidu_fanyi(type, q, dst):
-    print("baidu_fanyi")
+def bd_fanyi(type, q, dst):
+    print("bd_fanyi")
     appid = '20190613000307195' #你的appid
     secretKey = 'GiYXPZ27k7gHPTFFOzke' #你的密钥
 

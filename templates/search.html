@@ -66,9 +66,9 @@
     }
 
     function help() {
-      //$(bgoogle).removeClass("button-primary");
+      //$(bgg).removeClass("button-primary");
       bootbox.alert({
-        message: "开发EnjoySearch 喜欢搜索 搜素引擎工具，帮助我们更高效获取更优质信息。<br>当前提供 Google，Bing，Duckduckgo，百度 等国际搜素引擎，支持知乎、微信、GitHub搜索，还在研究增加更多优质资源和有趣创意！<br /><br />如何使用？<br />输入关键字，选择搜索引擎 或者 执行Search。<br /><br />TellMe：方便您给我们留言的窗口，如需要回复，请留下联系方式。<br><br>怎样才能让大家更好昵？",
+        message: "开发EnjoySearch 喜欢搜索 搜素引擎工具，帮助我们更高效获取更优质信息。<br>当前提供 gg，Bing，ddk，百度 等国际搜素引擎，支持知乎、微信、GitHub搜索，还在研究增加更多优质资源和有趣创意！<br /><br />如何使用？<br />输入关键字，选择搜索引擎 或者 执行Search。<br /><br />TellMe：方便您给我们留言的窗口，如需要回复，请留下联系方式。<br><br>怎样才能让大家更好昵？",
         backdrop: true
       });
 
@@ -111,12 +111,12 @@
       }
     };
 
-    var engine = "";
+    var who = "";
     var key = ""
     var i = 0;
     $(document).ready(function() {
 
-      engine = $('#idengine').val();
+      who = $('#idwho').val();
       key = $('#idkey').val();
       i = $('#idstart').val()
       i = parseInt(i)
@@ -125,39 +125,39 @@
         $('#idnext').hide();
       };
 
-      //console.log(engine);
-      switch (engine) {
-        case "baidu":
-          //console.log("case baidu");
-          $('#bbaidu').removeClass().addClass("btn btn-primary");
+      //console.log(who);
+      switch (who) {
+        case "bd":
+          //console.log("case bd");
+          $('#bbd').removeClass().addClass("btn btn-primary");
           break;
         case "sm1234":
-          //console.log("case baidu");
+          //console.log("case bd");
           $('#sm1234').removeClass().addClass("btn btn-primary");
           break;
-        case "google":
-          //console.log("case google");
-          $('#bgoogle').removeClass().addClass("btn btn-primary");
+        case "gg":
+          //console.log("case gg");
+          $('#bgg').removeClass().addClass("btn btn-primary");
           break;
         case "bing":
           //console.log("case bing");
           $('#bbing').removeClass().addClass("btn btn-primary");
           break;
-        case "duckduckgo":
+        case "ddk":
           //console.log("case bing");
-          $('#bduckduckgo').removeClass().addClass("btn btn-primary");
+          $('#bddk').removeClass().addClass("btn btn-primary");
           break;
         default:
           console.log("case default");
-          $('#idengine').val("google");
-          $('#bgoogle').removeClass().addClass("btn btn-primary");
+          $('#idwho').val("gg");
+          $('#bgg').removeClass().addClass("btn btn-primary");
       }
 
-      $("#bbaidu").click(function() {
+      $("#bbd").click(function() {
         var cu_key;
         cu_key = $('#idkey').val();
         if (cu_key.length > 0) {
-          $('#idengine').val("baidu");
+          $('#idwho').val("bd");
           $('#idstart').val(0);
           $("form").submit();
         }
@@ -166,16 +166,16 @@
         var cu_key;
         cu_key = $('#idkey').val();
         if (cu_key.length > 0) {
-          $('#idengine').val("sm1234");
+          $('#idwho').val("sm1234");
           $('#idstart').val(0);
           $("form").submit();
         }
       });
-      $("#bgoogle").click(function() {
+      $("#bgg").click(function() {
         var cu_key;
         cu_key = $('#idkey').val();
         if (cu_key.length > 0) {
-          $('#idengine').val("google");
+          $('#idwho').val("gg");
           $('#idstart').val(0);
           $("form").submit();
         }
@@ -184,16 +184,16 @@
         var cu_key;
         cu_key = $('#idkey').val();
         if (cu_key.length > 0) {
-          $('#idengine').val("bing");
+          $('#idwho').val("bing");
           $('#idstart').val(0);
           $("form").submit();
         }
       });
-      $("#bduckduckgo").click(function() {
+      $("#bddk").click(function() {
         var cu_key;
         cu_key = $('#idkey').val();
         if (cu_key.length > 0) {
-          $('#idengine').val("duckduckgo");
+          $('#idwho').val("ddk");
           $('#idstart').val(0);
           $("form").submit();
         }
@@ -308,10 +308,10 @@
 
     <br />
     <center>
-      <input type="button" class="btn btn-outline-primary" value="谷歌" id="bgoogle">
+      <input type="button" class="btn btn-outline-primary" value="引擎1" id="bgg">
       <!-- <input type="button" class="btn btn-outline-primary" value="Bing" id="bbing"> -->
-      <input type="button" class="btn btn-outline-primary" value="冲鸭" id="bduckduckgo">
-      <input type="button" class="btn btn-outline-primary" value="百度" id="bbaidu">
+      <input type="button" class="btn btn-outline-primary" value="引擎2" id="bduckduckgo">
+      <input type="button" class="btn btn-outline-primary" value="引擎3" id="bbd">
       <!-- <div id=showext> -->
       <!-- <input type="button" value="神马" id="sm1234"> -->
       @
@@ -325,7 +325,7 @@
     <br />
     <center>
       <form action="/search" method="get" οnkeydοwn="if(event.keyCode==13){return false;}">
-        <input type="hidden" name="engine" id="idengine" value="{{ engine }}" />
+        <input type="hidden" name="who" id="idwho" value="{{ who }}" />
         <input type="hidden" name="start" id="idstart" value="{{ start }}" />
         <!-- add hide text to avoid input enter auto submit by jiangzhixiang -->
         <input type="text" style="display:none;" value="" />
@@ -354,7 +354,7 @@
     <!-- <hr /> -->
     <p>
       <center>
-        <div id="tellyou">如何给人类真正做点好事？你有什么建议吗？可以帮您定制搜索工具<br />search域名被污染，第二域名 <a href="https://webtools.readmorejoy.com/">https://webtools.readmorejoy.com/</a></div>
+        <div id="tellyou">如何给人类真正做点好事？你有什么建议吗？可以帮您定制搜索工具<br />另一域名 <a href="https://webtools.readmorejoy.com/">https://webtools.readmorejoy.com/</a></div>
       </center>
       <!-- <center>Powered by <a href='https://www.readmorejoy.com/'>ReadMoreJoy</a> and <a href='https://www.readmorejoy.com/2019/07/services/'>Services</a></center> -->
 

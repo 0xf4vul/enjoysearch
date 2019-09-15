@@ -41,8 +41,8 @@ def bing_search(key, pn):
     # return li
 import time
 
-def baidu_search(key, pn):
-    print("baidu_search start...")
+def bd_search(key, pn):
+    print("bd_search start...")
     # key = quote(key)
     kv = {'wd':key, 'pn':pn}
     # print(kv)
@@ -102,8 +102,8 @@ def baidu_search(key, pn):
     # print("all search: " + str(t2 - t1) + " seconds")
     # return li
 
-def google_search(key, pn):
-    # print("google_search start...")
+def gg_search(key, pn):
+    # print("gg_search start...")
     kv = {'q':key, 'start':pn}
 
     headers = {'User-Agent':random_user_agent()}
@@ -159,7 +159,7 @@ def sm1234_search(key, pn):
 
     # return li
 
-def duckduckgo_search(key, pn):
+def ddk_search(key, pn):
     # kv = {'wd':key, 'pn':pn}
     pn = int(pn) * 3
     # dc = pn - 1

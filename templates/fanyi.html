@@ -102,11 +102,11 @@
       i = $('#idstart').val()
       i = parseInt(i)
 
-      $("#bbaidu").click(function() {
+      $("#bbd").click(function() {
         var cu_key;
         // cu_key = $('#idkey').val();
         // if (cu_key.length > 0) {
-        //   $('#idengine').val("baidu");
+        //   $('#idengine').val("bd");
         //   $('#idstart').val(0);
         //   $("form").submit();
         // }
@@ -120,11 +120,11 @@
           $("form").submit();
         }
       });
-      $("#bgoogle").click(function() {
+      $("#bgg").click(function() {
         var cu_key;
         // cu_key = $('#idkey').val();
         // if (cu_key.length > 0) {
-        //   $('#idengine').val("google");
+        //   $('#idengine').val("gg");
         //   $('#idstart').val(0);
         //   $("form").submit();
         // }
@@ -208,20 +208,20 @@
           $('#idtype').val("en");
       }
 
-      $("#idgoogle").click(function() {
-        // alert("google fanyi")
+      $("#idgg").click(function() {
+        // alert("gg fanyi")
         input = $('#idinput').val();
         if (input.length > 0) {
           // $('#idtype').val("en");
-          $('#idwhich').val("google");
+          $('#idwhich').val("gg");
           $("form").submit();
         }
       });
-      $("#idbaidu").click(function() {
-        // alert("baidu fanyi")
+      $("#idbd").click(function() {
+        // alert("bd fanyi")
         input = $('#idinput').val();
         if (input.length > 0) {
-          $('#idwhich').val("baidu");
+          $('#idwhich').val("bd");
           $("form").submit();
         }
       });
@@ -273,7 +273,7 @@
         }
       });
 
-      // $('#bbaidu').removeClass().addClass("btn btn-primary");
+      // $('#bbd').removeClass().addClass("btn btn-primary");
       $("#fanyi1").click(function() {
         // alert("fanyi1")
         // input = $('#idinput').val();
@@ -389,12 +389,12 @@
         <input type="hidden" name="which" id="idwhich" value="{{ which }}" />
         <input type="hidden" name="dst" id="iddst" value="{{ dst }}" />
         <div class="btn-group" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-outline-warning" id="idgoogle">Google翻译</button>
-          <button type="button" class="btn btn-outline-warning" id="idbaidu">百度翻译</button>
+          <button type="button" class="btn btn-outline-warning" id="idgg">谷歌翻译</button>
+          <button type="button" class="btn btn-outline-warning" id="idbd">百度翻译</button>
           <button type="button" class="btn btn-outline-warning" id="idyoudao">有道翻译</button>
           <button type="button" class="btn btn-outline-warning" id="cat">分词</button>
-          <!-- <input type="button" value="Google翻译" class="btn btn-secondary" id="bgoogle">
-          <input type="button" value="百度翻译" class="btn btn-secondary" id="bbaidu">
+          <!-- <input type="button" value="gg翻译" class="btn btn-secondary" id="bgg">
+          <input type="button" value="百度翻译" class="btn btn-secondary" id="bbd">
           <input type="button" value="有道翻译" class="btn btn-secondary" id="byoudao">
           <input type='button' value="分词" class='btn btn-secondary' id="cat"> -->
         </div>
