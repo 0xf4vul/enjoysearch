@@ -58,32 +58,34 @@ function RL(a, b) {
 """)
 
     tk = ctx.call("TL", q)
-
+    # print(q)
     headers = {'User-Agent':random_user_agent()}
     type = detect(q) #"en | zh_cn"
     if type == "en":
         url = "http://translate.google.cn/translate_a/single?client=t" \
-              "&sl=en&tl=zh_cn&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
+              "&sl=en&tl=zh-cn&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
               "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
               "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
     elif type == 'zh-cn':
         url = "http://translate.google.cn/translate_a/single?client=t" \
-              "&sl=zh_cn&tl=en&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
+              "&sl=zh-cn&tl=en&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
               "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
               "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
     else:
         url = "http://translate.google.cn/translate_a/single?client=t" \
-              "&sl=en&tl=zh_cn&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
+              "&sl=en&tl=zh-cn&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
               "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
               "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
 
     r = requests.get(url, headers=headers)
-    result = r.text
-    end = result.find("\",")
-    if end > 4:
-        # print(result[4:end])
-        return result[4:end]
-    return ""
+    data = r.json()
+
+    result = ''
+    for dt in data[0]:
+        if dt[0]:
+            result += dt[0]
+
+    return result
 
 def youdao_fanyi(type, q):
     print("youdao_fanyi")
@@ -95,17 +97,16 @@ def youdao_fanyi(type, q):
             'sign': 'c98235a85b213d482b8e65f6b1065e26', 'doctype': 'json', 'version': '2.1', 'keyfrom': 'fanyi.web',
             'action': 'FY_BY_CL1CKBUTTON', 'typoResult': 'true', 'i': q}
 
+    # print(q)
     r = requests.get(url, params=data, headers=headers)
     ta = r.json()
-    # print(ta['translateResult'][0][0]['tgt'])
-    return ta['translateResult'][0][0]['tgt']
-    # ta = json.loads(html)
-    # data = urllib.parse.urlencode(data).encode('utf-8')
-    # wy = urllib.request.urlopen(url, data)
-    # html = wy.read().decode('utf-8')
-    # ta = json.loads(html)
-    # print(ta['translateResult'][0][0]['tgt'])
-    # pass
+    result = ""
+    for ii in ta['translateResult']:
+        for i in ii:
+            result += i['tgt']
+        result += "\n"
+
+    return result
 
 def xunfei_fanyi(type, q):
     pass
@@ -139,15 +140,10 @@ def baidu_fanyi(type, q):
     # http://api.fanyi.baidu.com/api/trans/vip/translate?q=apple&from=en&to=zh&appid=2015063000000001&salt=1435660288&sign=f89f9594663708c1605f3d736d01d2d4
     r = requests.get(url)
     js_text = r.json()
-    # print(js_text)
-    # print(text["day_time_2"]["text1"])
-    # print(js_text["from"])
     result = ""
     for text in js_text["trans_result"]:
-        result += text["dst"] + "\n"
-        # result = text["dst"]
-        # li.append(result)
-    # result = js_text["trans_result"][0]["dst"]
+        result += "\n" + text["dst"]
+
     return result
 
 def jieba_cat(type, q):
