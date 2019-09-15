@@ -84,16 +84,16 @@ def better_fanyi():
     # print(request.method)
     q = request.values.get('input')
     orgtext = request.values.get('text')
-    # type = request.values.get('type')
     which = request.values.get('which')
-    # print(which)
+    dst = request.values.get('dst')
+    # print(dst)
     if q:
         if which == "google":
-            result = google_fanyi(type, q)
+            result = google_fanyi(type, q, dst)
         elif which == "baidu":
-            result = baidu_fanyi(type, q)
+            result = baidu_fanyi(type, q, dst)
         elif which == "youdao":
-            result = youdao_fanyi(type, q)
+            result = youdao_fanyi(type, q, dst)
         elif which == "cat":
             result = jieba_cat(type, q)
 
@@ -101,7 +101,7 @@ def better_fanyi():
         #     result = baidu_fanyi(type, q)
         # else:
         #     result = jieba_cat(type, q)
-        return render_template('fanyi.html', input=q, output=result, text=orgtext)
+        return render_template('fanyi.html', input=q, output=result, text=orgtext, which=which, dst=dst)
     else:
         # print("default page")
         return render_template('fanyi.html')

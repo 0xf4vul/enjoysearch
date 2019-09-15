@@ -13,7 +13,7 @@ import jieba
 import execjs
 from langdetect import detect
 
-def google_fanyi(type, q):
+def google_fanyi(type, q, dst):
     print("google_fanyi")
 
     ctx = execjs.compile("""
@@ -60,22 +60,104 @@ function RL(a, b) {
     tk = ctx.call("TL", q)
     # print(q)
     headers = {'User-Agent':random_user_agent()}
-    type = detect(q) #"en | zh_cn"
+    # print(q)
+    type = detect(q[:30]) #"en | zh_cn"
+    print("detect(q) = " + type)
+    # if type == 'ko':
+    #     type = "zh-cn"
+
     if type == "en":
-        url = "http://translate.google.cn/translate_a/single?client=t" \
-              "&sl=en&tl=zh-cn&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
-              "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
-              "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
+        # print("google dedect type en")
+        if dst == "cn":
+            url = "http://translate.google.cn/translate_a/single?client=t" \
+                  "&sl=en&tl=zh-cn&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
+                  "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
+                  "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
+        elif dst == "en":
+            url = "http://translate.google.cn/translate_a/single?client=t" \
+                  "&sl=en&tl=en&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
+                  "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
+                  "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
+        elif dst == "fra":
+            url = "http://translate.google.cn/translate_a/single?client=t" \
+                  "&sl=en&tl=fr&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
+                  "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
+                  "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
+        else:
+            url = "http://translate.google.cn/translate_a/single?client=t" \
+                  "&sl=en&tl=zh-cn&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
+                  "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
+                  "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
+        # url = "http://translate.google.cn/translate_a/single?client=t" \
+        #       "&sl=en&tl=zh-cn&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
+        #       "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
+        #       "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
     elif type == 'zh-cn':
-        url = "http://translate.google.cn/translate_a/single?client=t" \
-              "&sl=zh-cn&tl=en&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
-              "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
-              "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
+        # print("google dedect type zh-cn")
+        if dst == "cn":
+            url = "http://translate.google.cn/translate_a/single?client=t" \
+                  "&sl=zh-cn&tl=zh-cn&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
+                  "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
+                  "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
+        elif dst == "en":
+            url = "http://translate.google.cn/translate_a/single?client=t" \
+                  "&sl=zh-cn&tl=en&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
+                  "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
+                  "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
+        elif dst == "fra":
+            url = "http://translate.google.cn/translate_a/single?client=t" \
+                  "&sl=zh-cn&tl=fr&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
+                  "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
+                  "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
+        else:
+            url = "http://translate.google.cn/translate_a/single?client=t" \
+                  "&sl=zh-cn&tl=zh-cn&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
+                  "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
+                  "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
+    elif type == 'zh-tw':
+        # print("google dedect type zh-cn")
+        if dst == "cn":
+            url = "http://translate.google.cn/translate_a/single?client=t" \
+                  "&sl=zh-tw&tl=zh-cn&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
+                  "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
+                  "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
+        elif dst == "en":
+            url = "http://translate.google.cn/translate_a/single?client=t" \
+                  "&sl=zh-tw&tl=en&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
+                  "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
+                  "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
+        elif dst == "fra":
+            url = "http://translate.google.cn/translate_a/single?client=t" \
+                  "&sl=zh-tw&tl=fr&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
+                  "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
+                  "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
+        else:
+            url = "http://translate.google.cn/translate_a/single?client=t" \
+                  "&sl=zh-tw&tl=zh-cn&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
+                  "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
+                  "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
     else:
-        url = "http://translate.google.cn/translate_a/single?client=t" \
-              "&sl=en&tl=zh-cn&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
-              "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
-              "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
+        # print("google dedect type else")
+        if dst == "cn":
+            url = "http://translate.google.cn/translate_a/single?client=t" \
+                  "&sl=en&tl=zh-cn&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
+                  "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
+                  "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
+        elif dst == "en":
+            url = "http://translate.google.cn/translate_a/single?client=t" \
+                  "&sl=en&tl=en&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
+                  "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
+                  "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
+        elif dst == "fra":
+            url = "http://translate.google.cn/translate_a/single?client=t" \
+                  "&sl=en&tl=fr&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
+                  "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
+                  "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
+        else:
+            url = "http://translate.google.cn/translate_a/single?client=t" \
+                  "&sl=en&tl=zh-cn&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
+                  "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
+                  "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
 
     r = requests.get(url, headers=headers)
     data = r.json()
@@ -87,12 +169,32 @@ function RL(a, b) {
 
     return result
 
-def youdao_fanyi(type, q):
+def youdao_fanyi(type, q, dst):
     print("youdao_fanyi")
     # q = "你好"
     # q = "hello"
     headers = {'User-Agent':random_user_agent()}
+    # type = detect(q[:30]) #"en | zh_cn"
+    # print("detect(q) = " + type)
     url = 'http://fanyi.youdao.com/translate?smartresult=dict&smartresult=rule&sessionFrom=https://www.baidu.com/link'
+    # if dst == "cn":
+    #     print("youdao cn")
+    #     # if type in ['zh'] 'zh-CHS'
+    #     data = {'from': type, 'to': 'zh-cn', 'smartresult': 'dict', 'client': 'fanyideskweb', 'salt': '1500092479607',
+    #             'sign': 'c98235a85b213d482b8e65f6b1065e26', 'doctype': 'json', 'version': '2.1', 'keyfrom': 'fanyi.web',
+    #             'action': 'FY_BY_CL1CKBUTTON', 'typoResult': 'true', 'i': q}
+    # elif dst == "en":
+    #     print("youdao en")
+    #     data = {'from': type, 'to': 'en', 'smartresult': 'dict', 'client': 'fanyideskweb', 'salt': '1500092479607',
+    #             'sign': 'c98235a85b213d482b8e65f6b1065e26', 'doctype': 'json', 'version': '2.1', 'keyfrom': 'fanyi.web',
+    #             'action': 'FY_BY_CL1CKBUTTON', 'typoResult': 'true', 'i': q}
+    # elif dst == "fra":
+    #     print("youdao fra")
+    #     data = {'from': 'zh-tw', 'to': 'zh-CHS', 'smartresult': 'dict', 'client': 'fanyideskweb', 'salt': '1500092479607',
+    #             'sign': 'c98235a85b213d482b8e65f6b1065e26', 'doctype': 'json', 'version': '2.1', 'keyfrom': 'fanyi.web',
+    #             'action': 'FY_BY_CL1CKBUTTON', 'typoResult': 'true', 'i': q}
+    # else:
+    #     print("youdao else")
     data = {'from': 'AUTO', 'to': 'AUTO', 'smartresult': 'dict', 'client': 'fanyideskweb', 'salt': '1500092479607',
             'sign': 'c98235a85b213d482b8e65f6b1065e26', 'doctype': 'json', 'version': '2.1', 'keyfrom': 'fanyi.web',
             'action': 'FY_BY_CL1CKBUTTON', 'typoResult': 'true', 'i': q}
@@ -112,7 +214,7 @@ def xunfei_fanyi(type, q):
     pass
 
 
-def baidu_fanyi(type, q):
+def baidu_fanyi(type, q, dst):
     print("baidu_fanyi")
     appid = '20190613000307195' #你的appid
     secretKey = 'GiYXPZ27k7gHPTFFOzke' #你的密钥
@@ -135,14 +237,31 @@ def baidu_fanyi(type, q):
     m1 = hashlib.md5()
     m1.update(sign.encode(encoding='utf-8'))
     sign = m1.hexdigest()
-    url = 'http://api.fanyi.baidu.com' + apiurl+'?appid='+appid+'&q='+quote(q)+'&from='+'auto'+'&to='+'auto'+'&salt='+str(salt)+'&sign='+sign
+    # print(dst)
+    type = detect(q[:30]) #"en | zh_cn"
+    print("detect(q) = " + type)
+    if dst == "cn":
+        # print("dst cn")
+        if type == "zh-tw":
+            url = 'http://api.fanyi.baidu.com' + apiurl+'?appid='+appid+'&q='+quote(q)+'&from='+'cht'+'&to='+'zh'+'&salt='+str(salt)+'&sign='+sign
+        else:
+            url = 'http://api.fanyi.baidu.com' + apiurl+'?appid='+appid+'&q='+quote(q)+'&from='+'auto'+'&to='+'zh'+'&salt='+str(salt)+'&sign='+sign
+    elif dst == "en":
+        # print("dst en")
+        url = 'http://api.fanyi.baidu.com' + apiurl+'?appid='+appid+'&q='+quote(q)+'&from='+'auto'+'&to='+'en'+'&salt='+str(salt)+'&sign='+sign
+    elif dst == "fra":
+        # print("dst fr")
+        url = 'http://api.fanyi.baidu.com' + apiurl+'?appid='+appid+'&q='+quote(q)+'&from='+'auto'+'&to='+'fra'+'&salt='+str(salt)+'&sign='+sign
+    else:
+        # print("......")
+        url = 'http://api.fanyi.baidu.com' + apiurl+'?appid='+appid+'&q='+quote(q)+'&from='+'auto'+'&to='+'auto'+'&salt='+str(salt)+'&sign='+sign
     # print(url)
     # http://api.fanyi.baidu.com/api/trans/vip/translate?q=apple&from=en&to=zh&appid=2015063000000001&salt=1435660288&sign=f89f9594663708c1605f3d736d01d2d4
     r = requests.get(url)
     js_text = r.json()
     result = ""
-    for text in js_text["trans_result"]:
-        result += "\n" + text["dst"]
+    for item in js_text["trans_result"]:
+        result += "\n" + item["dst"]
 
     return result
 

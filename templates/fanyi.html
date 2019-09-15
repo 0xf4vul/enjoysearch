@@ -30,23 +30,24 @@
 
     .readmorejoy {
       /* font-style:normal; */
-      font-size:16px;
+      font-size: 16px;
     }
   </style>
 
 </head>
 
 <!-- style="border-top-style:ridge;border-right-style:ridge;border-left-style:ridge" -->
-<body  class="readmorejoy">
+
+<body class="readmorejoy">
 
   <script type="text/javascript">
-      function dynamicLoadJs(url) {
-        var head = document.getElementsByTagName('head')[0];
-        var script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = url;
-        head.appendChild(script);
-      }
+    function dynamicLoadJs(url) {
+      var head = document.getElementsByTagName('head')[0];
+      var script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = url;
+      head.appendChild(script);
+    }
 
     function help() {
       bootbox.alert({
@@ -211,38 +212,68 @@
         // alert("google fanyi")
         input = $('#idinput').val();
         if (input.length > 0) {
-        // $('#idtype').val("en");
-        $('#idwhich').val("google");
-        $("form").submit();
-      }
+          // $('#idtype').val("en");
+          $('#idwhich').val("google");
+          $("form").submit();
+        }
       });
       $("#idbaidu").click(function() {
         // alert("baidu fanyi")
         input = $('#idinput').val();
         if (input.length > 0) {
-        $('#idwhich').val("baidu");
-        $("form").submit();
-      }
+          $('#idwhich').val("baidu");
+          $("form").submit();
+        }
       });
       $("#idyoudao").click(function() {
         // alert("youdao fanyi")
         input = $('#idinput').val();
         if (input.length > 0) {
-        $('#idwhich').val("youdao");
-        $("form").submit();
-      }
+          $('#idwhich').val("youdao");
+          $("form").submit();
+        }
       });
       $("#cat").click(function() {
         // alert("cat words")
         input = $('#idinput').val();
         if (input.length > 0) {
-        $('#idtype').val("cat");
-        $('#idwhich').val("cat");
-        $("form").submit();
-      }
+          $('#idtype').val("cat");
+          $('#idwhich').val("cat");
+          $("form").submit();
+        }
+      });
+      $("#idcn").click(function() {
+        // alert("youdao fanyi")
+        // console.log($('#idwhich').val());
+        which = $('#idwhich').val();
+        input = $('#idinput').val();
+        if ((input.length > 0) && (which.length > 0)) {
+          $('#iddst').val("cn");
+          $("form").submit();
+        }
+      });
+      $("#iden").click(function() {
+        // alert("youdao fanyi")
+        // console.log($('#idwhich').val());
+        which = $('#idwhich').val();
+        input = $('#idinput').val();
+        if ((input.length > 0) && (which.length > 0)) {
+          $('#iddst').val("en");
+          $("form").submit();
+        }
+      });
+      $("#idfra").click(function() {
+        // alert("youdao fanyi")
+        // console.log($('#idwhich').val());
+        which = $('#idwhich').val();
+        input = $('#idinput').val();
+        if ((input.length > 0) && (which.length > 0)) {
+          $('#iddst').val("fra");
+          $("form").submit();
+        }
       });
 
-// $('#bbaidu').removeClass().addClass("btn btn-primary");
+      // $('#bbaidu').removeClass().addClass("btn btn-primary");
       $("#fanyi1").click(function() {
         // alert("fanyi1")
         // input = $('#idinput').val();
@@ -252,7 +283,7 @@
         $('#fanyi2').removeClass().addClass("btn btn-outline-primary");
         $('#fanyi1').removeClass().addClass("btn btn-primary");
         // $("form").submit();
-      // }
+        // }
       });
 
       $("#fanyi2").click(function() {
@@ -264,9 +295,8 @@
         $('#fanyi1').removeClass().addClass("btn btn-outline-primary");
         $('#fanyi2').removeClass().addClass("btn btn-primary");
         // $("form").submit();
-      // }
+        // }
       });
-
 
 
       $("#idinput").dblclick(function() {
@@ -339,37 +369,29 @@
     <center>
       <h1>让翻译更好一点点</h1>
     </center>
-    <!-- <center> -->
-      <!-- <input type="button" value="Google翻译" id="bgoogle"> -->
-      <!-- <input type="button" value="百度翻译" id="bbeidu"> -->
-      <!-- <input type="button" value="有道翻译" id="byoudao"> -->
-      <!-- <input type="button" value="微软翻译" id="bmicrosoft"> -->
-      <!-- <div id=showext> -->
-      <!-- <input type="button" value="神马" id="sm1234"> -->
-      <!-- </div> -->
-      <!-- <input type="button" value="TellMe" id="btellme" onclick="tellme()">
-    <input type="button" value="About" id="babout" onclick="about()"> -->
-    <!-- </center> -->
-    <!-- <br /> -->
-    <!-- <div class="btn-group" role="group" aria-label="Basic example">
-      <button type="button" class="btn btn-outline-primary" id="fanyi1">英文到中文</button>
-      <button type="button" class="btn btn-outline-primary" id="fanyi2">中文到英文</button>
-    </div> -->
 
-      <!-- <button type='button' class='button-primary' id="fanyi1">英文到中文</button>
-      <button type='button' class='button' id="fanyi2">中文到英文</button> -->
+    <br />
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <button type="button" class="btn btn-outline-primary" id="idcn">中文</button>
+      <button type="button" class="btn btn-outline-primary" id="iden">英文</button>
+      <button type="button" class="btn btn-outline-primary" id="idfra">法文</button>
 
-<br />
+  <!-- <input type="button" value="Google翻译" class="btn btn-secondary" id="bgoogle">
+  <input type="button" value="百度翻译" class="btn btn-secondary" id="bbaidu">
+  <input type="button" value="有道翻译" class="btn btn-secondary" id="byoudao">
+  <input type='button' value="分词" class='btn btn-secondary' id="cat"> -->
+    </div>
+
     <center>
       <form action="/fanyi" method="post" οnkeydοwn="if(event.keyCode==13){return false;}">
-        <input type="hidden" name="type" id="idtype" value="{{ type }}" />
+        <!-- <input type="hidden" name="type" id="idtype" value="{{ type }}" /> -->
         <input type="hidden" name="which" id="idwhich" value="{{ which }}" />
+        <input type="hidden" name="dst" id="iddst" value="{{ dst }}" />
         <div class="btn-group" role="group" aria-label="Basic example">
           <button type="button" class="btn btn-outline-warning" id="idgoogle">Google翻译</button>
           <button type="button" class="btn btn-outline-warning" id="idbaidu">百度翻译</button>
           <button type="button" class="btn btn-outline-warning" id="idyoudao">有道翻译</button>
           <button type="button" class="btn btn-outline-warning" id="cat">分词</button>
-
           <!-- <input type="button" value="Google翻译" class="btn btn-secondary" id="bgoogle">
           <input type="button" value="百度翻译" class="btn btn-secondary" id="bbaidu">
           <input type="button" value="有道翻译" class="btn btn-secondary" id="byoudao">
