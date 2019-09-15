@@ -30,9 +30,8 @@
 
     .readmorejoy {
       /* font-style:normal; */
-      font-size:14px;
+      font-size: 14px;
     }
-
   </style>
 
 </head>
@@ -92,6 +91,25 @@
       }
     };
 
+    var maxtime = 60;
+    var timer;
+    var input_time = 1;
+
+    function CountDown() {
+      if (maxtime > 0) {
+        --maxtime;
+        // console.log(maxtime);
+      } else {
+        // clearInterval(timer);
+        input_time = 0;
+        // maxtime = 60;
+        // alert("clearInterval");
+        // console.log("clearInterval");
+      }
+    };
+
+    timer = setInterval("CountDown()", 1000);
+    // page start, first 60 seconds cann't input.
 
     $(document).ready(function() {
 
@@ -100,10 +118,13 @@
         // alert("fanyi1")
         input = $('#idinput').val();
         title = $('#idtitle').val();
-        if ((title.length > 0) && (input.length > 0)) {
+        if ((title.length > 0) && (input.length > 0) && (input_time = 0)) {
           console.log("ok");
           // $('#idtype').val("en");
           $("form").submit();
+        }
+        else {
+          alert("必须有输入昵 并且 我们有些安全设置，稍微等会再操作吧");
         }
       });
 
@@ -177,7 +198,9 @@
     <hr />
 
     <div class="float-left" style="width:50%">
-      <div class="alert alert alert-warning" align="center"><h3>有话说</h3></div>
+      <div class="alert alert alert-warning" align="center">
+        <h3>有话说</h3>
+      </div>
       {% for post in content %}
       <h4>{{ post.user }} &nbsp;&nbsp;说&nbsp;&nbsp;{{ post.title }}</h4>
       <div class="alert alert-info" role="alert">{{ post.text }}</div>
@@ -186,7 +209,9 @@
       {% endfor %}
     </div>
     <div class="float-right" style="width:49%">
-      <div class="alert alert-warning" align="center"><h3>精选</h3></div>
+      <div class="alert alert-warning" align="center">
+        <h3>精选</h3>
+      </div>
       {% for post in best %}
       <h4>{{ post.user }} &nbsp;&nbsp;说&nbsp;&nbsp;{{ post.title }}</h4>
       <div class="alert alert-info" role="alert">{{ post.text }}</div>
@@ -197,12 +222,12 @@
 
     <!-- <p> -->
 
-      <!-- <center>Powered by <a href='https://www.readmorejoy.com/'>ReadMoreJoy</a> and <a href='https://www.readmorejoy.com/2019/07/services/'>Services</a></center> -->
-  <br />
-      <div style="display:none;"><img src="https://www.readmorejoy.com/static/readmorejoy1.jpeg" alt=""></div>
-      <center>
-        <div  id="tellyou">如何给人类真正做点好事？你有什么建议吗？有更多想象力吗？</div>
-      </center>
+    <!-- <center>Powered by <a href='https://www.readmorejoy.com/'>ReadMoreJoy</a> and <a href='https://www.readmorejoy.com/2019/07/services/'>Services</a></center> -->
+    <br />
+    <div style="display:none;"><img src="https://www.readmorejoy.com/static/readmorejoy1.jpeg" alt=""></div>
+    <center>
+      <div id="tellyou">如何给人类真正做点好事？你有什么建议吗？有更多想象力吗？</div>
+    </center>
   </div>
 
 
