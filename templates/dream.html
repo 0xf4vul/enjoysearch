@@ -113,18 +113,17 @@
 
     $(document).ready(function() {
 
-
       $("#idsubmit").click(function() {
         // alert("fanyi1")
         input = $('#idinput').val();
         title = $('#idtitle').val();
-        if ((title.length > 0) && (input.length > 0) && (input_time = 0)) {
+        if ((title.length > 0) && (input.length > 0) && (input_time == 0)) {
           console.log("ok");
           // $('#idtype').val("en");
           $("form").submit();
         }
         else {
-          alert("必须有输入昵 并且 我们有些安全设置，稍微等会再操作吧 ");
+          alert("必须有输入昵 并且 我们有些安全设置，稍微等会再操作吧 " + maxtime);
         }
       });
 
@@ -143,7 +142,6 @@
           }
         }
       });
-
 
 
       $("#idinput").dblclick(function() {
