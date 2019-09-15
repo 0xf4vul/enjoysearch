@@ -81,7 +81,7 @@ function RL(a, b) {
     result = r.text
     end = result.find("\",")
     if end > 4:
-        print(result[4:end])
+        # print(result[4:end])
         return result[4:end]
     return ""
 
