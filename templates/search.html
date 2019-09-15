@@ -296,7 +296,7 @@
     <!-- <input type="button" class="btn btn-light" value="Help" onclick="help()"> -->
     <!-- Powered by <a href='https://www.readmorejoy.com/2019/08/main/'>ReadMoreJoy</a>&nbsp;&nbsp;<a href='https://markdown.readmorejoy.com/'>MarkDown</a> -->
     <input type="button" class="btn btn-outline-success" value="主站" onclick="window.location.href=('https://www.readmorejoy.com/main/')">
-    <a class="btn btn-outline-dark" href="https://search.readmorejoy.cn/">新域名 https://search.readmorejoy.cn</a>
+    <a class="btn btn-outline-secondary" href="https://search.readmorejoy.cn/">新域名 https://search.readmorejoy.cn</a>
     <!-- <input type="button" class="btn btn-light" value="MarkDown" onclick="window.location.href=('/markdown')"> -->
     <!-- &nbsp;&nbsp;<a class="btn btn-outline-dark" href="https://search.readmorejoy.cn/">国内</a>&nbsp;&nbsp; -->
     <!-- <a class="btn btn-outline-dark" href="https://search.readmorejoy.com/">国外</a> -->
@@ -310,7 +310,7 @@
     <center>
       <input type="button" class="btn btn-outline-primary" value="引擎1" id="bgg">
       <!-- <input type="button" class="btn btn-outline-primary" value="Bing" id="bbing"> -->
-      <input type="button" class="btn btn-outline-primary" value="引擎2" id="bduckduckgo">
+      <input type="button" class="btn btn-outline-primary" value="引擎2" id="bddk">
       <input type="button" class="btn btn-outline-primary" value="引擎3" id="bbd">
       <!-- <div id=showext> -->
       <!-- <input type="button" value="神马" id="sm1234"> -->
@@ -329,12 +329,12 @@
         <input type="hidden" name="start" id="idstart" value="{{ start }}" />
         <!-- add hide text to avoid input enter auto submit by jiangzhixiang -->
         <input type="text" style="display:none;" value="" />
-        <div class="input-group">
-          <input type="text" class="form-control" name="key" id="idkey" maxlength="100" size="90" value="{{ key }}">
-          <span class="input-group-btn">
+        <!-- <div class="input-group"> -->
+          <input type="text" class="btn btn-outline-primary disabled" name="key" id="idkey" maxlength="100" size="80" value="{{ key }}">
+          <!-- <span class="input-group-btn"> -->
             <button type="button" class="btn btn-outline-success" id="search">Search</button>
-          </span>
-        </div>
+          <!-- </span> -->
+        <!-- </div> -->
         <!-- <input type="search" class="form-control" name="key" id="idkey" maxlength="100" style="width: 600px;" value="{{ key }}" />
         <button type='button' class="btn btn-primary" id="search">Search</button> -->
       </form>
