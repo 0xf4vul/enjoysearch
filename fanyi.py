@@ -111,7 +111,7 @@ function RL(a, b) {
                   "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
         else:
             url = "http://translate.google.cn/translate_a/single?client=t" \
-                  "&sl=zh-cn&tl=zh-cn&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
+                  "&sl=zh-cn&tl=en&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
                   "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
                   "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
     elif type == 'zh-tw':
@@ -133,7 +133,7 @@ function RL(a, b) {
                   "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
         else:
             url = "http://translate.google.cn/translate_a/single?client=t" \
-                  "&sl=zh-tw&tl=zh-cn&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
+                  "&sl=zh-tw&tl=en&hl=zh-CN&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca" \
                   "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
                   "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
     else:
