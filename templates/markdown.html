@@ -60,12 +60,12 @@
 
   <div class="container">
     <h1>Enjoy Markdown, Please!</h1>
-    <h6>蒋志祥 开发项目 &nbsp;&nbsp;<a href='/search'>更好的搜索</a></h6>
+    <h5>蒋志祥 开发项目 &nbsp;&nbsp;<a class="button" href='/search'>更好的搜索</a></h5>
       <!-- <a href='https://markdown.readmorejoy.cn/'>国内</a>&nbsp;&nbsp;<a href='https://markdown.readmorejoy.com/'>国外</a> -->
-    <p> 请在这个地址使用Markdown工具 <a href='https://markdown.readmorejoy.cn/'>https://markdown.readmorejoy.cn</a>
+
     <p>开始：输入任意url，点击“markdown，please！”，您将看到所提供url的Markdown版本；点击“Get Urls”得到这个页面的所有URL。提示：鼠标双击可以清空输入框。
     <form action="/markdown" method="get">
-      <strong>参数</strong>: <input type="text" id="in_param" name="param" size="35" maxlength="80"><br />
+      <!-- <strong>参数</strong>: <input type="text" id="in_param" name="param" size="35" maxlength="80"><br /> -->
       <strong>URL</strong>: <input type="text" id="in_url" name="url" size="85" maxlength="1024">
       <input type="hidden" name="type" id="type" value="" />
       <button type='submit'>Markdown, Please!</button>
@@ -73,11 +73,10 @@
     </form>
 
     <!-- <hr /> -->
-    <h4>Bookmarklet</h4>
+    <!-- <h4>Bookmarklet</h4>
     <p>Use this bookmarklet to instantly turn any page into Markdown.</p>
     <a class="button" href="javascript:location.href='https://markdown.readmorejoy.com/?url='+encodeURIComponent(document.location.href);">Markdown, Please!</a>
-    <!-- <hr /> -->
-    <p>&nbsp;</p>
+    <p>&nbsp;</p> -->
     <h4>"Developer API"</h4>
     <p>This service</p>
 
@@ -89,9 +88,9 @@
 <h4>Introduction</h4>
 <p><strong>Markdown, Please!</strong> is a service that instantly converts websites into <a href="https://daringfireball.net/projects/markdown/">Markdown</a>.</p>
 <p>To get started: enter any URL, hit "Markdown, Please!", and you will be presented with a Markdown version of the URL you provided. Tips: dbclick is clean input.</p>
-<br />
+<!-- <br />
 (Option) We use <a href="https://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a> to get find content, browse Inspect, example parameter is: div id="content" or div class="article" etc.<br>
-<br />
+<br /> -->
 <center>Powered by ReadMoreJoy </center>
 
   </div>
