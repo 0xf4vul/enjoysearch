@@ -7,7 +7,6 @@
   <!-- <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}"> -->
   <link rel="shortcut icon" href="https://www.readmorejoy.com/static/favicon.ico">
 
-
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="ToDo 实现梦想吧" />
 
@@ -19,8 +18,6 @@
   <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <script src="https://cdn.bootcss.com/bootbox.js/5.3.2/bootbox.min.js"></script>
-
-  <!-- <script src="https://www.readmorejoy.com/static/smtp.js"></script> -->
 
   <style>
     .bootbox-input-textarea {
@@ -102,8 +99,10 @@
         // alert("todo")
         user = $('#iduser').val();
         $('#idfuser').val(user);
-
-        input = $('#idinput').val();
+        password = $('#idpassword').val();
+        $('#idfpassword').val(password);
+        console.log(password);
+        // input = $('#idinput').val();
         // title = $('#idtitle').val();
         if (user.length > 0) {
           // console.log("ok");
@@ -162,16 +161,8 @@
   <div class="container">
     <input type="button" value="首页" onclick="window.location.href=('/todo')">
     <input type="button" value="喜欢搜索" onclick="window.location.href=('/search')">
-    &nbsp;&nbsp;<input type="input" name="user" id="iduser" value="{{ user }}" />
-    <!-- <h4>
-      <input type="button" value="Home" onclick="window.location.href=('/dream')">
-      <input type="button" value="Tellme" onclick="tellme()">
-      <input type="button" value="Help" onclick="help()">
-      <input type="button" value="ReadMoreJoy" onclick="window.location.href=('https://www.readmorejoy.com/main/')">
-      <input type="button" value="MarkDown" onclick="window.location.href=('/markdown')">
-      <input type="button" value="EnjoySearch" onclick="window.location.href=('/search')">
-    </h4>
-    <br /> -->
+    &nbsp;&nbsp;<input type="text" name="user" id="iduser" value="{{ user }}" required/>
+    &nbsp;&nbsp;<input type="password" name="password" id="idpassword" value="{{ password }}" required/>
     <br />
     <center>
       <h1>ToDo&nbsp;&nbsp;&nbsp;&nbsp;实现梦想</h1>
@@ -180,11 +171,9 @@
 
     <!-- <center> -->
     <form action="/todo" method="post" οnkeydοwn="if(event.keyCode==13){return false;}">
-      <!-- <input type="hidden" name="type" id="idtype" value="{{ type }}" /> -->
+      <input type="hidden" name="fwhat" id="idwhat" value="{{ what }}" />
       <input type="hidden" name="fuser" id="idfuser" value="{{ user }}" />
-      <!-- <button type='button' class='button-primary' id="fanyi1">英文到中文</button>
-        <button type='button' class='button' id="fanyi2">中文到英文</button>
-        <button type='button' class='button' id="cat">分词</button><br /> -->
+      <input type="hidden" name="fpassword" id="idfpassword" value="{{ password }}" />
       <button type='button' name"submit" id="idsubmit">导入/保存</button>
       <textarea style="height:150px" class="u-full-width readmorejoy" name="input" id="idinput" maxlength="2000">{{ input }}</textarea>
 
@@ -223,7 +212,6 @@
   </center>
 
   <div class="post-reward">
-    <!-- <input type="checkbox" name="reward" id="reward" hidden /> -->
     <label class="reward-button" for="reward">赞赏支持</label>
     <div class="qr-code">
 

@@ -122,10 +122,12 @@ def youdreams():
 @app.route('/todo', methods=['GET', 'POST'])
 def dotodo():
     user = request.values.get('fuser')
-    input = request.values.get('input')
+    what = request.values.get('fwhat')
+    password = request.values.get('fpassword')
     # 需要密码
-    # print(user)
-    # print(input)
+
+    print(user, what, password)
+    print("-----------")
     if user in ["jiangzx", "luckrill", "蒋志祥"]:
         if input:
             todo_save_to(user, input)

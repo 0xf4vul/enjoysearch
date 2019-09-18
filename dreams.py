@@ -31,6 +31,23 @@ dbname = "readmorejoy.db"
 
 # conn.commit()
 # conn.close()
+def creat_todo_db_table():
+    conn = sqlite3.connect(dbname)
+    c = conn.cursor()
+    c.execute('''CREATE TABLE Todo
+           (ID INTEGER PRIMARY KEY     AUTOINCREMENT,
+           Content        TEXT     NOT NULL,
+           User           TEXT     NOT NULL,
+           Password       TEXT     NOT NULL,
+           Ver            INT,
+           Creat_time     TEXT,
+           Update_time    TEXT,
+           Remarks        TEXT);''')
+
+    conn.commit()
+    conn.close()
+
+
 def creat_db_table():
     conn = sqlite3.connect(dbname)
     c = conn.cursor()
