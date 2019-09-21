@@ -41,13 +41,18 @@ def html_to_md(url, param):
     headers = {'User-Agent':random_user_agent()}
     session = HTMLSession()
 
-    r = session.get(url, headers=headers)
+    # r = session.get(url, headers=headers)
     # print(r.encoding)
     # print(r.apparent_encoding)
     # r.encoding = 'utf-8'
-    r.encoding = r.apparent_encoding
-    html = r.text
-    md = html2text.html2text(html)
+    # r.encoding = r.apparent_encoding
+    # r.html.render()
+    # html = r.html
+    # html = r.html
+    # val = html.render()
+    r = session.get('http://www.readmorejoy.com/')
+    r.html.render()
+    md = html2text.html2text(r.text)
 
     return md
 

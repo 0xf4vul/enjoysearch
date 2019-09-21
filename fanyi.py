@@ -162,10 +162,10 @@ function RL(a, b) {
                   "&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&clearbtn=1&otf=1&pc=1" \
                   "&srcrom=0&ssel=0&tsel=0&kc=2&tk=%s&q=%s" % (tk, q)
 
-    t1 = time.time()
+    # t1 = time.time()
     r = requests.get(url, headers=headers)
-    t2 = time.time()
-    print('took get ' + str(t2-t1) + ' second')
+    # t2 = time.time()
+    # print('took get ' + str(t2-t1) + ' second')
     # print(r.encoding)
     # r.encoding = 'UTF-8'
     # print(r.text)

@@ -98,12 +98,12 @@ def better_fanyi():
             # t1 = time.time()
             result = bd_fanyi(type, q, dst)
             # t2 = time.time()
-            print('took baidu ' + str(t2-t1) + 'second')
+            # print('took baidu ' + str(t2-t1) + 'second')
         elif which == "youdao":
             # t1 = time.time()
             result = youdao_fanyi(type, q, dst)
             # t2 = time.time()
-            print('took youdao ' + str(t2-t1) + 'second')
+            # print('took youdao ' + str(t2-t1) + 'second')
         elif which == "cat":
             result = jieba_cat(type, q)
 
