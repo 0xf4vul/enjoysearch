@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup
 import urllib.request, urllib.parse, urllib.error
 from user_agents import random_user_agent
 from urllib.parse import quote
+from user_proxies import proxies
 
 def bing_search(key, pn):
     # print("bing_search start...")
@@ -107,16 +108,10 @@ def gg_search(ip, key, pn):
     kv = {'q':key, 'start':pn}
 
     headers = {'User-Agent':random_user_agent(), 'X-Forwarded-For':ip}
-    # x-forward-for
-    # 'X-Forwarded-For':'8.8.8.8'
-    # headers = {
-    #     'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80  Safari/537.36 QIHU 360SE'
-    # }
-    # https://www.googleapis.com/customsearch/v1?key={自定义搜索的凭据}&cx={你的CX}&num=1&alt=atom&q={关键字}
-    # https://cse.google.com/cse?cx=017420283765287153452:omgkvyzjmmr
+    # print(proxies)
+    # proxies=proxies
     r = requests.get("https://www.google.com/search", params=kv, headers=headers)
     #print(r.url)
-    return r.text
     soup = BeautifulSoup(r.text, 'lxml')
 
     # li = []
