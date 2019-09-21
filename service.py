@@ -6,6 +6,7 @@ from searcher import bd_search, bing_search, ddk_search, gg_search, sm1234_searc
 from fanyi import bd_fanyi, jieba_cat, gg_fanyi, youdao_fanyi
 from dreams import dodreams, get_best_dreams
 from todo import todo_save_to, todo_read_from
+import time
 # import logging
 
 app = Flask(__name__)
@@ -54,7 +55,7 @@ def keysearch():
         if who == "bd":
             content = bd_search(key, start)
         elif who == "gg":
-            content = gg_search(key, start)
+            content = gg_search(ip, key, start)
         elif who == "bing":
             content = bing_search(key, start)
         elif who == "ddk":
@@ -89,11 +90,20 @@ def better_fanyi():
     # print(dst)
     if q:
         if which == "gg":
+            # t1 = time.time()
             result = gg_fanyi(type, q, dst)
+            # t2 = time.time()
+            # print('took google ' + str(t2-t1) + 'second')
         elif which == "bd":
+            # t1 = time.time()
             result = bd_fanyi(type, q, dst)
+            # t2 = time.time()
+            print('took baidu ' + str(t2-t1) + 'second')
         elif which == "youdao":
+            # t1 = time.time()
             result = youdao_fanyi(type, q, dst)
+            # t2 = time.time()
+            print('took youdao ' + str(t2-t1) + 'second')
         elif which == "cat":
             result = jieba_cat(type, q)
 

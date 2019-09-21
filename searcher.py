@@ -102,16 +102,21 @@ def bd_search(key, pn):
     # print("all search: " + str(t2 - t1) + " seconds")
     # return li
 
-def gg_search(key, pn):
+def gg_search(ip, key, pn):
     # print("gg_search start...")
     kv = {'q':key, 'start':pn}
 
-    headers = {'User-Agent':random_user_agent()}
+    headers = {'User-Agent':random_user_agent(), 'X-Forwarded-For':ip}
+    # x-forward-for
+    # 'X-Forwarded-For':'8.8.8.8'
     # headers = {
     #     'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.80  Safari/537.36 QIHU 360SE'
     # }
+    # https://www.googleapis.com/customsearch/v1?key={自定义搜索的凭据}&cx={你的CX}&num=1&alt=atom&q={关键字}
+    # https://cse.google.com/cse?cx=017420283765287153452:omgkvyzjmmr
     r = requests.get("https://www.google.com/search", params=kv, headers=headers)
     #print(r.url)
+    return r.text
     soup = BeautifulSoup(r.text, 'lxml')
 
     # li = []
