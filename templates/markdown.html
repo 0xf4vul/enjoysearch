@@ -41,6 +41,16 @@
         $('#in_param').val("");
       });
 
+      $("#light").click(function() {
+        $('#type').val("light");
+        $("form").submit();
+      });
+
+      $("#slow").click(function() {
+        $('#type').val("slow");
+        $("form").submit();
+      });
+
       $("#get_urls").click(function() {
         $('#type').val("url");
         $("form").submit();
@@ -60,16 +70,18 @@
 
   <div class="container">
     <h1>Enjoy Markdown, Please!</h1>
-
     <h5>蒋志祥 开发项目 &nbsp;&nbsp;<a class="button" href='/search'>更好的搜索</a></h5>
       <!-- <a href='https://markdown.readmorejoy.cn/'>国内</a>&nbsp;&nbsp;<a href='https://markdown.readmorejoy.com/'>国外</a> -->
-
-    <p>开始：输入任意url，点击“markdown，please！”，您将看到所提供url的Markdown版本；点击“Get Urls”得到这个页面的所有URL。提示：鼠标双击可以清空输入框。
+      开始：输入任意url，点击“速度快”或者“兼容性好”，之后您将看到所提供url的Markdown版本；点击“Get Urls”得到这个页面的所有URL。提示：鼠标双击可以清空输入框。
+      <br />
+      (可选) 我们使用 <a href="https://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a> 获取页面的内容，可以需要参考其语法，参数示范: div id="content" or div class="article" <br />
+      <br />
     <form action="/markdown" method="get">
-      <!-- <strong>参数</strong>: <input type="text" id="in_param" name="param" size="35" maxlength="80"><br /> -->
+      <strong>参数</strong>: <input type="text" id="in_param" name="param" size="35" maxlength="80"><br />
       <strong>URL</strong>: <input type="text" id="in_url" name="url" size="85" maxlength="1024">
       <input type="hidden" name="type" id="type" value="" />
-      <button type='submit'>Markdown, Please!</button>
+      <button type='button' id='light'>速度快</button>
+      <button type='button' id='slow'>兼容性好</button>
       <button type='button' id='get_urls'>Get Urls</button>
     </form>
 
