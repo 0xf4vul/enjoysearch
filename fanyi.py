@@ -12,7 +12,7 @@ import hashlib
 import urllib
 import random
 import jieba
-import execjs
+# import execjs
 from langdetect import detect
 from gtoken import TokenAcquirer
 
