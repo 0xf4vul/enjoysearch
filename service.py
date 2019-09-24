@@ -72,6 +72,8 @@ def keysearch():
         if content:
             # return content, 200, {'Content-Type': 'text/html; charset=UTF-8'}
             # print("return " + "who:" + who + " key:" + key)
+            # url = "https://www.google.com/search"
+            # return render_template('search.html', content=content, who=who, key=key, start=start, url=url)
             return render_template('search.html', content=content, who=who, key=key, start=start)
         else:
             # print("EnjoySearch meet 404, Not Found, Please try again...")
