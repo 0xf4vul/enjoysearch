@@ -6,9 +6,9 @@ import html2text
 import requests
 from bs4 import BeautifulSoup
 import urllib.request, urllib.parse, urllib.error
-from user_agents import random_user_agent
+from src.user_agents import random_user_agent
 from urllib.parse import quote
-from user_proxies import proxies
+from src.user_proxies import proxies
 
 def bing_search(key, pn):
     # print("bing_search start...")

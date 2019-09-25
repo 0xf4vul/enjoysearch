@@ -5,16 +5,15 @@ import time
 import urllib.request
 import urllib.parse
 import urllib.error
-from user_agents import random_user_agent
+from src.user_agents import random_user_agent
 from urllib.parse import urljoin, quote
-from user_agents import random_user_agent
 import hashlib
 import urllib
 import random
 import jieba
 # import execjs
 from langdetect import detect
-from gtoken import TokenAcquirer
+from src.gtoken import TokenAcquirer
 
 
 def gg_fanyi(type, q, dst):

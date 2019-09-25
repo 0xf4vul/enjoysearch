@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 # from requests_html import HTMLSession
 import time
 import urllib.request, urllib.parse, urllib.error
-from user_agents import random_user_agent
+from src.user_agents import random_user_agent
 from urllib.parse import urljoin
 # from selenium.webdriver.chrome.options import Options
 # from selenium.webdriver.common.keys import Keys

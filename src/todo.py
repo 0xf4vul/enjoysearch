@@ -3,7 +3,7 @@ import os
 import requests
 import time
 import urllib.request, urllib.parse, urllib.error
-from user_agents import random_user_agent
+from src.user_agents import random_user_agent
 from urllib.parse import urljoin, quote
 import hashlib
 import urllib

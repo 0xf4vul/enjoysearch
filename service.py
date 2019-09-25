@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask, request, redirect, url_for, render_template, flash, session, get_flashed_messages
-from converter import html_to_md, html_to_md_light, get_urls
-from searcher import bd_search, bing_search, ddk_search, gg_search, sm1234_search
-from fanyi import bd_fanyi, jieba_cat, gg_fanyi, youdao_fanyi
-from dreams import dodreams, get_best_dreams
-from todo import todo_save_to, todo_read_from
+from src.converter import html_to_md, html_to_md_light, get_urls
+from src.searcher import bd_search, bing_search, ddk_search, gg_search, sm1234_search
+from src.fanyi import bd_fanyi, jieba_cat, gg_fanyi, youdao_fanyi
+from src.dreams import dodreams, get_best_dreams
+from src.todo import todo_save_to, todo_read_from
 import time
 # import logging
-import asyncio
+# import asyncio
 
 app = Flask(__name__)
 app.threaded = True
