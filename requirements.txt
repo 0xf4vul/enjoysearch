@@ -1,7 +1,12 @@
 Flask==1.1.1
-requests==2.22.0
+jieba==0.39
+toml==0.10.0
 requests_html==0.10.0
+opencv_python==4.1.0.25
+requests==2.19.1
+numpy==1.17.0
+html2text==2018.1.9
+langdetect==1.0.7
 Flask_SocketIO==4.2.0
 selenium==3.141.0
-html2text==2018.1.9
 beautifulsoup4==4.8.0
