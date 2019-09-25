@@ -20,7 +20,7 @@ def test_rander():
     print(md)
 
 def sohu_news():
-    url = 'http://sohu.com'
+    url = 'http://www.sohu.com'
 
     # session = HTMLSession()
     # r = session.get(url, headers=headers)
@@ -32,11 +32,26 @@ def sohu_news():
         <div class="news" data-spm="top-news1">
     '''
     # top-news1 top-news2 top-news3 top-news4 top-news5
-    divs = soup.select('[data-spm="top-news5"]')
-    for news in divs:
-        # print(news)
-        p = news.select('li')
-        print(p)
+    divs = soup.select('[data-spm="top-news3"] li a')
+
+    for a in divs:
+        print(a.text.strip())
+        print(a['href'])
+    # for news in divs:
+    #     # print(news)
+    #     p = news.select('li a' )
+    #     # t = p.select('a')
+    #     for tt in p:
+    #         # print(tt)
+    #         print(tt.text)
+    #         print(tt['href'])
+            # print(t)
+            # print(t.text)
+            # print(t[href])
+        # print(p)
+        # t = p.select('a')
+        # print(t.text)
+        # print(t[href])
         # if len(news.select('p'))>0:
         #     p = news.select('p')
         #     for p1 in p:
@@ -53,7 +68,11 @@ def sina_news():
     r.encoding='utf-8'
     # print(r.text)
     soup = BeautifulSoup(r.text, 'lxml')
-    divs = soup.select('.ct_t_01')
+    divs = soup.select('.ct_t_01 p a')
     print(divs)
+    for a in divs:
+        print(a.text.strip())
+        print(a['href'])
 
 sina_news()
+sohu_news()
