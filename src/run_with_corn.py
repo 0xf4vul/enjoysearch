@@ -1,11 +1,13 @@
-from apscheduler.schedulers.blocking import BlockingScheduler
+# from apscheduler.schedulers.blocking import BlockingScheduler
+from apscheduler.schedulers.background import BackgroundScheduler
 import time
 import os
 from news import save_to_html
 
 path = os.path.dirname(os.path.realpath(__file__))
 
-scheduler = BlockingScheduler()
+# scheduler = BlockingScheduler()
+scheduler = BackgroundScheduler
 
 def job():
     print("execute news to html")
