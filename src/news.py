@@ -3,7 +3,7 @@
 import jinja2
 import requests
 from bs4 import BeautifulSoup
-from user_agents import random_user_agent
+from src.user_agents import random_user_agent
 from flask import Flask, request, redirect, url_for, render_template, flash, session, get_flashed_messages
 import os
 

@@ -3,24 +3,24 @@ from apscheduler.schedulers.background import BackgroundScheduler
 import time
 import os
 from news import save_to_html
+import daemon
 
-path = os.path.dirname(os.path.realpath(__file__))
+from spam import do_main_program
 
-# scheduler = BlockingScheduler()
-scheduler = BackgroundScheduler()
+with daemon.DaemonContext():
+    # scheduler = BlockingScheduler()
+    scheduler = BackgroundScheduler()
 
-def job():
-    print("execute news to html")
-    save_to_html()
-    # print "%s: 执行任务"  % time.asctime()
+    def job():
+        print("execute news to html")
+        save_to_html()
+        # print "%s: 执行任务"  % time.asctime()
 
-# scheduler.add_job(job, 'interval', seconds=30)
-scheduler.add_job(job, 'interval', hours=3)
+    # scheduler.add_job(job, 'interval', seconds=30)
+    scheduler.add_job(job, 'interval', hours=3)
 
-scheduler.start()
+    scheduler.start()
 
-while True:
-    pass
 
 # hour =19 , minute =23
 # hour ='19', minute ='23'

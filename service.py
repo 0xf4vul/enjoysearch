@@ -6,6 +6,7 @@ from src.searcher import bd_search, bing_search, ddk_search, gg_search, sm1234_s
 from src.fanyi import bd_fanyi, jieba_cat, gg_fanyi, youdao_fanyi
 from src.dreams import dodreams, get_best_dreams
 from src.todo import todo_save_to, todo_read_from
+from src.news import save_to_html
 import time
 # import logging
 # import asyncio
