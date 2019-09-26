@@ -19,6 +19,9 @@ scheduler.add_job(job, 'interval', hours=3)
 
 scheduler.start()
 
+while True:
+    pass
+    
 # hour =19 , minute =23
 # hour ='19', minute ='23'
 # minute = '*/3' 表示每 5 分钟执行一次
