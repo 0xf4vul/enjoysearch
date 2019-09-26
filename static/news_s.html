@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+
+  <br />
+
+  {% for post in content %}
+  <h5>∗ <a href="{{ post.url }}" target="_blank">{{ post.title }}</a> {{ post.name }}</h5>
+  {% endfor %}
+
+
+</body>
+
+</html>

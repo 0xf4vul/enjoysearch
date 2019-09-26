@@ -53,10 +53,10 @@
 </head>
 
 <!-- style="border-top-style:ridge;border-right-style:ridge;border-left-style:ridge" -->
-<body >
+
+<body>
 
   <script type="text/javascript">
-
     function dynamicLoadJs(url) {
       var head = document.getElementsByTagName('head')[0];
       var script = document.createElement('script');
@@ -123,7 +123,11 @@
 
       if (key.length < 1) {
         $('#idnext').hide();
-      };
+        $('#idnews').show();
+      }
+      else {
+        $('#idnews').hide();
+      }
 
       //console.log(who);
       switch (who) {
@@ -294,10 +298,11 @@
     <input type="button" class="btn btn-outline-success" value="有话说" onclick="window.location.href=('/dream')">
     <input type="button" class="btn btn-outline-success" value="翻译工具" onclick="window.location.href=('/fanyi')">
     <input type="button" class="btn btn-outline-success" value="MarkDown工具" onclick="window.location.href=('/markdown')">
+    <input type="button" class="btn btn-outline-success" value="今天新闻" onclick="window.location.href=('/news')">
     <!-- <input type="button" class="btn btn-light" value="Help" onclick="help()"> -->
     <!-- Powered by <a href='https://www.readmorejoy.com/2019/08/main/'>ReadMoreJoy</a>&nbsp;&nbsp;<a href='https://markdown.readmorejoy.com/'>MarkDown</a> -->
     <input type="button" class="btn btn-outline-success" value="主站" onclick="window.location.href=('https://www.readmorejoy.com/main/')">
-    <a class="btn btn-outline-secondary" href="https://go.readmorejoy.com/">新域名 go.readmorejoy.com</a>
+
 
     <!-- &nbsp;&nbsp;<a class="btn btn-outline-dark" href="https://search.readmorejoy.cn/">国内</a>&nbsp;&nbsp; -->
     <!-- <a class="btn btn-outline-dark" href="https://search.readmorejoy.com/">国外</a> -->
@@ -355,10 +360,13 @@
     {{ url }}
     <!-- <iframe id="url" src="https://www.qq.com" frameborder=0></iframe> -->
     <!-- <hr /> -->
+    <div id="idnews" value="news">{% include "news_out_s.html" %}</div>
     <p>
       <center>
-        <div id="tellyou">如何给人类真正做点好事？你有什么建议吗？<a href="https://www.readmorejoy.com/tags/%E5%85%BB%E7%94%9F%E4%BF%9D%E5%81%A5/">养生保健</a></div>
+        <div id="tellyou">如何给人类真正做点好事？你有什么建议吗？<a href="https://www.readmorejoy.com/tags/health/">养生保健</a></div>
+        <a class="btn btn-outline-secondary" href="https://go.readmorejoy.com/">新域名 go.readmorejoy.com</a>
       </center>
+
       <!-- 另一域名 <a href="https://webtools.readmorejoy.com/">webtools.readmorejoy.com/</a> -->
       <!-- <center>Powered by <a href='https://www.readmorejoy.com/'>ReadMoreJoy</a> and <a href='https://www.readmorejoy.com/2019/07/services/'>Services</a></center> -->
 
@@ -366,8 +374,13 @@
 
   </div>
 
-  <div class="post-reward">
-    <!-- <input type="checkbox" name="reward" id="reward" hidden /> -->
+
+
+
+
+  {% include "post-reward.html" %}
+
+  <!-- <div class="post-reward">
     <label class="reward-button" for="reward">赞赏支持</label>
     <div class="qr-code">
 
@@ -381,7 +394,7 @@
         <span>支付宝打赏</span>
       </label>
     </div>
-  </div>
+  </div> -->
 
 </body>
 

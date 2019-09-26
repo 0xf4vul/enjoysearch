@@ -154,6 +154,14 @@ def dotodo():
     result = ""
     return render_template('todo.html', user=user, input=result)
 
+@app.route('/news')
+def news():
+    # flash("bling bling")
+    # return app.send_static_file('news_out_all.html')
+    return render_template('news_out_all.html')
+
+
+
 @app.route('/test')
 def yessir():
     # flash("bling bling")
