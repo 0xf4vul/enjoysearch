@@ -38,14 +38,14 @@
     <input type="button" class="btn btn-outline-success" value="首页" onclick="window.location.href=('/')">
     <input type="button" value="更好的搜索" class="btn btn-success" onclick="window.location.href=('/search')">
 
-    <br /><br />
+    <br /><br /><br />
     {% for post in content %}
     <h5>∗ <a href="{{ post.url }}" target="_blank">{{ post.title }}</a> {{ post.name }}</h5>
     {% endfor %}
     <p>
 
         {% include "post-reward.html" %}
-        
+
   </div>
 
 </body>
