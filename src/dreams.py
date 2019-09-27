@@ -1,14 +1,3 @@
-
-# import os
-# import requests
-# import time
-# import urllib.request, urllib.parse, urllib.error
-# from user_agents import random_user_agent
-# from urllib.parse import urljoin, quote
-# import hashlib
-# import urllib
-# import random
-# import jieba
 import sqlite3
 import time
 
@@ -72,11 +61,20 @@ def creat_db_table():
 
 
 # display max 50; Delete nums; Update nums;
-def select_all_50():
+def select_all_last_50():
     print("select_all_50")
     conn = sqlite3.connect(dbname)
     c = conn.cursor()
     cursor = c.execute('SELECT * FROM Dreams ORDER BY ID DESC LIMIT 50')
+    for row in cursor:
+        print(row)
+    conn.close()
+
+def select_all_first_50():
+    print("select_all_50")
+    conn = sqlite3.connect(dbname)
+    c = conn.cursor()
+    cursor = c.execute('SELECT * FROM Dreams ORDER BY ID LIMIT 50')
     for row in cursor:
         print(row)
     conn.close()
@@ -89,6 +87,18 @@ def db_update_nums(li):
     for l in li:
         print(l)
         c.execute('UPDATE Dreams SET Star=1 WHERE ID = %s' % (l))
+
+    conn.commit()
+    conn.close()
+
+def db_update_remove(li):
+    print("db_update_remove")
+    conn = sqlite3.connect(dbname)
+    c = conn.cursor()
+
+    for l in li:
+        print(l)
+        c.execute('UPDATE Dreams SET Star=0 WHERE ID = %s' % (l))
 
     conn.commit()
     conn.close()
@@ -163,10 +173,13 @@ if __name__ == '__main__':
         db_delete_nums(args.integers)
     elif args.type in ('up', 'update', 'u'):
         db_update_nums(args.integers)
-    elif args.type in ('show', 'list', 'select', 'all'):
-        select_all_50()
+    elif args.type in ('rm', 'move', 'remove'):
+        db_update_remove(args.integers)
+    elif args.type in ('show', 'last', 'list', 'select', 'all'):
+        select_all_last_50()
+    elif args.type in ('first', 'before'):
+        select_all_first_50()
     else:
-        select_all_50()
+        select_all_first_50()
 
 # creat_db_table()
-# select()
