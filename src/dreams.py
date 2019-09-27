@@ -1,9 +1,11 @@
 import sqlite3
 import time
-
 import argparse
+import os
 
-dbname = "readmorejoy.db"
+path = os.path.dirname(os.path.realpath(__file__))
+
+dbname = path + "/../readmorejoy.db"
 # 数据库 if_you_dream
 # ID，Star, Title, Text, User, Creat_time, Update_time, Remarks
 

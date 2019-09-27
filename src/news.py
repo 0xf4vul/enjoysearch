@@ -173,11 +173,11 @@ def save_to_html():
     with open(path + "/../templates/news_out_all.html", 'w') as file:
         file.write(html)
 
-    content = sina_news_s()
-    html = render_without_request('news_s.html', content=content)
-    # print(html)
-    with open(path + "/../templates/news_out_s.html", 'w') as file:
-        file.write(html)
+    # content = sina_news_s()
+    # html = render_without_request('news_s.html', content=content)
+    # # print(html)
+    # with open(path + "/../templates/news_out_s.html", 'w') as file:
+    #     file.write(html)
 
 if __name__ == '__main__':
     save_to_html()

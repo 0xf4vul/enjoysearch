@@ -118,16 +118,20 @@
 
       who = $('#idwho').val();
       key = $('#idkey').val();
-      i = $('#idstart').val()
-      i = parseInt(i)
+      i = $('#idstart').val();
+      i = parseInt(i);
 
       if (key.length < 1) {
         $('#idnext').hide();
-        $('#idnews').show();
       }
-      else {
-        $('#idnews').hide();
-      }
+
+      // if (key.length < 1) {
+      //   $('#idnext').hide();
+      //   $('#idnews').show();
+      // }
+      // else {
+      //   $('#idnews').hide();
+      // }
 
       //console.log(who);
       switch (who) {
@@ -360,7 +364,7 @@
     {{ url }}
     <!-- <iframe id="url" src="https://www.qq.com" frameborder=0></iframe> -->
     <!-- <hr /> -->
-    <div id="idnews" value="news">{% include "news_out_s.html" %}</div>
+    <!-- <div id="idnews" value="news">{% include "news_out_s.html" %}</div> -->
     <p>
       <center>
         <div id="tellyou">如何给人类真正做点好事？你有什么建议吗？<a href="https://www.readmorejoy.com/tags/health/">养生保健</a></div>
@@ -374,9 +378,6 @@
       <div style="display:none;"><img src="https://www.readmorejoy.com/static/readmorejoy1.jpeg" alt=""></div>
 
   </div>
-
-
-
 
 
   {% include "post-reward.html" %}
