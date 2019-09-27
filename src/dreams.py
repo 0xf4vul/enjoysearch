@@ -67,12 +67,6 @@ def creat_db_table():
     now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     c.execute("INSERT INTO Dreams (Title,Content,User,Star,Creat_time) \
           VALUES ('%s', '%s', '%s', '%s', '%s')" % (title, content, user, '0', now));
-    title = "如果 我是公司老总"
-    content = "努力探索给人类真正做点好事\r\n\r\n积极向大家学习\r\n\r\n积极和大家交流，感谢"
-    user = "蒋志祥"
-    now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-    c.execute("INSERT INTO Dreams (Title,Content,User,Star,Creat_time) \
-          VALUES ('%s', '%s', '%s', '%s', '%s')" % (title, content, user, '0', now));
     conn.commit()
     conn.close()
 
