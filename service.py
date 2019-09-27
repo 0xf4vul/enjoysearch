@@ -9,6 +9,8 @@ from src.todo import todo_save_to, todo_read_from
 import time
 # import logging
 # import asyncio
+import sys
+# sys.path.append("src")
 
 app = Flask(__name__)
 app.threaded = True
@@ -205,4 +207,5 @@ def hello():
 if __name__ == '__main__':
 
     # app.run(debug=True)
+    app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 7200 # 2 hours, default is 24 hours
     app.run(host="0.0.0.0", port=5000)

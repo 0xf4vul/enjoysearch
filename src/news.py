@@ -1,5 +1,3 @@
-# from jinja2 import Environment, PackageLoader, select_autoescape
-# from jinja2 import Template, FileSystemLoader
 import jinja2
 import requests
 from bs4 import BeautifulSoup
@@ -181,4 +179,5 @@ def save_to_html():
     with open(path + "/../templates/news_out_s.html", 'w') as file:
         file.write(html)
 
-save_to_html()
+if __name__ == '__main__':
+    save_to_html()
