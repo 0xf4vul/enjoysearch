@@ -5,8 +5,6 @@ import os
 from news import save_to_html
 import daemon
 
-from spam import do_main_program
-
 with daemon.DaemonContext():
     # scheduler = BlockingScheduler()
     scheduler = BackgroundScheduler()
