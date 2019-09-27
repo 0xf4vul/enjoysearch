@@ -25,7 +25,7 @@ def sohu_news():
     for a in divs:
         result['title'] = a.text.strip()
         result['url'] = a['href']
-        result['name'] = "sohu"
+        result['name'] = "-sohu"
         yield result
 
     divs = soup.select('[data-spm="top-news2"] li a')
@@ -33,7 +33,7 @@ def sohu_news():
     for a in divs:
         result['title'] = a.text.strip()
         result['url'] = a['href']
-        result['name'] = "sohu"
+        result['name'] = "-sohu"
         # print(a.text.strip())
         # print(a['href'])
         yield result
@@ -43,7 +43,7 @@ def sohu_news():
     for a in divs:
         result['title'] = a.text.strip()
         result['url'] = a['href']
-        result['name'] = "sohu"
+        result['name'] = "-sohu"
         # print(a.text.strip())
         # print(a['href'])
         yield result
@@ -53,7 +53,7 @@ def sohu_news():
     for a in divs:
         result['title'] = a.text.strip()
         result['url'] = a['href']
-        result['name'] = "sohu"
+        result['name'] = "-sohu"
         # print(a.text.strip())
         # print(a['href'])
         yield result
@@ -74,7 +74,7 @@ def sina_news():
     for a in divs:
         result['title'] = a.text.strip()
         result['url'] = a['href']
-        result['name'] = "sina"
+        result['name'] = "-sina"
         yield result
 
     # <ul class="list_14" data-sudaclick="blk_news_1">
@@ -84,7 +84,7 @@ def sina_news():
     for a in divs:
         result['title'] = a.text.strip()
         result['url'] = a['href']
-        result['name'] = "sina"
+        result['name'] = "-sina"
         yield result
 
     divs = soup.select('[data-sudaclick="blk_news_2"] li a')
@@ -93,7 +93,7 @@ def sina_news():
     for a in divs:
         result['title'] = a.text.strip()
         result['url'] = a['href']
-        result['name'] = "sina"
+        result['name'] = "-sina"
         yield result
 
     divs = soup.select('[data-sudaclick="blk_news_3"] li a')
@@ -102,7 +102,7 @@ def sina_news():
     for a in divs:
         result['title'] = a.text.strip()
         result['url'] = a['href']
-        result['name'] = "sina"
+        result['name'] = "-sina"
         yield result
 
     divs = soup.select('[data-sudaclick="blk_news_4"] li a')
@@ -111,7 +111,7 @@ def sina_news():
     for a in divs:
         result['title'] = a.text.strip()
         result['url'] = a['href']
-        result['name'] = "sina"
+        result['name'] = "-sina"
         yield result
 
 def sina_news_s():
@@ -127,7 +127,7 @@ def sina_news_s():
     for a in divs:
         result['title'] = a.text.strip()
         result['url'] = a['href']
-        result['name'] = "sina"
+        result['name'] = "-sina"
         yield result
 
 def sohu_news_s():
@@ -142,7 +142,7 @@ def sohu_news_s():
     for a in divs:
         result['title'] = a.text.strip()
         result['url'] = a['href']
-        result['name'] = "sohu"
+        result['name'] = "-sohu"
         # print(a.text.strip())
         # print(a['href'])
         yield result
